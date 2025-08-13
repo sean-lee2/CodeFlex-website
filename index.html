@@ -972,35 +972,41 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer footer-center p-10 bg-base-200 text-base-content">
-        <aside>
-            <a href="#hero" class="flex items-center space-x-2 mb-4">
-                <span>
-                    <img src="images/logo.png" alt="로고" class="w-24 h-8 mr-2" />
-                </span>
-            </a>
-            <p class="font-bold">
-                스마트 팩토리의 미래를 만들어가는 디지털 트윈 노코드 플랫폼  
-            </p>
-            <p>Copyright © 2025 - CodeFlex. All rights reserved.</p>
-            <div class="flex items-center space-x-3">
-                <i class="fas fa-globe text-primary text-xl"></i>
-                <span class="font-semibold">웹사이트</span>
-                <a href="https://www.codeflex.co.kr" target="_blank" class="text-base-content/80 hover:underline">www.codeflex.co.kr</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <div class="ml-5 flex items-center">
-                    <i class="fas fa-envelope text-primary text-xl"></i>
-                    <span class="font-semibold ml-2">이메일</span>
-                    <a href="mailto:contact@codeflex.co.kr" class="text-base-content/80 ml-2 hover:underline">contact@codeflex.co.kr</a>
+    <footer class="footer p-10 bg-base-200 text-base-content">
+        <div class="w-full flex flex-col items-center gap-6">
+            <!-- 브랜드 & 정보 -->
+            <aside class="flex flex-col items-center text-center gap-3">
+                <a href="#hero" class="flex items-center space-x-2 mb-2 justify-center">
+                    <img src="images/logo.png" alt="로고" class="w-24 h-8" />
+                </a>
+                <p class="font-bold">
+                    스마트 팩토리의 미래를 만들어가는 디지털 트윈 노코드 플랫폼
+                </p>
+                <p class="text-xs sm:text-sm">Copyright © 2025 - CodeFlex. All rights reserved.</p>
+
+                <!-- 웹사이트 & 이메일 -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 mt-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-globe text-primary text-xl"></i>
+                        <span class="font-semibold">웹사이트</span>
+                        <a href="https://www.codeflex.co.kr" target="_blank" class="text-base-content/80 hover:underline">www.codeflex.co.kr</a>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-envelope text-primary text-xl"></i>
+                        <span class="font-semibold">이메일</span>
+                        <a href="mailto:contact@codeflex.co.kr" class="text-base-content/80 hover:underline">contact@codeflex.co.kr</a>
+                    </div>
                 </div>
-            </div>
-        </aside>
-        <nav>
-            <div class="grid grid-flow-col gap-4">
-                <a class="link link-hover">개인정보처리방침</a>
-                <a class="link link-hover">회사소개</a>
-            </div>
-        </nav>
+            </aside>
+
+            <!-- 내비게이션 -->
+            <nav class="flex justify-center mt-4 w-full">
+                <div class="grid grid-flow-col gap-4 text-xs sm:text-sm">
+                    <a href="#" class="link link-hover">개인정보처리방침</a>
+                    <a href="#" class="link link-hover">회사소개</a>
+                </div>
+            </nav>
+        </div>
     </footer>
 
     <!-- Demo Modal -->
