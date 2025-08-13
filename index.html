@@ -18,10 +18,12 @@
     <header class="navbar bg-base-100 shadow-lg fixed top-0 z-50" role="navigation" aria-label="메인 네비게이션">
         <div class="navbar-start">
             <div class="dropdown">
-                <button tabindex="0" aria-label="메뉴 열기" class="btn btn-ghost lg:hidden">
+                <!--button tabindex="0" aria-label="메뉴 열기" class="btn btn-ghost lg:hidden"-->
+                <button id="mobileMenuBtn" aria-label="메뉴 열기" class="btn btn-ghost lg:hidden">
                     <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
-                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <!--ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"-->
+                <ul id="mobileMenu" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 hidden">
                     <li><a href="#overview">플랫폼 개요</a></li>
                     <li><a href="#features">핵심 기능</a></li>
                     <li><a href="#market">시장 트렌드</a></li>
@@ -1079,6 +1081,15 @@
 
     <!-- JavaScript -->
     <script type="module" src="js/script.js"></script>
+
+    <script>
+        const btn = document.getElementById('mobileMenuBtn');
+        const menu = document.getElementById('mobileMenu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden'); // 클릭 시 메뉴 토글
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
