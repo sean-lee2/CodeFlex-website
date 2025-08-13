@@ -1082,8 +1082,17 @@
         const btn = document.getElementById('mobileMenuBtn');
         const menu = document.getElementById('mobileMenu');
 
+        // 메뉴 버튼 클릭 시 토글
         btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden'); // 클릭 시 메뉴 토글
+            menu.classList.toggle('hidden');
+        });
+
+        // 메뉴 항목 클릭 시 메뉴 닫기 (모바일)
+        const menuItems = menu.querySelectorAll('a');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menu.classList.add('hidden'); // 클릭 시 hidden 클래스 추가
+            });
         });
     </script>
 
