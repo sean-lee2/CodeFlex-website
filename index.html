@@ -43,6 +43,15 @@
             </ul>
         </div>
         <div class="navbar-end">
+            <!-- 글로벌 아이콘 -->
+            <i class="fas fa-globe text-lg"></i>
+            &nbsp;
+            <!-- 언어 선택 -->
+            <select id="langSelect" class="select select-bordered select-sm">
+                <option value="ko" selected>한국어</option>
+                <option value="en">English</option>
+            </select>
+            &nbsp;&nbsp;
             <button class="btn btn-primary" onclick="scrollToSection('contact')">
                 <i class="fas fa-play mr-2"></i>데모 요청
             </button>
@@ -418,6 +427,8 @@
                         </div>
                     </div>
                 </div>
+
+                
             </div>
         </div>
     </section>
@@ -1077,6 +1088,28 @@
 
     <!-- JavaScript -->
     <script type="module" src="js/script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const langSelect = document.getElementById("langSelect");
+
+            // 현재 페이지에 맞춰 기본 선택값 설정
+            if (window.location.pathname.includes("index_en.html")) {
+                langSelect.value = "en";
+            } else {
+                langSelect.value = "ko";
+            }
+
+            langSelect.addEventListener("change", function () {
+                const lang = this.value;
+                if (lang === "ko") {
+                    window.location.href = "index.html"; // 한국어 페이지
+                } else if (lang === "en") {
+                    window.location.href = "index_en.html"; // 영어 페이지
+                }
+            });
+        });
+    </script>
 
     <script>
         const btn = document.getElementById('mobileMenuBtn');
