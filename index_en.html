@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>TwinWorks - Digital Twin-based Workcell Control & Virtual Commissioning Platform</title>
+    <meta name="description" content="TwinWorks is an innovative no-code smart factory platform that supports workcell control code generation and virtual commissioning based on digital twins.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    
+    <!-- AgentView를 위한 Import Map -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+            "three/examples/jsm/": "https://unpkg.com/three@0.164.1/examples/jsm/",
+            "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+        }
+    }
+    </script>
+    
+    <!-- WebComponents Polyfill -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.4.3/webcomponents-bundle.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- AgentView 스타일 -->
+    <style>
+        urdf-viewer {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a0a 100%);
+        }
+
+        /* 🏭 Factory Theme Loading Animation */
+        @keyframes logoGlow {
+            0% { 
+                filter: brightness(1);
+                transform: scale(1);
+            }
+            100% { 
+                filter: brightness(1.2);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes loading-sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+
+<body class="bg-base-100 pt-20"> 
+    
+    <!-- Header -->
+    <header class="navbar bg-base-100 shadow-lg fixed top-0 z-50" role="navigation" aria-label="Main Navigation">
+        <div class="navbar-start">
+            <button id="mobileMenuBtn" aria-label="Open menu" class="btn btn-ghost lg:hidden">
+                <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+            </button>
+            <ul id="mobileMenu" class="menu menu-sm bg-base-100 shadow rounded-box w-52 mt-2 absolute left-4 top-12 hidden z-50">
+                <li><a href="#overview">Platform Overview</a></li>
+                <li><a href="#features">Key Features</a></li>
+                <li><a href="#market">Market Trends</a></li>
+                <li><a href="#demo">Interactive Demo</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <a href="#hero" class="btn btn-ghost text-xl font-bold text-primary flex items-center gap-2" aria-label="TwinWorks Home">
+                <span class="inline-flex items-center">
+                    <img src="images/logo.png" alt="Logo" class="w-24 h-8 mr-2" />
+                </span>
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="#overview" class="nav-link">Platform Overview</a></li>
+                <li><a href="#features" class="nav-link">Key Features</a></li>
+                <li><a href="#market" class="nav-link">Market Trends</a></li>
+                <li><a href="#demo" class="nav-link">Interactive Demo</a></li>
+                <li><a href="#contact" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <!-- Global icon -->
+            <i class="fas fa-globe text-lg"></i>
+            &nbsp;
+            <!-- Language select -->
+            <select id="langSelect" class="select select-bordered select-sm">
+                <option value="ko">한국어</option>
+                <option value="en" selected>English</option>
+            </select>
+            &nbsp;&nbsp;
+            <button class="btn btn-primary" onclick="scrollToSection('contact')">
+                <i class="fas fa-play mr-2"></i>Request Demo
+            </button>
+        </div>
+    </header>
+
+	<!-- Hero Section -->
+	<section id="hero" class="hero relative overflow-hidden pt-0 h-[600px]">
+		<!-- Background image overlay -->
+		<div class="absolute inset-0 z-0">
+			<img src="images/background1.jpg" alt="background" class="w-full h-full object-cover opacity-10" />
+		</div>
+
+		<div class="hero-content text-center relative z-10">
+			<div class="max-w-6xl">
+				<h1 class="text-5xl lg:text-7xl font-bold mb-6">
+					<span class="text-blue-950">Twin</span><span class="text-sky-500">Works</span>
+				</h1>
+				<h2 class="text-2xl lg:text-4xl font-semibold mb-6 text-base-content">
+					No-Code Platform Based on Digital Twin
+				</h2>
+				<p class="text-lg lg:text-xl mb-8 max-w-4xl mx-auto text-base-content/80 font-bold">
+					Accelerating digital transformation in manufacturing through 3D model-based control code generation and virtual commissioning.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<button class="btn btn-primary btn-lg" onclick="scrollToSection('overview')">
+						<i class="fas fa-rocket mr-2"></i>Learn More
+					</button>
+					<button class="btn btn-outline btn-lg" onclick="scrollToSection('contact')">
+						<i class="fas fa-info-circle mr-2"></i>Download Brochure
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+			<i class="fas fa-chevron-down text-2xl text-primary"></i>
+		</div>
+	</section>
+    
+	<!-- Platform Overview Section -->
+	<section id="overview" class="py-20 bg-base-100">
+		<div class="container mx-auto px-4">
+			<div class="text-center mb-16">
+				<h2 class="text-4xl lg:text-5xl font-bold mb-6">Platform Overview</h2>
+				<p class="text-xl max-w-3xl mx-auto text-base-content/80">
+					TwinWorks is an innovative solution that transcends traditional programming limits, enabling anyone to easily build smart factories.
+				</p>
+			</div>
+
+			<!-- Market Statistics -->
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+				<div class="stat bg-primary/5 rounded-box p-6">
+					<div class="stat-figure text-primary">
+						<i class="fas fa-chart-line text-3xl"></i>
+					</div>
+					<div class="stat-title">Industrial Automation Market Growth</div>
+					<div class="stat-value text-primary counter" data-target="8.2">8.2%</div>
+					<div class="stat-desc">CAGR 8.2%</div>
+				</div>
+				<div class="stat bg-secondary/5 rounded-box p-6">
+					<div class="stat-figure text-secondary">
+						<i class="fas fa-clock text-3xl"></i>
+					</div>
+					<div class="stat-title">Reduced Development Time</div>
+					<div class="stat-value text-secondary counter" data-target="80">80%</div>
+					<div class="stat-desc">80% faster than traditional methods</div>
+				</div>
+				<div class="stat bg-accent/5 rounded-box p-6">
+					<div class="stat-figure text-accent">
+						<i class="fas fa-users text-3xl"></i>
+					</div>
+					<div class="stat-title">Accessible to Non-Experts</div>
+					<div class="stat-value text-accent counter" data-target="95">95%</div>
+					<div class="stat-desc">User Satisfaction 95%</div>
+				</div>
+			</div>
+
+			<!-- Key Features Cards -->
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 feature-card">
+					<div class="card-body text-center">
+						<div class="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+							<svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+							</svg>
+						</div>
+						<h3 class="card-title justify-center mb-2">User-Friendly Code Generation</h3>
+						<p class="text-base-content/70">Intuitive interface allowing non-experts to easily generate complex control code.</p>
+					</div>
+				</div>
+				<div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 feature-card">
+					<div class="card-body text-center">
+						<div class="w-16 h-16 mx-auto mb-4 bg-warning/10 rounded-full flex items-center justify-center">
+							<svg class="w-8 h-8 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+							</svg>
+						</div>
+						<h3 class="card-title justify-center mb-2">3D Model-Based Digital Twin</h3>
+						<p class="text-base-content/70">Digitalization of physical systems using 3D models of real equipment and virtual teaching for control code generation.</p>
+					</div>
+				</div>
+				<div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 feature-card">
+					<div class="card-body text-center">
+						<div class="w-16 h-16 mx-auto mb-4 bg-secondary/10 rounded-full flex items-center justify-center">
+							<svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+							</svg>
+						</div>
+						<h3 class="card-title justify-center mb-2">Virtual Commissioning</h3>
+						<p class="text-base-content/70">Pre-testing, verification, and system optimization in a virtual environment before actual deployment.</p>
+					</div>
+				</div>
+				<!-- Add remaining feature cards here with translated English titles and descriptions -->
+			</div>
+		</div>
+	</section>
+
+	<!-- Core Features Section -->
+	<section id="features" class="py-20 bg-base-200">
+		<div class="container mx-auto px-4">
+			<div class="text-center mb-16">
+				<h2 class="text-4xl lg:text-5xl font-bold mb-6">Core Features</h2>
+				<p class="text-xl max-w-3xl mx-auto text-base-content/80">
+					Experience a new paradigm in smart factory construction with TwinWorks' innovative technology.
+				</p>
+			</div>
+
+			<!-- Feature Tabs -->
+			<div class="tabs tabs-boxed justify-center mb-12" data-group="features">
+				<a href="#" class="tab tab-active" data-tab="nocode">No-Code Programming</a>
+				<a href="#" class="tab" data-tab="3d-model">3D Model Based</a>
+				<a href="#" class="tab" data-tab="virtual">Virtual Commissioning</a>
+				<a href="#" class="tab" data-tab="realtime">Real-time Integration</a>
+			</div>
+
+			<!-- Feature Content -->
+			<div class="feature-content">
+				<!-- 3D Model Based -->
+				<div id="3d-model-content" class="feature-panel">
+					<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+						<div class="bg-base-100 rounded-lg p-6 shadow-lg">
+							<div class="mockup-browser border bg-base-300">
+								<div class="mockup-browser-toolbar">
+									<div class="input">3D Model Digital Twin</div>
+								</div>
+								<div class="flex justify-center px-4 py-4 bg-base-200">
+									<div class="relative">
+										<img src="images/3dModel.png" alt="3D Model" class="w-full col-span-3 rounded-lg" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<h3 class="text-3xl font-bold mb-6">3D Model-Based Control Code Generation</h3>
+							<div class="space-y-4 mb-8">
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-secondary text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Accurate Physical Modeling</h4>
+										<p class="text-base-content/80">Precise simulation based on 3D CAD models of real equipment</p>
+									</div>
+								</div>
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-secondary text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Automatic Control Logic Mapping</h4>
+										<p class="text-base-content/80">Optimal control logic automatically generated by analyzing 3D model structure and behavior</p>
+									</div>
+								</div>
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-secondary text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Real-time Visualization</h4>
+										<p class="text-base-content/80">Visualize control status and data on the 3D model in real time</p>
+									</div>
+								</div>
+							</div>
+							<button class="btn btn-secondary" onclick="showFeatureDemo('3d-model')">
+								<i class="fas fa-cube mr-2"></i>3D Demo Experience (Coming Soon)
+							</button>
+						</div>
+					</div>
+				</div>
+				
+                <!-- No-Code Programming -->
+				<div id="nocode-content" class="feature-panel active">
+					<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+						<div>
+							<h3 class="text-3xl font-bold mb-6">No-Code Smart Workcell Control Programming</h3>
+							<div class="space-y-4 mb-8">
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-primary text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Intuitive Visual Programming</h4>
+										<p class="text-base-content/80">Visually configure complex control logic through a simple interface</p>
+									</div>
+								</div>
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-primary text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Pre-built Component Library</h4>
+										<p class="text-base-content/80">Instantly utilize industry-standard control templates</p>
+									</div>
+								</div>
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-primary text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Control Code Generation via Virtual Teaching</h4>
+										<p class="text-base-content/80">Automatic PLC code generation and performance optimization reduce development time significantly</p>
+									</div>
+								</div>
+							</div>
+							<button class="btn btn-primary" onclick="showFeatureDemo('nocode')">
+								<i class="fas fa-play mr-2"></i>View Demo (Coming Soon)
+							</button>
+						</div>
+						<div class="bg-base-100 rounded-lg p-6 shadow-lg">
+							<div class="mockup-window border bg-base-300">
+								<div class="flex justify-center px-4 py-4 bg-base-200">
+									<div class="grid grid-cols-3 gap-4">
+										<img src="images/NoCode.png" alt="3D Model" class="w-full col-span-3 rounded-lg" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Virtual Commissioning -->
+				<div id="virtual-content" class="feature-panel">
+					<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+						<div>
+							<h3 class="text-3xl font-bold mb-6">Virtual Commissioning Optimization Process</h3>
+							<div class="space-y-4 mb-8">
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-accent text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Pre-Validation & Optimization</h4>
+										<p class="text-base-content/80">Verify and optimize system performance in a virtual environment before physical deployment</p>
+									</div>
+								</div>
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-accent text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Risk Minimization</h4>
+										<p class="text-base-content/80">Identify and resolve potential issues in advance to significantly reduce deployment risks</p>
+									</div>
+								</div>
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-accent text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Cost Reduction</h4>
+										<p class="text-base-content/80">Dramatically cut costs associated with physical prototypes and trial-and-error</p>
+									</div>
+								</div>
+							</div>
+							<button class="btn btn-accent" onclick="showFeatureDemo('virtual')">
+								<i class="fas fa-vr-cardboard mr-2"></i>Experience Virtual Commissioning (Coming Soon)
+							</button>
+						</div>
+						<div class="bg-base-100 rounded-lg p-6 shadow-lg">
+							<div class="space-y-4">
+								<div class="flex items-center space-x-4">
+									<div class="w-4 h-4 bg-success rounded-full"></div>
+									<div class="flex-1 h-2 bg-success/20 rounded-full">
+										<div class="h-full bg-success rounded-full w-4/5"></div>
+									</div>
+									<span class="text-sm font-semibold">Design Validation</span>
+								</div>
+								<div class="flex items-center space-x-4">
+									<div class="w-4 h-4 bg-warning rounded-full"></div>
+									<div class="flex-1 h-2 bg-warning/20 rounded-full">
+										<div class="h-full bg-warning rounded-full w-3/5"></div>
+									</div>
+									<span class="text-sm font-semibold">Performance Optimization</span>
+								</div>
+								<div class="flex items-center space-x-4">
+									<div class="w-4 h-4 bg-info rounded-full"></div>
+									<div class="flex-1 h-2 bg-info/20 rounded-full">
+										<div class="h-full bg-info rounded-full w-2/5"></div>
+									</div>
+									<span class="text-sm font-semibold">Scenario Testing</span>
+								</div>
+								<div class="mt-6 p-4 bg-success/10 rounded-lg">
+									<div class="flex items-center space-x-2">
+										<i class="fas fa-check-circle text-success"></i>
+										<span class="font-semibold">Virtual Commissioning Completed</span>
+									</div>
+									<p class="text-sm text-base-content/80 mt-2">System is ready, physical deployment can proceed</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Real-time Integration -->
+				<div id="realtime-content" class="feature-panel">
+					<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+						<div class="bg-base-100 rounded-lg p-6 shadow-lg">
+							<div class="mockup-browser border bg-base-300">
+								<div class="mockup-browser-toolbar">
+									<div class="input">Real-time Dashboard</div>
+								</div>
+								<div class="flex justify-center px-4 py-4 bg-base-200">
+									<div class="relative">
+										<img src="images/Dashboard.png" alt="Dashboard" class="w-full col-span-3 rounded-lg" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<h3 class="text-3xl font-bold mb-6">Real-time Data Integration & Monitoring</h3>
+							<div class="space-y-4 mb-8">
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-info text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">IoT Sensor Integration</h4>
+										<p class="text-base-content/80">Collect and process real-time data from various IoT sensors and devices</p>
+									</div>
+								</div>
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-info text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Intelligent Analytics</h4>
+										<p class="text-base-content/80">AI-powered data analysis for predictive maintenance and optimization suggestions</p>
+									</div>
+								</div>
+								<div class="flex items-start space-x-3">
+									<i class="fas fa-check-circle text-info text-xl mt-1"></i>
+									<div>
+										<h4 class="font-semibold">Real-time Dashboard</h4>
+										<p class="text-base-content/80">Monitor and control operations in real time through an intuitive dashboard</p>
+									</div>
+								</div>
+							</div>
+							<button class="btn btn-info" onclick="showFeatureDemo('realtime')">
+								<i class="fas fa-chart-bar mr-2"></i>View Real-time Data (Coming Soon)
+							</button>
+						</div>
+					</div>
+				</div>
+            </div>
+		</div>
+	</section>
+
+	<!-- Market Trends Section -->
+	<section id="market" class="py-20 bg-base-100">
+		<div class="container mx-auto px-4">
+			<div class="text-center mb-16">
+				<h2 class="text-4xl lg:text-5xl font-bold mb-6">Market Trends & Differentiation</h2>
+				<p class="text-xl max-w-3xl mx-auto text-base-content/80">
+					Discover TwinWorks' innovative solutions in the rapidly evolving industrial automation market.
+				</p>
+			</div>
+
+			<!-- Industry Trends -->
+			<div class="mb-16">
+				<h3 class="text-3xl font-bold text-center mb-12">Industrial Automation Market Trends</h3>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<div class="card bg-gradient-to-br from-primary/10 to-primary/5 shadow-xl">
+						<div class="card-body">
+							<div class="flex items-center mb-4">
+								<i class="fas fa-network-wired text-2xl text-primary mr-3"></i>
+								<h4 class="card-title">IIoT Expansion</h4>
+							</div>
+							<p class="text-base-content/80 mb-4">Rapid expansion of Industrial IoT (IIoT) accelerates smart factory implementation</p>
+							<div class="badge badge-primary">Growth Rate 15.2%</div>
+						</div>
+					</div>
+					<div class="card bg-gradient-to-br from-secondary/10 to-secondary/5 shadow-xl">
+						<div class="card-body">
+							<div class="flex items-center mb-4">
+								<i class="fas fa-robot text-2xl text-secondary mr-3"></i>
+								<h4 class="card-title">Digital Twin</h4>
+							</div>
+							<p class="text-base-content/80 mb-4">Importance of virtual simulation and predictive analysis using digital twin technology</p>
+							<div class="badge badge-secondary">Market Size $48B</div>
+						</div>
+					</div>
+					<div class="card bg-gradient-to-br from-accent/10 to-accent/5 shadow-xl">
+						<div class="card-body">
+							<div class="flex items-center mb-4">
+								<i class="fas fa-brain text-2xl text-accent mr-3"></i>
+								<h4 class="card-title">AI/ML Integration</h4>
+							</div>
+							<p class="text-base-content/80 mb-4">Trend of intelligent manufacturing systems leveraging AI and machine learning</p>
+							<div class="badge badge-accent">Adoption Rate 67%</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Traditional Limitations vs TwinWorks -->
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+				<div>
+					<h3 class="text-3xl font-bold mb-8 text-error">Limitations of Traditional Programming</h3>
+					<div class="space-y-4">
+						<div class="alert alert-error" style="background-color: rgba(255, 0, 0, 0.1); color: #b91c1c;">
+							<i class="fa-solid fa-exclamation-triangle" style="color: #b91c1c;"></i>
+							<div>
+								<h4 class="font-semibold">High Technical Barrier</h4>
+								<p class="text-sm">Requires specialized programming knowledge and experience</p>
+							</div>
+						</div>
+						<div class="alert alert-error" style="background-color: rgba(255, 0, 0, 0.1); color: #b91c1c;">
+							<i class="fa-solid fa-clock" style="color: #b91c1c;"></i>
+							<div>
+								<h4 class="font-semibold">Long Development Cycle</h4>
+								<p class="text-sm">Implementation of complex control logic can take months</p>
+							</div>
+						</div>
+						<div class="alert alert-error" style="background-color: rgba(255, 0, 0, 0.1); color: #b91c1c;">
+							<i class="fa-solid fa-bug" style="color: #b91c1c;"></i>
+							<div>
+								<h4 class="font-semibold">High Error Risk</h4>
+								<p class="text-sm">Manual coding leads to bugs and difficult debugging</p>
+							</div>
+						</div>
+						<div class="alert alert-error" style="background-color: rgba(255, 0, 0, 0.1); color: #b91c1c;">
+							<i class="fa-solid fa-dollar-sign" style="color: #b91c1c;"></i>
+							<div>
+								<h4 class="font-semibold">High Maintenance Cost</h4>
+								<p class="text-sm">Continuous involvement of specialized personnel required for system changes</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<h3 class="text-3xl font-bold mb-8 text-success">TwinWorks Innovative Solutions</h3>
+					<div class="space-y-4">
+						<div class="alert alert-success" style="background-color: rgba(34, 197, 94, 0.1); color: #166534;">
+							<i class="fa-solid fa-user-friends" style="color: #166534;"></i>
+							<div>
+								<h4 class="font-semibold">Accessible to Everyone</h4>
+								<p class="text-sm">Intuitive no-code interface allows non-experts to easily utilize</p>
+							</div>
+						</div>
+						<div class="alert alert-success" style="background-color: rgba(34, 197, 94, 0.1); color: #166534;">
+							<i class="fa-solid fa-rocket" style="color: #166534;"></i>
+							<div>
+								<h4 class="font-semibold">Rapid Development</h4>
+								<p class="text-sm">Build control systems within hours using digital twin technology</p>
+							</div>
+						</div>
+						<div class="alert alert-success" style="background-color: rgba(34, 197, 94, 0.1); color: #166534;">
+							<i class="fa-solid fa-shield-alt" style="color: #166534;"></i>
+							<div>
+								<h4 class="font-semibold">Proven Reliability</h4>
+								<p class="text-sm">Minimize errors through pre-verification with virtual commissioning</p>
+							</div>
+						</div>
+						<div class="alert alert-success" style="background-color: rgba(34, 197, 94, 0.1); color: #166534;">
+							<i class="fa-solid fa-chart-line" style="color: #166534;"></i>
+							<div>
+								<h4 class="font-semibold">Cost Efficiency</h4>
+								<p class="text-sm">Reduce development and maintenance costs by up to 80%</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- IIoT Integration -->
+			<div class="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8">
+				<h3 class="text-3xl font-bold text-center mb-8">IIoT & Digital Twin Integration</h3>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div class="text-center">
+						<div class="mx-auto mb-4 p-4 bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center">
+							<i class="fas fa-wifi text-3xl text-primary"></i>
+						</div>
+						<h4 class="text-xl font-semibold mb-2">Sensor Data Collection</h4>
+						<p class="text-base-content/80">Collect and process real-time data from various IoT sensors</p>
+					</div>
+					<div class="text-center">
+						<div class="mx-auto mb-4 p-4 bg-secondary/10 rounded-full w-20 h-20 flex items-center justify-center">
+							<i class="fas fa-cube text-3xl text-secondary"></i>
+						</div>
+						<h4 class="text-xl font-semibold mb-2">Digital Twin Creation</h4>
+						<p class="text-base-content/80">Create and synchronize accurate digital replicas of physical systems</p>
+					</div>
+					<div class="text-center">
+						<div class="mx-auto mb-4 p-4 bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center">
+							<i class="fas fa-brain text-3xl text-accent"></i>
+						</div>
+						<h4 class="text-xl font-semibold mb-2">Intelligent Analytics</h4>
+						<p class="text-base-content/80">Leverage AI-based analytics for optimization and predictive insights</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Interactive Demo Section -->
+	<section id="demo" class="py-20 bg-base-200">
+		<div class="container mx-auto px-4">
+			<div class="text-center mb-16">
+				<h2 class="text-4xl lg:text-5xl font-bold mb-6">Interactive Demo</h2>
+				<p class="text-xl max-w-3xl mx-auto text-base-content/80">
+					Experience the core features of TwinWorks firsthand. Explore the platform's power through a demo environment that mirrors real-world usage.  
+					<span class="text-orange-500">(Coming soon, currently under preparation)</span>
+				</p>
+			</div>
+
+			<!-- Demo Tabs -->
+			<div class="tabs tabs-boxed justify-center mb-12" data-group="demo">
+				<a href="#" class="tab tab-active" data-demo="3d-interaction">3D Model Interaction</a>
+				<a href="#" class="tab" data-demo="data-viz">Real-time Data Visualization</a>
+			</div>
+
+			<!-- Demo Content -->
+			<div class="demo-content">
+				<!-- 3D Interaction Demo -->
+				<div id="3d-interaction-demo" class="demo-panel active">
+					<div class="card bg-base-100 shadow-2xl">
+						<div class="card-body">
+							<h3 class="card-title text-2xl mb-6">3D Model Interaction Demo</h3>
+							<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+								<div class="lg:col-span-3">
+									<div class="bg-base-200 rounded-lg p-6 h-[600px] flex items-center justify-center">
+										<div id="3d-viewer" class="w-full h-full rounded-lg relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+											<!-- 🏭 Factory Theme Loading Screen -->
+											<div id="demo-loading-overlay" class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center z-50 opacity-100 transition-opacity duration-500" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);">
+												<div class="company-logo" style="font-size: 48px; font-weight: 400; font-family: 'Times New Roman', serif; margin-bottom: 40px; text-align: center; letter-spacing: -2px; position: relative; animation: logoGlow 2s ease-in-out infinite alternate; height: 60px; display: flex; align-items: center; justify-content: center;">
+													<span style="color: #000000; font-weight: 400; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">Code</span>
+													<span style="color: #5B9BD5; font-weight: 400; text-shadow: 0 2px 4px rgba(91, 155, 213, 0.2);">Flex</span>
+												</div>
+												<div class="company-tagline" style="font-size: 14px; font-weight: 300; font-family: 'Segoe UI', 'Arial', sans-serif; color: rgba(255, 255, 255, 0.9); text-align: center; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; opacity: 0.9; animation: logoGlow 2s ease-in-out infinite alternate;">Digital Twin Solutions</div>
+												<div class="loading-progress" style="width: 200px; height: 4px; background: rgba(255, 255, 255, 0.2); border-radius: 2px; overflow: hidden; position: relative; opacity: 0.9; animation: logoGlow 2s ease-in-out infinite alternate;">
+													<div style="content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, #5B9BD5, transparent); animation: loading-sweep 2s ease-in-out infinite;"></div>
+												</div>
+											</div>
+											
+											<!-- AgentView Component -->
+											<urdf-viewer
+												up="+Z"
+												display-shadow
+												tabindex="0"
+												urdf="agentview/urdf-loaders-master/urdf/INP3/INP3/INP3.urdf"
+												autocenter
+												class="w-full h-full">
+											</urdf-viewer>
+										</div>
+									</div>
+								</div>
+								<div>
+									<h4 class="text-xl font-semibold mb-4">Model Control</h4>
+									<div class="space-y-4">
+										<div class="form-control">
+											<label class="label">
+												<span class="label-text">View Mode</span>
+											</label>
+											<div class="join join-vertical w-full">
+												<input class="join-item btn" type="radio" name="view-mode" id="full-view" aria-label="Full View" checked onclick="setViewMode('full')">
+												<input class="join-item btn" type="radio" name="view-mode" id="section-view" aria-label="Section View" onclick="setViewMode('section')">
+												<input class="join-item btn" type="radio" name="view-mode" id="wireframe-view" aria-label="Wireframe" onclick="setViewMode('wireframe')">
+											</div>
+										</div>
+										<div class="form-control" id="section-controls" style="display: none;">
+											<label class="label">
+												<span class="label-text">Section Direction</span>
+											</label>
+											<div class="join join-vertical w-full">
+												<input class="join-item btn btn-xs" type="radio" name="section-axis" aria-label="X-axis Section" checked onclick="setSectionAxis('x')">
+												<input class="join-item btn btn-xs" type="radio" name="section-axis" aria-label="Y-axis Section" onclick="setSectionAxis('y')">
+												<input class="join-item btn btn-xs" type="radio" name="section-axis" aria-label="Z-axis Section" onclick="setSectionAxis('z')">
+											</div>
+											<div class="mt-2">
+												<label class="label">
+													<span class="label-text text-xs">Section Position</span>
+												</label>
+												<div class="flex items-center gap-2">
+													<span class="text-xs opacity-60">-2</span>
+													<input type="range" min="-2" max="2" value="0" step="0.1" class="range range-xs flex-1" id="section-position" oninput="setSectionPosition(this.value)">
+													<span class="text-xs opacity-60">+2</span>
+												</div>
+												<div class="text-center mt-1">
+													<span class="text-xs opacity-75" id="position-value">0.0</span>
+												</div>
+											</div>
+										</div>
+										<div class="form-control">
+											<label class="label">
+												<span class="label-text">Animation</span>
+											</label>
+											<div class="flex space-x-2">
+												<button class="btn btn-sm btn-primary flex-1">Rotate</button>
+												<button class="btn btn-sm btn-secondary flex-1">Scale</button>
+											</div>
+										</div>
+										<div class="form-control">
+											<label class="label">
+												<span class="label-text">Part Selection</span>
+											</label>
+											<select class="select select-bordered select-sm">
+												<option>Entire Model</option>
+												<option>Conveyor Belt</option>
+												<option>Robot Arm</option>
+												<option>Sensor Module</option>
+												<option>Control Panel</option>
+											</select>
+										</div>
+									</div>
+									<div class="mt-6 p-4 bg-secondary/10 rounded-lg">
+										<h5 class="font-semibold mb-2">Selected Part Info</h5>
+										<div class="text-sm space-y-1">
+											<div>Name: <span class="font-semibold">Main Conveyor</span></div>
+											<div>Status: <span class="font-semibold text-success">Normal</span></div>
+											<div>Temperature: <span class="font-semibold">24.5°C</span></div>
+											<div>Speed: <span class="font-semibold">1.2m/s</span></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Data Visualization Demo -->
+				<div id="data-viz-demo" class="demo-panel">
+					<div class="card bg-base-100 shadow-2xl">
+						<div class="card-body">
+							<h3 class="card-title text-2xl mb-6">Real-time Data Visualization</h3>
+							<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+								<div class="stat bg-primary/10 rounded-lg">
+									<div class="stat-figure text-primary">
+										<i class="fas fa-thermometer-half text-2xl"></i>
+									</div>
+									<div class="stat-title">Temperature</div>
+									<div class="stat-value text-primary" id="live-temp">24.5</div>
+									<div class="stat-desc">°C</div>
+								</div>
+								<div class="stat bg-secondary/10 rounded-lg">
+									<div class="stat-figure text-secondary">
+										<i class="fas fa-tachometer-alt text-2xl"></i>
+									</div>
+									<div class="stat-title">Pressure</div>
+									<div class="stat-value text-secondary" id="live-pressure">1.2</div>
+									<div class="stat-desc">bar</div>
+								</div>
+								<div class="stat bg-accent/10 rounded-lg">
+									<div class="stat-figure text-accent">
+										<i class="fas fa-bolt text-2xl"></i>
+									</div>
+									<div class="stat-title">Power</div>
+									<div class="stat-value text-accent" id="live-power">85.3</div>
+									<div class="stat-desc">kW</div>
+								</div>
+								<div class="stat bg-info/10 rounded-lg">
+									<div class="stat-figure text-info">
+										<i class="fas fa-chart-line text-2xl"></i>
+									</div>
+									<div class="stat-title">Efficiency</div>
+									<div class="stat-value text-info" id="live-efficiency">94</div>
+									<div class="stat-desc">%</div>
+								</div>
+							</div>
+							<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+								<div>
+									<h4 class="text-xl font-semibold mb-4">Real-time Chart</h4>
+									<div class="bg-base-200 rounded-lg p-4 h-64">
+										<div class="w-full h-full flex items-end justify-center space-x-2">
+											<div class="chart-bar bg-primary w-8 animate-pulse" style="height: 60%"></div>
+											<div class="chart-bar bg-secondary w-8 animate-pulse" style="height: 80%; animation-delay: 0.1s"></div>
+											<div class="chart-bar bg-accent w-8 animate-pulse" style="height: 45%; animation-delay: 0.2s"></div>
+											<div class="chart-bar bg-warning w-8 animate-pulse" style="height: 70%; animation-delay: 0.3s"></div>
+											<div class="chart-bar bg-info w-8 animate-pulse" style="height: 90%; animation-delay: 0.4s"></div>
+											<div class="chart-bar bg-success w-8 animate-pulse" style="height: 55%; animation-delay: 0.5s"></div>
+										</div>
+									</div>
+								</div>
+								<div>
+									<h4 class="text-xl font-semibold mb-4">Alerts & Events</h4>
+									<div class="space-y-3 h-64 overflow-y-auto">
+										<div class="alert alert-success">
+											<i class="fas fa-check-circle"></i>
+											<div>
+												<div class="font-semibold">System Operating Normally</div>
+												<div class="text-sm">All sensors are within normal ranges</div>
+											</div>
+											<div class="text-xs">14:25</div>
+										</div>
+										<div class="alert alert-info">
+											<i class="fas fa-info-circle"></i>
+											<div>
+												<div class="font-semibold">Efficiency Optimization Completed</div>
+												<div class="text-sm">Performance improvements applied via AI analysis</div>
+											</div>
+											<div class="text-xs">14:20</div>
+										</div>
+										<div class="alert alert-warning">
+											<i class="fas fa-exclamation-triangle"></i>
+											<div>
+												<div class="font-semibold">Preventive Maintenance Alert</div>
+												<div class="text-sm">Scheduled conveyor belt inspection</div>
+											</div>
+											<div class="text-xs">14:15</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>                 
+            </div>
+		</div>
+	</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-base-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">Contact & Demo Request</h2>
+                <p class="text-xl max-w-3xl mx-auto text-base-content/80">
+                    Get in touch to learn more about the TwinWorks platform or to experience a live demo.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="card bg-base-200 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title text-2xl mb-6">Contact Us</h3>
+                        <form id="contact-form" class="space-y-4" onsubmit="sendQuestion(event)">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Name *</span>
+                                    </label>
+                                    <input type="text" name="user_name" placeholder="Enter your name" class="input input-bordered" required>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Company *</span>
+                                    </label>
+                                    <input type="text" name="company_name" placeholder="Enter your company name" class="input input-bordered" required>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Email *</span>
+                                    </label>
+                                    <input type="email" name="user_email" placeholder="Enter your email" class="input input-bordered" required>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Phone</span>
+                                    </label>
+                                    <input type="tel" name="phone_number" placeholder="Enter your phone number" class="input input-bordered">
+                                </div>
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Area of Interest</span>
+                                </label>
+                                <select name="interest" class="select select-bordered">
+                                    <option disabled selected>Select your area of interest</option>
+                                    <option>No-Code Programming</option>
+                                    <option>3D Model-Based Control</option>
+                                    <option>Virtual Commissioning</option>
+                                    <option>Real-Time Data Integration</option>
+                                    <option>Entire Platform</option>
+                                </select>
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Message *</span>
+                                </label>
+                                <textarea name="message" class="textarea textarea-bordered h-24" placeholder="Please provide details of your inquiry" required></textarea>
+                            </div>
+                            <div class="form-control">
+                                <label class="cursor-pointer label">
+                                    <input type="checkbox" class="checkbox checkbox-primary" required>
+                                    <span class="label-text">I agree to the privacy policy *</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-full">
+                                <i class="fas fa-paper-plane mr-2"></i>Send Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Download & Demo Request -->
+                <div class="space-y-8">
+                    <!-- Download -->
+                    <div class="card bg-base-200 shadow-xl">
+                        <div class="card-body">
+                            <h3 class="card-title text-2xl mb-6">Download Materials</h3>
+                            <div class="space-y-8">
+                                <div class="flex flex-col items-start">
+                                    <div>
+                                        <div class="flex items-center mb-4">
+                                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                            &nbsp;&nbsp;
+                                            <span class="ml-3 font-semibold">Product Brochure PDF - Detailed features and functions of TwinWorks</span>
+                                        </div>
+                                        <button 
+                                            class="btn w-48 bg-purple-500 hover:bg-purple-900 text-white border-none" 
+                                            onclick="downloadPDF()">
+                                            Download PDF
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-start">
+                                    <div>
+                                        <div class="flex items-center mb-4">
+                                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            &nbsp;&nbsp;
+                                            <span class="ml-3 font-semibold">Demo Video - Workcell DT Simulation (Request full demo below)</span>
+                                        </div>
+                                        <button 
+                                            class="btn w-48 bg-pink-500 hover:bg-pink-800 text-white border-none" 
+                                            onclick="downloadDemo()">
+                                            Watch Video
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Demo Request -->
+                    <div class="card bg-gradient-to-br from-primary/10 to-secondary/10 shadow-xl w-full max-w-4xl mx-auto">
+                        <div class="card-body">
+                            <h3 class="card-title text-2xl mb-4">Request a Demo</h3>
+                            <p class="text-base-content/80 mb-6">
+                                Experience the TwinWorks platform firsthand with a personalized 1:1 demo from our experts.
+                            </p>
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-sm">Demo in a real-world environment</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-sm">Industry-specific scenario customization</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-sm">Includes expert 1:1 consultation</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-4 max-w-full mx-auto w-full">
+                                <input type="email" id="emailInput" placeholder="Email Address" class="input input-bordered w-full sm:w-96">
+                                <button class="btn btn-primary" onclick="requestTrial()">Request Demo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer p-10 bg-base-200 text-base-content">
+        <div class="w-full flex flex-col items-center gap-6">
+            <!-- Brand & Info -->
+            <aside class="flex flex-col items-center text-center gap-3">
+                <a href="#hero" class="flex items-center space-x-2 mb-2 justify-center">
+                    <img src="images/logo.png" alt="Logo" class="w-24 h-8" />
+                </a>
+                <p class="font-bold">
+                    A no-code digital twin platform shaping the future of smart factories
+                </p>
+                <p class="text-xs sm:text-sm">Copyright © 2025 - CodeFlex. All rights reserved.</p>
+
+                <!-- Website & Email -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 mt-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-globe text-primary text-xl"></i>
+                        <a href="https://www.codeflex.co.kr" target="_blank" class="text-base-content/80 hover:underline">www.codeflex.co.kr</a>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-envelope text-primary text-xl"></i>
+                        <a href="mailto:contact@codeflex.co.kr" class="text-base-content/80 hover:underline">contact@codeflex.co.kr</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Navigation -->
+            <nav class="flex justify-center mt-4 w-full">
+                <div class="grid grid-flow-col gap-4 text-xs sm:text-sm">
+                    <a href="#" class="link link-hover">Privacy Policy</a>
+                    <a href="#" class="link link-hover">About Us</a>
+                </div>
+            </nav>
+        </div>
+    </footer>
+
+	<!-- Demo Modal -->
+	<dialog id="demo-modal" class="modal">
+		<div class="modal-box w-11/12 max-w-2xl">
+			<form method="dialog">
+				<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+			</form>
+			<h3 class="font-bold text-lg mb-4">Schedule a Demo</h3>
+			<form id="demo-form" class="space-y-4">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Name *</span>
+						</label>
+						<input type="text" placeholder="Name" class="input input-bordered" required>
+					</div>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Company Name *</span>
+						</label>
+						<input type="text" placeholder="Company Name" class="input input-bordered" required>
+					</div>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Email *</span>
+						</label>
+						<input type="email" placeholder="Email" class="input input-bordered" required>
+					</div>
+					<div class="form-control">
+						<label class="label">
+							<span class="label-text">Phone Number *</span>
+						</label>
+						<input type="tel" placeholder="Phone Number" class="input input-bordered" required>
+					</div>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text">Preferred Demo Type</span>
+					</label>
+					<select class="select select-bordered">
+						<option disabled selected>Select demo type</option>
+						<option>Online Demo (30 min)</option>
+						<option>On-site Demo (1 hour)</option>
+						<option>Custom Workshop (2 hours)</option>
+					</select>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text">Preferred Date & Time</span>
+					</label>
+					<input type="datetime-local" class="input input-bordered">
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text">Additional Requests</span>
+					</label>
+					<textarea class="textarea textarea-bordered" placeholder="Enter any special requests"></textarea>
+				</div>
+				<div class="modal-action">
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-calendar-check mr-2"></i>Request Schedule
+					</button>
+				</div>
+			</form>
+		</div>
+	</dialog>
+
+
+    <!-- JavaScript -->
+    <script type="module" src="js/script.js"></script>
+    
+    <!-- AgentView 초기화 스크립트 -->
+    <script type="module">
+        // Three.js 및 로더들 임포트
+        import * as THREE from 'three';
+        import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
+        import URDFManipulator from './agentview/urdf-loaders-master/javascript/src/urdf-manipulator-element.js';
+
+        // 커스텀 엘리먼트 등록
+        customElements.define('urdf-viewer', URDFManipulator);
+
+        // 로딩 오버레이 제어
+        function showDemoLoading() {
+            const overlay = document.getElementById('demo-loading-overlay');
+            if (overlay) overlay.style.opacity = '1';
+        }
+
+        function hideDemoLoading() {
+            const overlay = document.getElementById('demo-loading-overlay');
+            if (overlay) {
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.style.display = 'none', 500);
+            }
+        }
+
+        // 🏭 WADF 조립 시퀀스 데이터 (실제 GRIPPER_TEST2 동작과 동일)
+        const ASSEMBLY_SEQUENCE = {
+            1: [ // GRIPPER_TEST2_01: 픽업 포지션으로 이동
+                {joint: 'Rotation_31', value: -0.389, delay: 500},
+                {joint: 'Rotation_36', value: 0.024, delay: 500},
+                {joint: 'Rotation_151', value: 1.209, delay: 500},
+                {joint: 'Slider_44', value: 0.0, delay: 500}
+            ],
+            2: [ // GRIPPER_TEST2_02: Z축 하강 (부품으로)
+                {joint: 'Slider_44', value: -0.045, delay: 1000}
+            ],
+            3: [ // GRIPPER_TEST2_03: 그리퍼 닫기
+                {joint: 'Slider_41', value: 0.0135, delay: 500},
+                {joint: 'Slider_42', value: 0.0135, delay: 500}
+            ],
+            4: [ // GRIPPER_TEST2_07: Z축 상승 (부품 들어올리기)
+                {joint: 'Slider_44', value: 0.0, delay: 1000}
+            ],
+            5: [ // GRIPPER_TEST2_08: 조립 포지션으로 이동
+                {joint: 'Rotation_31', value: 1.484, delay: 1000},
+                {joint: 'Rotation_36', value: -1.134, delay: 1000},
+                {joint: 'Rotation_151', value: 3.491, delay: 1000}
+            ],
+            6: [ // GRIPPER_TEST2_09: 조립을 위한 Z축 하강
+                {joint: 'Slider_44', value: -0.02, delay: 800}
+            ],
+            7: [ // GRIPPER_TEST2_10: 정밀 포지셔닝 (더 하강)
+                {joint: 'Slider_44', value: -0.04, delay: 1000}
+            ],
+            8: [ // GRIPPER_TEST2_16: 그리퍼 열기 (부품 해제)
+                {joint: 'Slider_41', value: 0.0, delay: 500},
+                {joint: 'Slider_42', value: 0.0, delay: 500}
+            ],
+            9: [ // GRIPPER_TEST2_20: Z축 상승 (철수)
+                {joint: 'Slider_44', value: 0.0, delay: 1000}
+            ],
+            10: [ // GRIPPER_TEST2_21: 홈 포지션으로 복귀
+                {joint: 'Rotation_31', value: 0.0, delay: 1000},
+                {joint: 'Rotation_36', value: 0.0, delay: 1000},
+                {joint: 'Rotation_151', value: 1.571, delay: 1000},
+                {joint: 'Slider_44', value: 0.0, delay: 1000}
+            ]
+        };
+
+        let animationRunning = false;
+
+        // Easing 함수들
+        function easeInOutSine(t) {
+            return -(Math.cos(Math.PI * t) - 1) / 2;
+        }
+
+        function easeOutQuart(t) {
+            return 1 - Math.pow(1 - t, 4);
+        }
+
+        // 부드러운 보간 함수
+        function lerp(start, end, factor) {
+            return start + (end - start) * factor;
+        }
+
+        // 부드러운 조인트 애니메이션
+        async function animateJointSmoothly(viewer, jointName, targetValue, duration = 1000) {
+            if (!viewer || !viewer.robot || !viewer.robot.joints[jointName]) return;
+
+            const joint = viewer.robot.joints[jointName];
+            const startValue = joint.angle || 0;
+            const steps = 60; // 60fps
+            const stepDuration = duration / steps;
+
+            for (let i = 0; i <= steps; i++) {
+                if (!animationRunning) break;
+
+                const linearFactor = i / steps;
+                const easedFactor = jointName.includes('Rotation') ? 
+                    easeInOutSine(linearFactor) : 
+                    easeOutQuart(linearFactor);
+                
+                const currentValue = lerp(startValue, targetValue, easedFactor);
+                viewer.setJointValue(jointName, currentValue);
+                
+                await new Promise(resolve => setTimeout(resolve, stepDuration));
+            }
+        }
+
+        // 부드러운 다중 조인트 애니메이션
+        async function animateMultipleJointsSmoothly(viewer, jointSteps, duration = 1000) {
+            if (!viewer || !jointSteps.length) return;
+
+            const startValues = {};
+            for (let jointStep of jointSteps) {
+                if (viewer.robot && viewer.robot.joints[jointStep.joint]) {
+                    startValues[jointStep.joint] = viewer.robot.joints[jointStep.joint].angle || 0;
+                } else {
+                    startValues[jointStep.joint] = 0;
+                }
+            }
+
+            const steps = 60;
+            const stepDuration = duration / steps;
+
+            for (let i = 0; i <= steps; i++) {
+                if (!animationRunning) break;
+
+                const linearFactor = i / steps;
+                const easedFactor = easeInOutSine(linearFactor);
+
+                for (let jointStep of jointSteps) {
+                    const currentValue = lerp(startValues[jointStep.joint], jointStep.value, easedFactor);
+                    viewer.setJointValue(jointStep.joint, currentValue);
+                }
+
+                await new Promise(resolve => setTimeout(resolve, stepDuration));
+            }
+        }
+
+        // 부드러운 자동 애니메이션
+        async function runSmoothAnimation(viewer) {
+            if (animationRunning) return;
+            animationRunning = true;
+
+            console.log('🏭 Starting smooth demo animation');
+
+            try {
+                for (let step = 1; step <= 10; step++) {
+                    if (!animationRunning) break;
+
+                    const sequence = ASSEMBLY_SEQUENCE[step];
+                    
+                    if (sequence && sequence.length > 0) {
+                        if (sequence.length > 1) {
+                            // 다중 조인트 동시 애니메이션
+                            const maxDelay = Math.max(...sequence.map(s => s.delay));
+                            await animateMultipleJointsSmoothly(viewer, sequence, maxDelay);
+                        } else {
+                            // 단일 조인트 애니메이션
+                            const jointStep = sequence[0];
+                            await animateJointSmoothly(viewer, jointStep.joint, jointStep.value, jointStep.delay);
+                        }
+                    }
+                    
+                    await new Promise(resolve => setTimeout(resolve, 400));
+                }
+
+                console.log('🏭 GRIPPER_TEST2 Full Assembly completed');
+            } catch (error) {
+                console.error('Animation error:', error);
+            } finally {
+                animationRunning = false;
+                // 3초 후 재시작
+                setTimeout(() => runSmoothAnimation(viewer), 3000);
+            }
+        }
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewer = document.querySelector('urdf-viewer');
+            if (viewer) {
+                console.log('🚀 AgentView 데모 초기화');
+
+                showDemoLoading();
+
+                // 메쉬 로더 설정
+                viewer.loadMeshFunc = (path, manager, done) => {
+                    const loader = new STLLoader(manager);
+                    loader.load(path, (geometry) => {
+                        const material = new THREE.MeshLambertMaterial({ color: 0x888888 });
+                        const mesh = new THREE.Mesh(geometry, material);
+                        done(mesh);
+                    });
+                };
+
+                // URDF 처리 완료 시 카메라 설정
+                viewer.addEventListener('urdf-processed', () => {
+                    if (viewer.scene && viewer.camera) {
+                        viewer.camera.position.multiplyScalar(1/8);
+                        const rotationY = 150 * Math.PI / 180;
+                        viewer.camera.position.applyAxisAngle(new THREE.Vector3(0, 1, 0), rotationY);
+                        viewer.camera.position.y += 1.2;
+                        
+                        if (viewer.robot) {
+                            const robotCenter = new THREE.Vector3();
+                            viewer.robot.getWorldPosition(robotCenter);
+                            viewer.camera.lookAt(robotCenter);
+                        }
+                        
+                        viewer.camera.updateProjectionMatrix();
+                        console.log('📷 Demo camera setup completed');
+                    }
+                });
+
+                // 로딩 완료 시 애니메이션 시작
+                viewer.addEventListener('geometry-loaded', () => {
+                    hideDemoLoading();
+                    setTimeout(() => {
+                        runSmoothAnimation(viewer);
+                    }, 2000);
+                });
+
+                // 에러 처리
+                viewer.addEventListener('error', () => {
+                    hideDemoLoading();
+                    console.error('AgentView loading failed');
+                });
+            }
+        });
+
+        // 🎨 Completely Rewritten View Mode System
+        const ViewModeManager = {
+            currentMode: 'full',
+            sectionAxis: 'x',
+            sectionPosition: 0,
+            originalMaterials: new WeakMap(),
+            clippingPlane: null,
+            
+            init() {
+                this.clippingPlane = new THREE.Plane(new THREE.Vector3(1, 0, 0), 0);
+            },
+            
+            setMode(mode) {
+                const viewer = this.getViewer();
+                if (!viewer) return;
+                
+                this.currentMode = mode;
+                const controls = document.getElementById('section-controls');
+                
+                // Clean up previous mode
+                this.cleanup(viewer);
+                
+                switch(mode) {
+                    case 'full':
+                        this.applyFullView(viewer);
+                        if (controls) controls.style.display = 'none';
+                        break;
+                    case 'section':
+                        this.applySectionView(viewer);
+                        if (controls) controls.style.display = 'block';
+                        break;
+                    case 'wireframe':
+                        this.applyWireframeView(viewer);
+                        if (controls) controls.style.display = 'none';
+                        break;
+                }
+            },
+            
+            setSectionAxis(axis) {
+                this.sectionAxis = axis;
+                this.sectionPosition = 0;
+                
+                const slider = document.getElementById('section-position');
+                const valueDisplay = document.getElementById('position-value');
+                if (slider) slider.value = '0';
+                if (valueDisplay) valueDisplay.textContent = '0.0';
+                
+                if (this.currentMode === 'section') {
+                    const viewer = this.getViewer();
+                    if (viewer) this.applySectionView(viewer);
+                }
+            },
+            
+            setSectionPosition(position) {
+                this.sectionPosition = parseFloat(position);
+                
+                // Update real-time value display
+                const valueDisplay = document.getElementById('position-value');
+                if (valueDisplay) {
+                    valueDisplay.textContent = parseFloat(position).toFixed(1);
+                }
+                
+                if (this.currentMode === 'section') {
+                    const viewer = this.getViewer();
+                    if (viewer) {
+                        this.updateClippingPlane();
+                        this.updateMaterialClipping(viewer);
+                    }
+                }
+            },
+            
+            getViewer() {
+                const viewer = document.querySelector('urdf-viewer');
+                return (viewer && viewer.robot) ? viewer : null;
+            },
+            
+            cleanup(viewer) {
+                // Restore all meshes to original state
+                viewer.robot.traverse((child) => {
+                    if (child.isMesh && this.originalMaterials.has(child)) {
+                        child.material = this.originalMaterials.get(child);
+                    }
+                });
+                
+                // Reset renderer settings
+                if (viewer.renderer) {
+                    viewer.renderer.localClippingEnabled = false;
+                }
+            },
+            
+            applyFullView(viewer) {
+                // Already restored in cleanup
+            },
+            
+            applySectionView(viewer) {
+                this.updateClippingPlane();
+                
+                viewer.robot.traverse((child) => {
+                    if (child.isMesh) {
+                        // Backup original material
+                        if (!this.originalMaterials.has(child)) {
+                            this.originalMaterials.set(child, child.material);
+                        }
+                        
+                        // Apply section material
+                        const original = this.originalMaterials.get(child);
+                        const sectionMaterial = new THREE.MeshPhongMaterial({
+                            color: original.color ? original.color.getHex() : 0x999999,
+                            transparent: true,
+                            opacity: 0.8,
+                            side: THREE.DoubleSide,
+                            clippingPlanes: [this.clippingPlane]
+                        });
+                        
+                        child.material = sectionMaterial;
+                    }
+                });
+                
+                if (viewer.renderer) {
+                    viewer.renderer.localClippingEnabled = true;
+                }
+            },
+            
+            applyWireframeView(viewer) {
+                viewer.robot.traverse((child) => {
+                    if (child.isMesh) {
+                        // Backup original material
+                        if (!this.originalMaterials.has(child)) {
+                            this.originalMaterials.set(child, child.material);
+                        }
+                        
+                        // Apply wireframe material
+                        const original = this.originalMaterials.get(child);
+                        const wireframeMaterial = new THREE.MeshBasicMaterial({
+                            color: original.color ? original.color.getHex() : 0x00ff00,
+                            wireframe: true,
+                            transparent: true,
+                            opacity: 0.9
+                        });
+                        
+                        child.material = wireframeMaterial;
+                    }
+                });
+            },
+            
+            updateClippingPlane() {
+                let normal, distance;
+                
+                switch(this.sectionAxis) {
+                    case 'x':
+                        normal = new THREE.Vector3(1, 0, 0);
+                        distance = -this.sectionPosition;
+                        break;
+                    case 'y':
+                        normal = new THREE.Vector3(0, -1, 0); // Y-axis direction reversed (top to bottom)
+                        distance = this.sectionPosition;
+                        break;
+                    case 'z':
+                        normal = new THREE.Vector3(0, 0, 1);
+                        distance = -this.sectionPosition;
+                        break;
+                    default:
+                        normal = new THREE.Vector3(1, 0, 0);
+                        distance = -this.sectionPosition;
+                }
+                
+                this.clippingPlane.set(normal, distance);
+            },
+            
+            updateMaterialClipping(viewer) {
+                viewer.robot.traverse((child) => {
+                    if (child.isMesh && child.material.clippingPlanes) {
+                        child.material.clippingPlanes = [this.clippingPlane];
+                        child.material.needsUpdate = true;
+                    }
+                });
+            }
+        };
+
+        // Initialize ViewModeManager
+        ViewModeManager.init();
+
+        // Global functions
+        window.setViewMode = function(mode) {
+            ViewModeManager.setMode(mode);
+        };
+
+        window.setSectionAxis = function(axis) {
+            ViewModeManager.setSectionAxis(axis);
+        };
+
+        window.setSectionPosition = function(position) {
+            ViewModeManager.setSectionPosition(position);
+        };
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const langSelect = document.getElementById("langSelect");
+
+            // 현재 페이지에 맞춰 기본 선택값 설정
+            if (window.location.pathname.includes("index_en.html")) {
+                langSelect.value = "en";
+            } else {
+                langSelect.value = "ko";
+            }
+
+            langSelect.addEventListener("change", function () {
+                const lang = this.value;
+                if (lang === "ko") {
+                    window.location.href = "index.html"; // 한국어 페이지
+                } else if (lang === "en") {
+                    window.location.href = "index_en.html"; // 영어 페이지
+                }
+            });
+        });
+    </script>
+
+    <script>
+        const btn = document.getElementById('mobileMenuBtn');
+        const menu = document.getElementById('mobileMenu');
+
+        // 메뉴 버튼 클릭 시 토글
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 메뉴 항목 클릭 시 메뉴 닫기 (모바일)
+        const menuItems = menu.querySelectorAll('a');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menu.classList.add('hidden'); // 클릭 시 hidden 클래스 추가
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.tabs').forEach(tabGroup => {
+                const groupName = tabGroup.dataset.group;
+
+                tabGroup.querySelectorAll('.tab').forEach(tab => {
+                    tab.addEventListener('click', e => {
+                        e.preventDefault();
+
+                        // 탭 활성화 상태 토글 (해당 그룹 내)
+                        tabGroup.querySelectorAll('.tab').forEach(t => t.classList.remove('tab-active'));
+                        tab.classList.add('tab-active');
+
+                        // 콘텐츠 토글
+                        if (groupName === 'features') {
+                            document.querySelectorAll('.feature-panel').forEach(panel => panel.classList.remove('active'));
+                            const targetId = tab.dataset.tab + '-content';
+                            const targetPanel = document.getElementById(targetId);
+                            if (targetPanel) targetPanel.classList.add('active');
+                        } else if (groupName === 'demo') {
+                            document.querySelectorAll('.demo-panel').forEach(panel => panel.classList.remove('active'));
+                            const targetId = tab.dataset.demo + '-demo';
+                            const targetPanel = document.getElementById(targetId);
+                            if (targetPanel) targetPanel.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    
+	<script>
+		function scrollToSection(sectionId) {
+			const element = document.getElementById(sectionId);
+			if (element) {
+				element.scrollIntoView({ behavior: 'smooth' });
+			} else {
+				console.warn(`Element with ID '${sectionId}' not found.`);
+			}
+		}
+	</script>
+	
+	<script>
+		emailjs.init('JHkD1JRzwr1NlgViQ');  // Integration tab User ID
+
+		function requestTrial() {
+			const email = document.getElementById("emailInput").value.trim();
+			if (!email) {
+				alert("Please enter your email address.");
+				return;
+			}
+			if (!validateEmail(email)) {
+				alert("Please enter a valid email address.");
+				return;
+			}
+
+			const templateParams = {
+				user_email: email,
+				to_email: "shlee@codeflex.co.kr"
+			};
+
+			emailjs.send('service_codeflex', 'template_1cfmdt4', templateParams)
+				.then(function(response) {
+					alert("Your demo request has been successfully submitted.");
+					document.getElementById("emailInput").value = "";
+				}, function(error) {
+					alert("An error occurred while sending your demo request.");
+					console.error(error);
+				});
+		}
+
+		function validateEmail(email) {
+			const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			return re.test(email.toLowerCase());
+		}    
+
+		function sendQuestion(event) {
+			event.preventDefault(); // Prevent default form submission
+
+			const form = document.getElementById("contact-form");
+
+			emailjs.sendForm('service_codeflex', 'template_hno0q3k', form)
+				.then(function(response) {
+					alert("Your inquiry has been successfully sent.");
+					form.reset();
+				}, function(error) {
+					alert("An error occurred while sending your inquiry.");
+					console.error(error);
+				});
+		}
+
+	</script>
+
+    <script>
+        function downloadPDF() {
+            const pdfUrl = 'upload/TwinWorks_CodeFlex.pdf';
+            window.open(pdfUrl, '_blank');
+        }
+
+        function downloadDemo() {
+            const videoUrl = 'upload/Simulation.mp4'; // 실제 영상 경로로 변경
+
+            // 새 탭으로 영상 페이지 열기 (간단 HTML 생성)
+            const videoHtml = `
+                <!DOCTYPE html>
+                <html lang="ko">
+                <head>
+                    <meta charset="UTF-8" />
+                    <title>Workcell DT Simulation Demo Video</title>
+                    <style>
+                        body, html {
+                            margin: 0; 
+                            height: 100%; 
+                            background: #000; 
+                            display: flex; 
+                            justify-content: center; 
+                            align-items: center;
+                        }
+                        video {
+                            max-width: 100%; 
+                            max-height: 100%;
+                            outline: none;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <video src="${videoUrl}" controls controlsList="nodownload" oncontextmenu="return false;"></video>
+                </body>
+                </html>
+            `;
+
+            // 새 창 열기
+            const newWindow = window.open('', '_blank', 'width=800,height=600');
+
+            // 새 창 문서에 영상 HTML 작성
+            newWindow.document.write(videoHtml);
+            newWindow.document.close();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<DataServices>
+
+  <Workcell WorkcellName="BML">
+
+    <Service ServiceName="ProximitySensorIn_monitoring_state_arg">
+        <MessageType>Request</MessageType>
+        <ServiceReference>WDF/ProximitySensorIn/Monitoring/ProximitySensorIn_monitoring_state_arg</ServiceReference>
+    </Service>
+    
+    <Service ServiceName="PneumaticActuatorPalletPusherIn_method_set_state">
+        <MessageType>Request/Command</MessageType>
+        <ServiceReference>Linker/PneumaticActuatorPalletPusherIn/set_state</ServiceReference>
+        <InputArgument DataType="Boolean"/>
+    </Service>
+
+    <Service ServiceName="ProcessStartTime">
+        <MessageType>Request</MessageType>
+        <ServiceReference>WPF/CycleTime/ProcessStartTime</ServiceReference>
+    </Service>
+
+  </Workcell>
+  
+</DataServices>

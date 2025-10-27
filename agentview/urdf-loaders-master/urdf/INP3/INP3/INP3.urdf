@@ -1,0 +1,1973 @@
+<?xml version="1.0" ?>
+
+<robot name="InP_Abstraction_final_0422">
+
+<material name="AnodizedAluminum">
+  <color rgba="0.88 0.90 0.92 1.0"/>
+</material>
+
+<material name="CastIronBlack">
+  <color rgba="0.08 0.08 0.08 1.0"/>
+</material>
+
+<material name="IndustrialBlue">
+  <color rgba="0.12 0.35 0.75 1.0"/>
+</material>
+
+<material name="SafetyGreen_ISO">
+  <color rgba="0.0 0.65 0.31 1.0"/>
+</material>
+
+<material name="MachineGray">
+  <color rgba="0.45 0.47 0.50 1.0"/>
+</material>
+
+<material name="SafetyOrange_ISO">
+  <color rgba="1.0 0.47 0.0 1.0"/>
+</material>
+
+<material name="EngineeringPlastic">
+  <color rgba="0.92 0.88 0.80 1.0"/>
+</material>
+
+<material name="EmergencyRed_ISO">
+  <color rgba="0.80 0.06 0.13 1.0"/>
+</material>
+
+<material name="CautionYellow_ISO">
+  <color rgba="0.98 0.85 0.0 1.0"/>
+</material>
+
+<material name="PrecisionWhite">
+  <color rgba="0.96 0.97 0.98 1.0"/>
+</material>
+
+<material name="RobotArmBlue">
+  <color rgba="0.18 0.42 0.80 1.0"/>
+</material>
+
+<material name="StainlessSteel">
+  <color rgba="0.82 0.85 0.88 1.0"/>
+</material>
+<material name="ConveyorGray">
+  <color rgba="0.23 0.23 0.23 1.0"/>
+</material>
+<material name="DodgerBlue">
+  <color rgba="0.118 0.565 1.0 1.0"/>
+</material>
+<material name="DeepSilver">
+  <color rgba="0.212, 0.212, 0.212 1.0"/>
+</material>
+<material name="DeepSilver_tp">
+  <color rgba="0.212, 0.212, 0.812 0.9"/>
+</material>
+<material name="LightSilver">
+  <color rgba="0.712, 0.712, 0.712 1.0"/>
+</material>
+
+<material name="GripperRed">
+  <color rgba="0.9 0.2 0.1 1.0"/>
+</material>
+
+<material name="ProximitySensor">
+  <color rgba="0.15 0.55 0.85 1.0"/>
+</material>
+
+<material name="PneumaticGreen">
+  <color rgba="0.25 0.75 0.35 1.0"/>
+</material>
+
+<material name="PrecisionMount">
+  <color rgba="0.75 0.65 0.15 1.0"/>
+</material>
+
+<material name="CarbonFiber">
+  <color rgba="0.15 0.15 0.18 1.0"/>
+</material>
+
+<material name="TitaniumGray">
+  <color rgba="0.65 0.68 0.72 1.0"/>
+</material>
+
+<material name="HardAnodized">
+  <color rgba="0.25 0.28 0.32 1.0"/>
+</material>
+
+<material name="IndustrialSteel">
+  <color rgba="0.4 0.4 0.45 1.0"/>
+</material>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="4.5213375967184815e-09 1.1060952789815207e-07 0.3749996813955776" rpy="0 0 0"/>
+    <mass value="13246.863670419061"/>
+    <inertia ixx="3104.734237972233" iyy="3104.7347482718524" izz="4967.577599502743" ixy="3.290478864694615e-07" iyz="-0.0005458561943473808" ixz="-2.232818541302784e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="IndustrialSteel">
+      <color rgba="0.4 0.4 0.45 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="InP_Conveyor_v21">
+  <inertial>
+    <origin xyz="0.0 0.0 0.03000021737741776" rpy="0 0 0"/>
+    <mass value="97.49622932805218"/>
+    <inertia ixx="0.1839762533649818" iyy="18.309936014365" izz="18.43541523659167" ixy="-1.462176442146301e-15" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Conveyor_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="ConveyorGray"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Conveyor_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="InP_SCARA_Mount_v21">
+  <inertial>
+    <origin xyz="0.21750020380091195 -0.11999974318363671 0.06199981495862228" rpy="0 0 0"/>
+    <mass value="101.62265173122083"/>
+    <inertia ixx="0.6179997191753017" iyy="1.7326775459033996" izz="2.0902537872674074" ixy="1.663885784708441e-06" iyz="-1.598378464251482e-06" ixz="-1.1940827491230266e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.75 0.131 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_SCARA_Mount_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="CastIronBlack">
+      <color rgba="0.0 0.0 0.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.75 0.131 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_SCARA_Mount_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="InP_Guide_L_add_v31">
+  <inertial>
+    <origin xyz="0.7500136271843384 -0.014999998971819861 0.014997272327958" rpy="0 0 0"/>
+    <mass value="10.595187984156496"/>
+    <inertia ixx="0.0015892552394696224" iyy="1.9877073300076225" izz="1.9877076925430968" ixy="1.634234875246346e-15" iyz="-6.661338147750939e-16" ixz="-1.8066565289992861e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.75 -0.131 -0.801" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Guide_L_add_v31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.75 -0.131 -0.801" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Guide_L_add_v31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="InP_Sensor_11">
+  <inertial>
+    <origin xyz="1.1175870007207322e-08 0.015084493846324945 0.02502942931736285" rpy="0 0 0"/>
+    <mass value="0.5892124038026109"/>
+    <inertia ixx="0.00029990327305873254" iyy="0.0001529422532230429" izz="0.00020830214993361462" ixy="6.938893903907228e-18" iyz="2.6156693357787253e-07" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.6525 0.116 -0.801" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Sensor_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="DarkNavySensor">
+      <color rgba="0.01 0.01 0.03 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.6525 0.116 -0.801" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Sensor_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="InP_Sensor_31">
+  <inertial>
+    <origin xyz="1.1175869563118113e-08 0.015084493846323252 0.025029429317363183" rpy="0 0 0"/>
+    <mass value="0.5892124038026118"/>
+    <inertia ixx="0.00029990327305867703" iyy="0.00015294225322293187" izz="0.00020830214993364238" ixy="0.0" iyz="2.6156693357787253e-07" ixz="1.1102230246251565e-16"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.5875 0.116 -0.801" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Sensor_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="DarkNavySensor">
+      <color rgba="0.01 0.01 0.03 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="-0.5875 0.116 -0.801" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Sensor_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="InP_Guide_R1">
+  <inertial>
+    <origin xyz="1.3081350892757312e-05 -1.028180110496102e-09 0.0254976125562133" rpy="0 0 0"/>
+    <mass value="18.01235904342953"/>
+    <inertia ixx="0.0052542673562641085" iyy="3.381227530108303" izz="3.3786756146553083" ixy="-1.695109439099618e-15" iyz="2.220446049250313e-16" ixz="-5.531485227996236e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 0.116 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Guide_R1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 0.116 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Guide_R1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="InP_Guide_L1">
+  <inertial>
+    <origin xyz="-1.1175871447725022e-08 1.0281801382516775e-09 0.025500983928678278" rpy="0 0 0"/>
+    <mass value="18.014979328052167"/>
+    <inertia ixx="0.0052556845498568094" iyy="3.3818576282998567" izz="3.379304303841636" ixy="2.8028704632019064e-15" iyz="-6.661338147750939e-16" ixz="6.11465937782387e-17"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 -0.116 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Guide_L1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 -0.116 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Guide_L1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="PalletBlock_11">
+  <inertial>
+    <origin xyz="0.004999988824129997 0.08500000102818087 0.0024999999999997247" rpy="0 0 0"/>
+    <mass value="0.06672499999999999"/>
+    <inertia ixx="0.00016083505208332183" iyy="6.95052083325709e-07" izz="0.00016125208333333304" ixy="-8.673617379884035e-19" iyz="0.0" ixz="-1.734723475976807e-18"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.225 -0.101 -0.836" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/PalletBlock_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.225 -0.101 -0.836" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/PalletBlock_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="PalletBlock_body_11">
+  <inertial>
+    <origin xyz="-1.1175877251412558e-08 1.0281808876522192e-09 0.0025403256307127142" rpy="0 0 0"/>
+    <mass value="0.011466731220866375"/>
+    <inertia ixx="9.063595724154161e-07" iyy="1.2135957228910643e-07" izz="9.802866601277445e-07" ixy="5.421010862427522e-20" iyz="0.0" ixz="4.336808689942018e-19"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.22 -0.116 -0.831" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/PalletBlock_body_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.22 -0.116 -0.831" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/PalletBlock_body_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="PalletBlock_body_21">
+  <inertial>
+    <origin xyz="-1.117588072085951e-08 1.0281803741740703e-09 0.0025403256307137134" rpy="0 0 0"/>
+    <mass value="0.01146673122086653"/>
+    <inertia ixx="9.063595724136814e-07" iyy="1.2135957229084116e-07" izz="9.802866601275276e-07" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.245 -0.116 -0.831" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/PalletBlock_body_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.245 -0.116 -0.831" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/PalletBlock_body_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="PalletBlock_21">
+  <inertial>
+    <origin xyz="-1.1175873615432153e-08 0.0850000010281804 0.002500000000000502" rpy="0 0 0"/>
+    <mass value="0.06672499999999999"/>
+    <inertia ixx="0.00016083505208332877" iyy="6.950520833395868e-07" izz="0.00016125208333333304" ixy="-4.336808689942018e-19" iyz="-1.734723475976807e-18" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.245 -0.101 -0.836" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/PalletBlock_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="-0.245 -0.101 -0.836" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/PalletBlock_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Pusher_Body_v31">
+  <inertial>
+    <origin xyz="0.03000000029811901 -0.26002387648109526 0.028492207643741052" rpy="0 0 0"/>
+    <mass value="13.955328903641973"/>
+    <inertia ixx="0.31829841418681326" iyy="0.007965506723682125" izz="0.3187091571740983" ixy="-9.059419880941277e-14" iyz="7.347285041703344e-06" ixz="-2.8199664825478976e-14"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.131 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Pusher_Body_v31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.131 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Pusher_Body_v31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Pusher2_11">
+  <inertial>
+    <origin xyz="0.04528951551156207 0.2649999980479558 -0.8040047305092681" rpy="0 0 0"/>
+    <mass value="0.32706859132153515"/>
+    <inertia ixx="0.00021271621913526717" iyy="0.0007615483688833968" izz="0.0009723484076771295" ixy="1.6479873021779667e-16" iyz="-1.3877787807814457e-17" ixz="-9.821296641926436e-08"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.07 0.53 -1.633" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Pusher2_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="-0.07 0.53 -1.633" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Pusher2_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Pusher2_21">
+  <inertial>
+    <origin xyz="0.02346959064600862 0.4219999980479558 -0.8040047305092678" rpy="0 0 0"/>
+    <mass value="0.32706859132153515"/>
+    <inertia ixx="0.00021271621913532268" iyy="0.0007615483688834523" izz="0.0009723484076771399" ixy="1.6653345369377348e-16" iyz="0.0" ixz="-9.82129664227338e-08"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.07 0.844 -1.633" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Pusher2_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="-0.07 0.844 -1.633" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Pusher2_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="3D_SR-3IA_Final_J1_BASE_UNIT_BackCon_SV_v11">
+  <inertial>
+    <origin xyz="0.025794432354074526 0.07033521234160667 0.08838238025978773" rpy="0 0 0"/>
+    <mass value="30.35772559525902"/>
+    <inertia ixx="0.10890561313652114" iyy="0.17521709352549664" izz="0.13649346859319245" ixy="0.0013080194566992276" iyz="0.0003332089750855971" ixz="-0.0007554220894618879"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.596 0.336 -0.874" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/3D_SR-3IA_Final_J1_BASE_UNIT_BackCon_SV_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="CastIronBlack">
+      <color rgba="0.0 0.0 0.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.596 0.336 -0.874" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/3D_SR-3IA_Final_J1_BASE_UNIT_BackCon_SV_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="J1_ARM_UNIT_v11">
+  <inertial>
+    <origin xyz="0.08119773150615611 4.1096551495201084e-07 0.019448846202650305" rpy="0 0 0"/>
+    <mass value="10.867738149985165"/>
+    <inertia ixx="0.01247568552586209" iyy="0.10115240447940188" izz="0.10754937723684455" ixy="1.6590683493689085e-08" iyz="-5.117081425254355e-09" ixz="0.008959369244741389"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.531475 0.266147 -1.0511" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/J1_ARM_UNIT_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="CautionYellow_ISO">
+      <color rgba="1.0 1.0 0.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.531475 0.266147 -1.0511" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/J1_ARM_UNIT_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="3D_SR-3IA_Final_J2_ARM_UNIT_SV_v11">
+  <inertial>
+    <origin xyz="0.08953147225579436 1.75501079280882e-05 0.08898627505899537" rpy="0 0 0"/>
+    <mass value="40.84107912147305"/>
+    <inertia ixx="0.14114649124103806" iyy="0.3517973946928734" izz="0.29557371415743106" ixy="5.924345894303684e-06" iyz="-7.532817497235555e-05" ixz="0.002422756209188748"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.331475 0.266147 -1.0792" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/3D_SR-3IA_Final_J2_ARM_UNIT_SV_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="CautionYellow_ISO">
+      <color rgba="1.0 1.0 0.0 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.331475 0.266147 -1.0792" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/3D_SR-3IA_Final_J2_ARM_UNIT_SV_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Gripper_Finger_L_v21">
+  <inertial>
+    <origin xyz="0.006291915840199946 -0.06826358266619453 -0.0068045789199291384" rpy="0 0 0"/>
+    <mass value="0.1173074381602651"/>
+    <inertia ixx="3.617128589178398e-05" iyy="2.8636763734241066e-05" izz="2.92059822274357e-05" ixy="2.4727430373017167e-06" iyz="-1.989423886350483e-06" ixz="5.653213659227024e-07"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.138475 0.240647 -0.934425" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Gripper_Finger_L_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="BrightBlack">
+      <color rgba="0.1 0.1 0.1 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.138475 0.240647 -0.934425" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Gripper_Finger_L_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Gripper_Finger_R_v21">
+  <inertial>
+    <origin xyz="-0.00629166185482849 0.06826433232892337 -0.006804578919922033" rpy="0 0 0"/>
+    <mass value="0.11730743816026581"/>
+    <inertia ixx="3.617128589195051e-05" iyy="2.86367637344076e-05" izz="2.920598222741662e-05" ixy="2.472743037344651e-06" iyz="1.989423886357422e-06" ixz="-5.653213659261719e-07"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.124475 0.291647 -0.934425" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Gripper_Finger_R_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="BrightBlack">
+      <color rgba="0.1 0.1 0.1 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.124475 0.291647 -0.934425" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Gripper_Finger_R_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="3D_SR-3IA_Final_J3J4_SHAFT_UNIT1">
+  <inertial>
+    <origin xyz="0.5314751269926805 0.26614637483132353 -0.8914999086189943" rpy="0 0 0"/>
+    <mass value="0.9272724876335635"/>
+    <inertia ixx="0.010947688079833817" iyy="0.010947688079833817" izz="4.636362437886177e-05" ixy="0.0" iyz="0.0" ixz="-2.7755575615628914e-17"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.66295 0.532293 -2.0925" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/3D_SR-3IA_Final_J3J4_SHAFT_UNIT1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="DeepSilver">
+      <color rgba="0.4 0.4 0.4 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.66295 0.532293 -2.0925" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/3D_SR-3IA_Final_J3J4_SHAFT_UNIT1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="InP_Gripper_L1">
+  <inertial>
+    <origin xyz="0.010000126992666364 0.003004299137172123 -0.02376644676786821" rpy="0 0 0"/>
+    <mass value="0.35637738181354256"/>
+    <inertia ixx="5.7344844595741407e-05" iyy="0.0002842731850508651" izz="0.00024288200111982627" ixy="-1.734723475976807e-18" iyz="-3.5260449908341984e-06" ixz="-2.0816681711721685e-17"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.141475 0.217647 -0.9095" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Gripper_L1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="BrightBlack">
+      <color rgba="0.1 0.1 0.1 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.141475 0.217647 -0.9095" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Gripper_L1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="InP_Gripper_R1">
+  <inertial>
+    <origin xyz="-0.00999987300729191 -0.003003549474443201 -0.023766446767879867" rpy="0 0 0"/>
+    <mass value="0.35637738181354245"/>
+    <inertia ixx="5.7344844595685895e-05" iyy="0.00028427318505075405" izz="0.00024288200111982627" ixy="0.0" iyz="3.5260449908341984e-06" ixz="1.3877787807814457e-17"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.121475 0.314647 -0.9095" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Gripper_R1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="BrightBlack">
+      <color rgba="0.1 0.1 0.1 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.121475 0.314647 -0.9095" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Gripper_R1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Tower_bottom_bot_v21">
+  <inertial>
+    <origin xyz="-4.470917316923284e-10 -0.1020053967567936 0.02999730519252064" rpy="0 0 0"/>
+    <mass value="18.36703941056471"/>
+    <inertia ixx="0.4194007896560983" iyy="0.014119568560635898" izz="0.4225021526905941" ixy="9.736655925962623e-14" iyz="2.1759109687380374e-06" ixz="2.9476421303797906e-14"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0175 0.289 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Tower_bottom_bot_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum">
+    </material>  
+  </visual>
+  <collision>
+    <origin xyz="0.0175 0.289 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Tower_bottom_bot_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_2_v2_31">
+  <inertial>
+    <origin xyz="-4.4703453785932545e-10 2.9280781688179047e-09 0.005501953045240038" rpy="0 0 0"/>
+    <mass value="0.2557008982395119"/>
+    <inertia ixx="3.583796189887689e-05" iyy="0.0001224889051411049" izz="0.00015317256472146407" ixy="4.336808689942018e-19" iyz="0.0" ixz="4.336808689942018e-19"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0175 0.48075 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_2_v2_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material>  
+  </visual>
+  <collision>
+    <origin xyz="0.0175 0.48075 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_2_v2_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_2_v2_21">
+  <inertial>
+    <origin xyz="2.980232380322967e-10 -1.9520531857608603e-09 0.005501953045240038" rpy="0 0 0"/>
+    <mass value="0.2557008982395119"/>
+    <inertia ixx="3.583796189887689e-05" iyy="0.0001224889051411049" izz="0.000153172564721471" ixy="0.0" iyz="-1.3877787807814457e-17" ixz="-8.673617379884035e-19"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0175 0.36325 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_2_v2_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="0.0175 0.36325 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_2_v2_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_2_v2_11">
+  <inertial>
+    <origin xyz="2.980232380322967e-10 -1.95205451802849e-09 0.005501953045240038" rpy="0 0 0"/>
+    <mass value="0.2557008982395119"/>
+    <inertia ixx="3.583796189887689e-05" iyy="0.0001224889051411049" izz="0.00015317256472147447" ixy="0.0" iyz="-1.3877787807814457e-17" ixz="-8.673617379884035e-19"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0175 0.32375 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_2_v2_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material>   
+  </visual>
+  <collision>
+    <origin xyz="0.0175 0.32375 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_2_v2_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_short_v71">
+  <inertial>
+    <origin xyz="-0.0024999997019769203 0.014999998047947827 0.008002455172714917" rpy="0 0 0"/>
+    <mass value="0.018833834624417328"/>
+    <inertia ixx="1.8145721849792407e-06" iyy="4.408221849789423e-07" izz="1.4522492293280245e-06" ixy="1.3552527156068805e-20" iyz="4.336808689942018e-19" ixz="-5.421010862427522e-20"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.226 -0.821" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_short_v71.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.226 -0.821" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_short_v71.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_short_v7_21">
+  <inertial>
+    <origin xyz="-0.0024999997019763825 -0.015000001952059583 0.00799754482728754" rpy="0 0 0"/>
+    <mass value="0.018833834624417328"/>
+    <inertia ixx="1.8145721849792407e-06" iyy="4.4082218498067705e-07" izz="1.4522492293275908e-06" ixy="-2.710505431213761e-20" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.304 -0.821" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_short_v7_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.304 -0.821" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_short_v7_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_short_v7_31">
+  <inertial>
+    <origin xyz="-0.0024999997019769377 0.014999998047944108 0.007997544827284986" rpy="0 0 0"/>
+    <mass value="0.018833834624417328"/>
+    <inertia ixx="1.8145721849792407e-06" iyy="4.4082218498067705e-07" izz="1.4522492293284582e-06" ixy="5.421010862427522e-20" iyz="0.0" ixz="-5.421010862427522e-20"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.383 -0.821" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_short_v7_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.383 -0.821" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_short_v7_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_short_v7_11">
+  <inertial>
+    <origin xyz="-0.002500000447032507 -0.014999997071924343 0.007997544827287428" rpy="0 0 0"/>
+    <mass value="0.018833834624417328"/>
+    <inertia ixx="1.8145721849757712e-06" iyy="4.408221849772076e-07" izz="1.4522492293280245e-06" ixy="1.6263032587282567e-19" iyz="8.673617379884035e-19" ixz="5.421010862427522e-20"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.461 -0.821" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_short_v7_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.461 -0.821" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_short_v7_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_long_v4_11">
+  <inertial>
+    <origin xyz="-0.03500035112039242 0.002500002928074896 0.007998947979914517" rpy="0 0 0"/>
+    <mass value="0.04395383462441733"/>
+    <inertia ixx="1.0290489165371008e-06" iyy="1.8887760377533924e-05" izz="1.8041877356992503e-05" ixy="0.0" iyz="0.0" ixz="1.1561700750430115e-10"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.015 0.491 -0.821" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_long_v4_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.015 0.491 -0.821" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_long_v4_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_long_v4_21">
+  <inertial>
+    <origin xyz="-0.035000350375338746 -0.0025000019520519945 -0.008001052020085053" rpy="0 0 0"/>
+    <mass value="0.04395383462441733"/>
+    <inertia ixx="1.0290489165371008e-06" iyy="1.8887760377530455e-05" izz="1.8041877356992503e-05" ixy="0.0" iyz="8.673617379884035e-19" ixz="1.1561700750430115e-10"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.015 0.196 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_long_v4_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.015 0.196 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_long_v4_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_long_v41">
+  <inertial>
+    <origin xyz="-0.03500035037533817 0.002499998047940377 -0.008001052020086163" rpy="0 0 0"/>
+    <mass value="0.04395383462441733"/>
+    <inertia ixx="1.0290489165371008e-06" iyy="1.8887760377523516e-05" izz="1.8041877356991635e-05" ixy="5.421010862427522e-20" iyz="1.734723475976807e-18" ixz="1.1561700826324267e-10"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.015 0.334 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_long_v41.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.015 0.334 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_long_v41.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_long_v4_31">
+  <inertial>
+    <origin xyz="-0.03500035037533908 -0.0025000019520558525 -0.008001052020085053" rpy="0 0 0"/>
+    <mass value="0.04395383462441733"/>
+    <inertia ixx="1.029048916530162e-06" iyy="1.8887760377533924e-05" izz="1.8041877356992503e-05" ixy="0.0" iyz="0.0" ixz="1.1561700739588093e-10"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.015 0.353 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_long_v4_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.015 0.353 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_long_v4_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="TowerBodyL1_v4_11">
+  <inertial>
+    <origin xyz="-0.03250000044703061 0.0019999675260028993 0.06400149868734106" rpy="0 0 0"/>
+    <mass value="0.26122950387309846"/>
+    <inertia ixx="0.0003570140653458842" iyy="0.00044863417902407665" izz="9.23167634508254e-05" ixy="0.0" iyz="-1.9576450183134142e-10" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.015 0.491 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyL1_v4_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.015 0.491 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyL1_v4_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="TowerBodyL2_v31">
+  <inertial>
+    <origin xyz="-0.0024999186280301317 0.015000514296831746 0.06400259775333006" rpy="0 0 0"/>
+    <mass value="0.15070766924884071"/>
+    <inertia ixx="0.00021706121359815755" iyy="0.00020607215218654273" izz="1.1617010288351992e-05" ixy="1.541406986858146e-10" iyz="2.0022872249114698e-13" ixz="3.203253634564973e-14"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.491 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyL2_v31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.491 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyL2_v31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="TowerBodyL1_v4_21">
+  <inertial>
+    <origin xyz="-0.03249999970197626 0.0019999626458843123 0.06400149868733718" rpy="0 0 0"/>
+    <mass value="0.2612295038732302"/>
+    <inertia ixx="0.0003570140653460785" iyy="0.0004486341790242987" izz="9.23167634508601e-05" ixy="0.0" iyz="-1.9576452958691704e-10" ixz="8.673617379884035e-19"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.015 0.334 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyL1_v4_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.015 0.334 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyL1_v4_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="TowerBodyM_v21">
+  <inertial>
+    <origin xyz="-0.002500035762319254 0.06950000292807801 0.06399999999999983" rpy="0 0 0"/>
+    <mass value="0.6983236692491133"/>
+    <inertia ixx="0.002077785219050776" iyy="0.0009549162342115114" izz="0.0011257786174697082" ixy="-1.734723475976807e-18" iyz="5.551115123125783e-17" ixz="-6.938893903907228e-18"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.05 0.491 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyM_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="0.05 0.491 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyM_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="TowerBodyR1_v41">
+  <inertial>
+    <origin xyz="-0.03249999970197799 0.002499998047947649 0.06400119893289125" rpy="0 0 0"/>
+    <mass value="0.32654150387328973"/>
+    <inertia ixx="0.00044651872342116317" iyy="0.0005608020964750771" izz="0.0001156440374085882" ixy="0.0" iyz="1.3877787807814457e-17" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.015 0.358 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyR1_v41.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.015 0.358 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyR1_v41.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="case_bottom_2_v21">
+  <inertial>
+    <origin xyz="2.980232380322967e-10 -1.9520521588045625e-09 0.005501953045240482" rpy="0 0 0"/>
+    <mass value="0.2557008982395119"/>
+    <inertia ixx="3.583796189890465e-05" iyy="0.00012248890514107713" izz="0.00015317256472146407" ixy="2.168404344971009e-19" iyz="0.0" ixz="-4.336808689942018e-19"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0175 0.20625 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_2_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="0.0175 0.20625 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/case_bottom_2_v21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="TowerBodyM_v2_11">
+  <inertial>
+    <origin xyz="-0.00250003501726441 0.06949999804794776 0.06400000000000028" rpy="0 0 0"/>
+    <mass value="0.6983236692491133"/>
+    <inertia ixx="0.002077785219050887" iyy="0.0009549162342115114" izz="0.0011257786174696874" ixy="1.734723475976807e-18" iyz="-2.7755575615628914e-17" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.05 0.334 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyM_v2_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="0.05 0.334 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyM_v2_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="TowerBodyR1_v4_11">
+  <inertial>
+    <origin xyz="-0.032499999701977145 0.0024999980479483985 0.06400119893289236" rpy="0 0 0"/>
+    <mass value="0.32654150387328973"/>
+    <inertia ixx="0.00044651872342116317" iyy="0.0005608020964751326" izz="0.00011564403740858126" ixy="-2.168404344971009e-19" iyz="6.938893903907228e-18" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.015 0.201 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyR1_v4_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.015 0.201 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyR1_v4_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="TowerBodyR2_v41">
+  <inertial>
+    <origin xyz="-0.002499917879625887 0.015000079870278432 0.06400259785960649" rpy="0 0 0"/>
+    <mass value="0.1507015038731776"/>
+    <inertia ixx="0.00021705991646678302" iyy="0.00020607215141574264" izz="1.1615713157171748e-05" ixy="-1.541333908379114e-10" iyz="3.2029934260435766e-14" ixz="3.2032970026518726e-14"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.226 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyR2_v41.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.226 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyR2_v41.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="TowerBodyR2_v4_11">
+  <inertial>
+    <origin xyz="-0.002499917879626473 0.015000079870277905 0.06400259785960583" rpy="0 0 0"/>
+    <mass value="0.1507015038731776"/>
+    <inertia ixx="0.00021705991646681078" iyy="0.0002060721514157149" izz="1.1615713157164809e-05" ixy="-1.5413338541690053e-10" iyz="3.2036873154339673e-14" ixz="3.2033837388256714e-14"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.383 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyR2_v4_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.383 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyR2_v4_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="TowerBodyL2_v3_11">
+  <inertial>
+    <origin xyz="-0.002499917882973983 0.015000509416712493 0.06400259775332895" rpy="0 0 0"/>
+    <mass value="0.15070766924884071"/>
+    <inertia ixx="0.00021706121359815755" iyy="0.00020607215218654273" izz="1.1617010288353727e-05" ixy="1.5414069825213372e-10" iyz="2.0019402802162745e-13" ixz="3.203166898391174e-14"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.02 0.334 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyL2_v3_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="MachineGray">
+    </material> 
+  </visual>
+  <collision>
+    <origin xyz="-0.02 0.334 -0.837" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/TowerBodyL2_v3_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="shelf_reciver_vertical_v1_21">
+  <inertial>
+    <origin xyz="0.07249999878555258 -0.0025000010281796825 0.00749999999999984" rpy="0 0 0"/>
+    <mass value="0.08536875000000431"/>
+    <inertia ixx="1.7785156249880418e-06" iyy="0.00015117382812500357" izz="0.00014975101562500568" ixy="4.336808689942018e-19" iyz="0.0" ixz="3.469446951953614e-18"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2015 0.196 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_reciver_vertical_v1_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.2015 0.196 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_reciver_vertical_v1_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="shelf_reciver_vertical_v1_11">
+  <inertial>
+    <origin xyz="0.07249999878555269 -0.002500001028178711 0.007500000000000173" rpy="0 0 0"/>
+    <mass value="0.08536875000000518"/>
+    <inertia ixx="1.7785156249949807e-06" iyy="0.00015117382812501745" izz="0.0001497510156250048" ixy="8.673617379884035e-19" iyz="-3.469446951953614e-18" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2015 0.329 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_reciver_vertical_v1_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.2015 0.329 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_reciver_vertical_v1_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="shelf_reciver_vertical_v1_31">
+  <inertial>
+    <origin xyz="0.07249999878555255 -0.002500001028180432 0.007500000000000173" rpy="0 0 0"/>
+    <mass value="0.08536875000000604"/>
+    <inertia ixx="1.7785156249949807e-06" iyy="0.0001511738281250105" izz="0.00014975101562500828" ixy="8.673617379884035e-19" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2015 0.486 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_reciver_vertical_v1_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.2015 0.486 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_reciver_vertical_v1_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="shelf_reciver_vertical_v11">
+  <inertial>
+    <origin xyz="0.0724999987855526 -0.002500001028179044 0.007500000000000173" rpy="0 0 0"/>
+    <mass value="0.08536875000000518"/>
+    <inertia ixx="1.7785156249949807e-06" iyy="0.00015117382812501745" izz="0.00014975101562500828" ixy="8.673617379884035e-19" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2015 0.353 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_reciver_vertical_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.2015 0.353 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_reciver_vertical_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="shelf_receiver_hori_v1_31">
+  <inertial>
+    <origin xyz="0.007999998785554768 0.0049999989718206295 -0.007499999999999729" rpy="0 0 0"/>
+    <mass value="0.018840000000002046"/>
+    <inertia ixx="5.102500000020438e-07" iyy="7.551700000017758e-07" izz="5.58919999999255e-07" ixy="-2.168404344971009e-19" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2015 0.486 -0.833" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_receiver_hori_v1_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.2015 0.486 -0.833" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_receiver_hori_v1_31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Pusher_Slide_Body21">
+  <inertial>
+    <origin xyz="2.980230992544186e-10 -1.9520522975824406e-09 0.009504068640284302" rpy="0 0 0"/>
+    <mass value="0.6440197312208665"/>
+    <inertia ixx="0.00029771036249348626" iyy="0.00021265906649348132" izz="0.0004716471326601246" ixy="0.0" iyz="2.7755575615628914e-17" ixz="-3.469446951953614e-18"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.05 0.265 -0.807" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Pusher_Slide_Body21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.05 0.265 -0.807" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Pusher_Slide_Body21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Pusher_Slide_Body11">
+  <inertial>
+    <origin xyz="2.980228841487076e-10 -1.9520531857608603e-09 0.009504068640284746" rpy="0 0 0"/>
+    <mass value="0.6440197312208665"/>
+    <inertia ixx="0.0002977103624935973" iyy="0.00021265906649348132" izz="0.00047164713266013847" ixy="0.0" iyz="0.0" ixz="3.469446951953614e-18"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.05 0.422 -0.807" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Pusher_Slide_Body11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.05 0.422 -0.807" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Pusher_Slide_Body11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="shelf_receiver_hori_v11">
+  <inertial>
+    <origin xyz="0.007999998785553963 -0.005000001028178047 0.007500000000001061" rpy="0 0 0"/>
+    <mass value="0.018839999999997286"/>
+    <inertia ixx="5.102499999968396e-07" iyy="7.551700000000411e-07" izz="5.589200000005561e-07" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2015 0.358 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_receiver_hori_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.2015 0.358 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_receiver_hori_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="shelf_receiver_hori_v1_11">
+  <inertial>
+    <origin xyz="0.007999998785553686 -0.005000001028178491 0.007500000000000395" rpy="0 0 0"/>
+    <mass value="0.018839999999997754"/>
+    <inertia ixx="5.102500000037785e-07" iyy="7.551700000035105e-07" izz="5.589199999999055e-07" ixy="0.0" iyz="8.673617379884035e-19" ixz="4.336808689942018e-19"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2015 0.201 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_receiver_hori_v1_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.2015 0.201 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_receiver_hori_v1_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="shelf_receiver_hori_v1_21">
+  <inertial>
+    <origin xyz="0.007999998785554352 0.004999998971820241 0.007500000000000617" rpy="0 0 0"/>
+    <mass value="0.018840000000002525"/>
+    <inertia ixx="5.102499999968396e-07" iyy="7.551699999983064e-07" izz="5.589200000001224e-07" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2015 0.329 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_receiver_hori_v1_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="EngineeringPlastic">
+      <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.2015 0.329 -0.818" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/shelf_receiver_hori_v1_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Guide_L_v11">
+  <inertial>
+    <origin xyz="0.7499999999999999 0.013249999999999783 0.005499999999999949" rpy="0 0 0"/>
+    <mass value="3.432412499999982"/>
+    <inertia ixx="0.00023547779921839762" iyy="0.6436119539093714" izz="0.6437782113898404" ixy="7.366520746855398e-17" iyz="0.0" ixz="-9.860761315262648e-32"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.75 0.069 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Guide_L_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="ConveyorGray"/>
+  </visual>
+  <collision>
+    <origin xyz="0.75 0.069 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Guide_L_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Guide_R_v1_11">
+  <inertial>
+    <origin xyz="0.7500000000000003 -0.01324999999999981 0.005499999999999949" rpy="0 0 0"/>
+    <mass value="3.432412499999982"/>
+    <inertia ixx="0.00023547779921839762" iyy="0.6436119539093723" izz="0.6437782113898404" ixy="6.795358074142005e-17" iyz="0.0" ixz="1.9721522630525295e-31"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.75 -0.069 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Guide_R_v1_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="ConveyorGray"/>
+  </visual>
+  <collision>
+    <origin xyz="0.75 -0.069 -0.81" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Guide_R_v1_11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Gripper_Body1">
+  <inertial>
+    <origin xyz="1.2699268125970775e-07 3.748313245899304e-07 -0.04655777332246569" rpy="0 0 0"/>
+    <mass value="1.6262873456982092"/>
+    <inertia ixx="0.0015612628042933618" iyy="0.001462235922387256" izz="0.0006059686824535782" ixy="3.469446951953614e-17" iyz="5.551115123125783e-17" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.131475 0.266147 -1.013" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Gripper_Body1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="DeepSilver">
+      <color rgba="0.4 0.4 0.4 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.131475 0.266147 -1.013" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Gripper_Body1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Shelf_receiver_bottom_v11">
+  <inertial>
+    <origin xyz="-0.0724989091692817 0.25999924140243225 0.005499931818755077" rpy="0 0 0"/>
+    <mass value="6.510691353990723"/>
+    <inertia ixx="0.14677415900656499" iyy="0.011472582611325777" izz="0.15811544474721484" ixy="-3.555038366465091e-07" iyz="2.2195688398340963e-08" ixz="-3.199534526210357e-08"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0565 0.651 -0.807" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Shelf_receiver_bottom_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.0565 0.651 -0.807" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Shelf_receiver_bottom_v11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Shelf_Container_Body_v31">
+  <inertial>
+    <origin xyz="0.07249999878555455 -0.26000000102817966 0.028499999999999415" rpy="0 0 0"/>
+    <mass value="33.73773000000001"/>
+    <inertia ixx="0.7693580063974892" iyy="0.06824580483499432" izz="0.8193348304375005" ixy="0.0" iyz="-1.7763568394002505e-15" ixz="-4.440892098500626e-16"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.2015 0.131 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Shelf_Container_Body_v31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="AnodizedAluminum"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.2015 0.131 -0.75" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/Shelf_Container_Body_v31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="InP_Sensor_21">
+  <inertial>
+    <origin xyz="-4.0046282928640764e-07 0.016053637235180412 0.025030476286000747" rpy="0 0 0"/>
+    <mass value="0.5689708656104372"/>
+    <inertia ixx="0.0002780604433528233" iyy="0.00014782385125816644" izz="0.00018952574463134558" ixy="1.5612511283791264e-17" iyz="2.7837199506608457e-07" ixz="-1.3877787807814457e-17"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.251199 0.116 -0.801" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Sensor_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="DarkNavySensor">
+      <color rgba="0.01 0.01 0.03 1.0"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0.251199 0.116 -0.801" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/InP_Sensor_21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rigid_4" type="fixed">
+  <origin xyz="0.0 0.0 0.75" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="InP_Conveyor_v21"/>
+</joint>
+
+<joint name="Rigid_8" type="fixed">
+  <origin xyz="-0.75 -0.015 0.0" rpy="0 0 0"/>
+  <parent link="InP_Guide_R1"/>
+  <child link="InP_SCARA_Mount_v21"/>
+</joint>
+
+<joint name="Rigid_9" type="fixed">
+  <origin xyz="-0.75 0.015 0.051" rpy="0 0 0"/>
+  <parent link="InP_Guide_L1"/>
+  <child link="InP_Guide_L_add_v31"/>
+</joint>
+
+<joint name="Rigid_10" type="fixed">
+  <origin xyz="-0.6525 0.0 0.051" rpy="0 0 0"/>
+  <parent link="InP_Guide_R1"/>
+  <child link="InP_Sensor_11"/>
+</joint>
+
+<joint name="Rigid_12" type="fixed">
+  <origin xyz="0.5875 0.0 0.051" rpy="0 0 0"/>
+  <parent link="InP_Guide_R1"/>
+  <child link="InP_Sensor_31"/>
+</joint>
+
+<joint name="Rigid_13" type="fixed">
+  <origin xyz="0.0 -0.116 0.75" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="InP_Guide_R1"/>
+</joint>
+
+<joint name="Rigid_14" type="fixed">
+  <origin xyz="0.0 0.116 0.75" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="InP_Guide_L1"/>
+</joint>
+
+<joint name="Slider_17" type="prismatic">
+  <origin xyz="-0.005 -0.015 0.005" rpy="0 0 0"/>
+  <parent link="PalletBlock_body_11"/>
+  <child link="PalletBlock_11"/>
+  <axis xyz="-0.0 -1.0 -0.0"/>
+  <limit upper="0.16" lower="0.0" effort="100" velocity="100"/>
+</joint>
+<transmission name="Slider_17_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Slider_17">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Slider_17_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Rigid_18" type="fixed">
+  <origin xyz="0.53 -0.015 0.03" rpy="0 0 0"/>
+  <parent link="InP_Guide_L_add_v31"/>
+  <child link="PalletBlock_body_11"/>
+</joint>
+
+<joint name="Rigid_19" type="fixed">
+  <origin xyz="0.995 -0.015 0.03" rpy="0 0 0"/>
+  <parent link="InP_Guide_L_add_v31"/>
+  <child link="PalletBlock_body_21"/>
+</joint>
+
+<joint name="Slider_20" type="prismatic">
+  <origin xyz="0.0 -0.015 0.005" rpy="0 0 0"/>
+  <parent link="PalletBlock_body_21"/>
+  <child link="PalletBlock_21"/>
+  <axis xyz="-0.0 -1.0 0.0"/>
+  <limit upper="0.16" lower="0.0" effort="100" velocity="100"/>
+</joint>
+<transmission name="Slider_20_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Slider_20">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Slider_20_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Rigid_22" type="fixed">
+  <origin xyz="0.02 -0.131 0.75" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="Pusher_Body_v31"/>
+</joint>
+
+<joint name="Slider_25" type="prismatic">
+  <origin xyz="0.02 -0.265 0.826" rpy="0 0 0"/>
+  <parent link="Pusher_Slide_Body21"/>
+  <child link="Pusher2_11"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+  <limit upper="0.16" lower="-0.08" effort="100" velocity="100"/>
+</joint>
+<transmission name="Slider_25_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Slider_25">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Slider_25_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Slider_26" type="prismatic">
+  <origin xyz="0.02 -0.422 0.826" rpy="0 0 0"/>
+  <parent link="Pusher_Slide_Body11"/>
+  <child link="Pusher2_21"/>
+  <axis xyz="1.0 -0.0 -0.0"/>
+  <limit upper="0.16" lower="-0.08" effort="100" velocity="100"/>
+</joint>
+<transmission name="Slider_26_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Slider_26">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Slider_26_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Rigid_30" type="fixed">
+  <origin xyz="0.154 -0.205 0.124" rpy="0 0 0"/>
+  <parent link="InP_SCARA_Mount_v21"/>
+  <child link="3D_SR-3IA_Final_J1_BASE_UNIT_BackCon_SV_v11"/>
+</joint>
+
+<joint name="Rotation_31" type="revolute">
+  <origin xyz="0.064525 0.069853 0.1771" rpy="0 0 0"/>
+  <parent link="3D_SR-3IA_Final_J1_BASE_UNIT_BackCon_SV_v11"/>
+  <child link="J1_ARM_UNIT_v11"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <limit upper="2.094395" lower="-2.094395" effort="100" velocity="100"/>
+</joint>
+<transmission name="Rotation_31_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Rotation_31">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Rotation_31_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Rotation_36" type="revolute">
+  <origin xyz="0.2 0.0 0.0281" rpy="0 0 0"/>
+  <parent link="J1_ARM_UNIT_v11"/>
+  <child link="3D_SR-3IA_Final_J2_ARM_UNIT_SV_v11"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+  <limit upper="2.094395" lower="-2.094395" effort="100" velocity="100"/>
+</joint>
+<transmission name="Rotation_36_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Rotation_36">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Rotation_36_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Slider_41" type="prismatic">
+  <origin xyz="-0.007 0.0255 -0.078575" rpy="0 0 0"/>
+  <parent link="Gripper_Body1"/>
+  <child link="Gripper_Finger_L_v21"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit upper="0.0135" lower="0.0" effort="100" velocity="100"/>
+</joint>
+<transmission name="Slider_41_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Slider_41">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Slider_41_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Slider_42" type="prismatic">
+  <origin xyz="0.007 -0.0255 -0.078575" rpy="0 0 0"/>
+  <parent link="Gripper_Body1"/>
+  <child link="Gripper_Finger_R_v21"/>
+  <axis xyz="-0.0 -1.0 -0.0"/>
+  <limit upper="0.0135" lower="0.0" effort="100" velocity="100"/>
+</joint>
+<transmission name="Slider_42_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Slider_42">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Slider_42_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Slider_44" type="prismatic">
+  <origin xyz="-0.331475 -0.266146 1.0133" rpy="0 0 0"/>
+  <parent link="3D_SR-3IA_Final_J2_ARM_UNIT_SV_v11"/>
+  <child link="3D_SR-3IA_Final_J3J4_SHAFT_UNIT1"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+  <limit upper="0.05" lower="-0.05" effort="100" velocity="100"/>
+</joint>
+<transmission name="Slider_44_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Slider_44">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Slider_44_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Ligid_47" type="fixed">
+  <origin xyz="-0.017 0.074 -0.024925" rpy="0 0 0"/>
+  <parent link="Gripper_Finger_R_v21"/>
+  <child link="InP_Gripper_L1"/>
+</joint>
+
+<joint name="Ligid_48" type="fixed">
+  <origin xyz="0.017 -0.074 -0.024925" rpy="0 0 0"/>
+  <parent link="Gripper_Finger_L_v21"/>
+  <child link="InP_Gripper_R1"/>
+</joint>
+
+<joint name="��ü_49" type="fixed">
+  <origin xyz="-0.0175 -0.289 0.75" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="Tower_bottom_bot_v21"/>
+</joint>
+
+<joint name="��ü_102" type="fixed">
+  <origin xyz="0.0 -0.19175 0.06" rpy="0 0 0"/>
+  <parent link="Tower_bottom_bot_v21"/>
+  <child link="case_bottom_2_v2_31"/>
+</joint>
+
+<joint name="��ü_103" type="fixed">
+  <origin xyz="0.0 -0.07425 0.06" rpy="0 0 0"/>
+  <parent link="Tower_bottom_bot_v21"/>
+  <child link="case_bottom_2_v2_21"/>
+</joint>
+
+<joint name="��ü_105" type="fixed">
+  <origin xyz="0.0 -0.03475 0.06" rpy="0 0 0"/>
+  <parent link="Tower_bottom_bot_v21"/>
+  <child link="case_bottom_2_v2_11"/>
+</joint>
+
+<joint name="��ü_113" type="fixed">
+  <origin xyz="0.0375 -0.01975 0.011" rpy="0 0 0"/>
+  <parent link="case_bottom_2_v21"/>
+  <child link="case_bottom_short_v71"/>
+</joint>
+
+<joint name="��ü_115" type="fixed">
+  <origin xyz="0.0375 0.01975 0.011" rpy="0 0 0"/>
+  <parent link="case_bottom_2_v2_11"/>
+  <child link="case_bottom_short_v7_21"/>
+</joint>
+
+<joint name="��ü_116" type="fixed">
+  <origin xyz="0.0375 -0.01975 0.011" rpy="0 0 0"/>
+  <parent link="case_bottom_2_v2_21"/>
+  <child link="case_bottom_short_v7_31"/>
+</joint>
+
+<joint name="��ü_117" type="fixed">
+  <origin xyz="0.0375 0.01975 0.011" rpy="0 0 0"/>
+  <parent link="case_bottom_2_v2_31"/>
+  <child link="case_bottom_short_v7_11"/>
+</joint>
+
+<joint name="��ü_118" type="fixed">
+  <origin xyz="-0.005 -0.03 0.0" rpy="0 0 0"/>
+  <parent link="case_bottom_short_v7_11"/>
+  <child link="case_bottom_long_v4_11"/>
+</joint>
+
+<joint name="��ü_119" type="fixed">
+  <origin xyz="-0.005 0.03 0.016" rpy="0 0 0"/>
+  <parent link="case_bottom_short_v71"/>
+  <child link="case_bottom_long_v4_21"/>
+</joint>
+
+<joint name="��ü_120" type="fixed">
+  <origin xyz="-0.005 -0.03 0.016" rpy="0 0 0"/>
+  <parent link="case_bottom_short_v7_21"/>
+  <child link="case_bottom_long_v41"/>
+</joint>
+
+<joint name="��ü_121" type="fixed">
+  <origin xyz="-0.005 0.03 0.016" rpy="0 0 0"/>
+  <parent link="case_bottom_short_v7_31"/>
+  <child link="case_bottom_long_v4_31"/>
+</joint>
+
+<joint name="��ü_122" type="fixed">
+  <origin xyz="0.0 0.0 0.016" rpy="0 0 0"/>
+  <parent link="case_bottom_long_v4_11"/>
+  <child link="TowerBodyL1_v4_11"/>
+</joint>
+
+<joint name="��ü_123" type="fixed">
+  <origin xyz="0.0 -0.03 0.016" rpy="0 0 0"/>
+  <parent link="case_bottom_short_v7_11"/>
+  <child link="TowerBodyL2_v31"/>
+</joint>
+
+<joint name="��ü_125" type="fixed">
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  <parent link="case_bottom_long_v41"/>
+  <child link="TowerBodyL1_v4_21"/>
+</joint>
+
+<joint name="��ü_127" type="fixed">
+  <origin xyz="-0.065 0.0 0.0" rpy="0 0 0"/>
+  <parent link="TowerBodyL1_v4_11"/>
+  <child link="TowerBodyM_v21"/>
+</joint>
+
+<joint name="��ü_129" type="fixed">
+  <origin xyz="0.0 -0.005 0.0" rpy="0 0 0"/>
+  <parent link="case_bottom_long_v4_31"/>
+  <child link="TowerBodyR1_v41"/>
+</joint>
+
+<joint name="��ü_131" type="fixed">
+  <origin xyz="0.0 0.08275 0.06" rpy="0 0 0"/>
+  <parent link="Tower_bottom_bot_v21"/>
+  <child link="case_bottom_2_v21"/>
+</joint>
+
+<joint name="��ü_132" type="fixed">
+  <origin xyz="-0.065 0.0 0.0" rpy="0 0 0"/>
+  <parent link="TowerBodyL1_v4_21"/>
+  <child link="TowerBodyM_v2_11"/>
+</joint>
+
+<joint name="��ü_133" type="fixed">
+  <origin xyz="0.0 -0.005 0.0" rpy="0 0 0"/>
+  <parent link="case_bottom_long_v4_21"/>
+  <child link="TowerBodyR1_v4_11"/>
+</joint>
+
+<joint name="��ü_134" type="fixed">
+  <origin xyz="0.0 0.0 0.016" rpy="0 0 0"/>
+  <parent link="case_bottom_short_v71"/>
+  <child link="TowerBodyR2_v41"/>
+</joint>
+
+<joint name="��ü_135" type="fixed">
+  <origin xyz="0.0 0.0 0.016" rpy="0 0 0"/>
+  <parent link="case_bottom_short_v7_31"/>
+  <child link="TowerBodyR2_v4_11"/>
+</joint>
+
+<joint name="��ü_136" type="fixed">
+  <origin xyz="0.0 -0.03 0.016" rpy="0 0 0"/>
+  <parent link="case_bottom_short_v7_21"/>
+  <child link="TowerBodyL2_v3_11"/>
+</joint>
+
+<joint name="��ü_138" type="fixed">
+  <origin xyz="-0.145 0.455 0.011" rpy="0 0 0"/>
+  <parent link="Shelf_receiver_bottom_v11"/>
+  <child link="shelf_reciver_vertical_v1_21"/>
+</joint>
+
+<joint name="��ü_139" type="fixed">
+  <origin xyz="-0.145 0.322 0.011" rpy="0 0 0"/>
+  <parent link="Shelf_receiver_bottom_v11"/>
+  <child link="shelf_reciver_vertical_v1_11"/>
+</joint>
+
+<joint name="��ü_140" type="fixed">
+  <origin xyz="-0.145 0.165 0.011" rpy="0 0 0"/>
+  <parent link="Shelf_receiver_bottom_v11"/>
+  <child link="shelf_reciver_vertical_v1_31"/>
+</joint>
+
+<joint name="��ü_141" type="fixed">
+  <origin xyz="-0.145 0.298 0.011" rpy="0 0 0"/>
+  <parent link="Shelf_receiver_bottom_v11"/>
+  <child link="shelf_reciver_vertical_v11"/>
+</joint>
+
+<joint name="��ü_142" type="fixed">
+  <origin xyz="0.0 0.0 0.015" rpy="0 0 0"/>
+  <parent link="shelf_reciver_vertical_v1_31"/>
+  <child link="shelf_receiver_hori_v1_31"/>
+</joint>
+
+<joint name="��ü_143" type="fixed">
+  <origin xyz="0.03 -0.134 0.057" rpy="0 0 0"/>
+  <parent link="Pusher_Body_v31"/>
+  <child link="Pusher_Slide_Body21"/>
+</joint>
+
+<joint name="��ü_144" type="fixed">
+  <origin xyz="0.03 -0.291 0.057" rpy="0 0 0"/>
+  <parent link="Pusher_Body_v31"/>
+  <child link="Pusher_Slide_Body11"/>
+</joint>
+
+<joint name="��ü_146" type="fixed">
+  <origin xyz="0.0 -0.005 0.0" rpy="0 0 0"/>
+  <parent link="shelf_reciver_vertical_v11"/>
+  <child link="shelf_receiver_hori_v11"/>
+</joint>
+
+<joint name="��ü_147" type="fixed">
+  <origin xyz="0.0 -0.005 0.0" rpy="0 0 0"/>
+  <parent link="shelf_reciver_vertical_v1_21"/>
+  <child link="shelf_receiver_hori_v1_11"/>
+</joint>
+
+<joint name="��ü_148" type="fixed">
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  <parent link="shelf_reciver_vertical_v1_11"/>
+  <child link="shelf_receiver_hori_v1_21"/>
+</joint>
+
+<joint name="��ü_149" type="fixed">
+  <origin xyz="-0.75 -0.069 0.06" rpy="0 0 0"/>
+  <parent link="InP_Conveyor_v21"/>
+  <child link="Guide_L_v11"/>
+</joint>
+
+<joint name="��ü_150" type="fixed">
+  <origin xyz="-0.75 0.069 0.06" rpy="0 0 0"/>
+  <parent link="InP_Conveyor_v21"/>
+  <child link="Guide_R_v1_11"/>
+</joint>
+
+<joint name="Rotation_151" type="continuous">
+  <origin xyz="0.531475 0.266146 -1.0795" rpy="0 0 0"/>
+  <parent link="3D_SR-3IA_Final_J3J4_SHAFT_UNIT1"/>
+  <child link="Gripper_Body1"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+</joint>
+<transmission name="Rotation_151_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Rotation_151">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Rotation_151_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="��ü_153" type="fixed">
+  <origin xyz="0.145 -0.52 0.057" rpy="0 0 0"/>
+  <parent link="Shelf_Container_Body_v31"/>
+  <child link="Shelf_receiver_bottom_v11"/>
+</joint>
+
+<joint name="��ü_154" type="fixed">
+  <origin xyz="-0.2015 -0.131 0.75" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="Shelf_Container_Body_v31"/>
+</joint>
+
+<joint name="��ü_157" type="fixed">
+  <origin xyz="-0.251199 0.0 0.051" rpy="0 0 0"/>
+  <parent link="InP_Guide_R1"/>
+  <child link="InP_Sensor_21"/>
+</joint>
+
+
+</robot>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta charset="utf-8"/>
+
+        <title>Agent View - URDF Robot Viewer</title>
+
+        <!-- Import Map for Three.js and Physics -->
+        <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+                "three/examples/jsm/": "https://unpkg.com/three@0.164.1/examples/jsm/",
+                "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+            }
+        }
+        </script>
+
+        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.4.3/webcomponents-bundle.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300" rel="stylesheet"/>
+        
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Roboto', sans-serif;
+                background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                color: #ffffff;
+                overflow: hidden;
+                height: 100vh;
+            }
+
+            .main-container {
+                display: flex;
+                height: 100vh;
+                width: 100vw;
+            }
+
+            .left-panel {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                border-right: 2px solid #0f3460;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+            }
+
+            .panel-header {
+                background: linear-gradient(90deg, #0f3460 0%, #16537e 100%);
+                color: #ffffff;
+                padding: 15px 20px;
+                font-size: 18px;
+                font-weight: 300;
+                text-align: center;
+                border-bottom: 2px solid #0a2a4a;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .viewer-container {
+                flex: 1;
+                position: relative;
+                background: #0a0a0a;
+                overflow: hidden;
+            }
+
+            urdf-viewer {
+                width: 100%;
+                height: 100%;
+                display: block;
+                background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a0a 100%);
+            }
+
+            /* 🏭 로딩 애니메이션 - 공장 테마 (원본과 동일) */
+            .factory-loading {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                opacity: 1;
+                transition: opacity 0.5s ease-out;
+            }
+
+            .factory-loading.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .company-logo {
+                font-size: 72px;
+                font-weight: 400;
+                font-family: 'Times New Roman', serif;
+                margin-bottom: 60px;
+                text-align: center;
+                letter-spacing: -2px;
+                text-transform: none;
+                position: relative;
+                animation: logoGlow 2s ease-in-out infinite alternate;
+                height: 90px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .company-logo::before {
+                content: 'Code';
+                color: #000000;
+                font-weight: 400;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+
+            .company-logo::after {
+                content: 'Flex';
+                color: #5B9BD5;
+                font-weight: 400;
+                text-shadow: 0 2px 4px rgba(91, 155, 213, 0.2);
+            }
+
+            @keyframes logoGlow {
+                0% { 
+                    filter: brightness(1);
+                    transform: scale(1);
+                }
+                100% { 
+                    filter: brightness(1.2);
+                    transform: scale(1.02);
+                }
+            }
+
+            .company-tagline {
+                font-size: 16px;
+                font-weight: 300;
+                font-family: 'Segoe UI', 'Arial', sans-serif;
+                color: rgba(255, 255, 255, 0.9);
+                text-align: center;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                margin-bottom: 15px;
+                opacity: 0.9;
+                animation: logoGlow 2s ease-in-out infinite alternate;
+            }
+
+            .loading-progress {
+                width: 300px;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 2px;
+                overflow: hidden;
+                position: relative;
+                opacity: 0.9;
+                animation: logoGlow 2s ease-in-out infinite alternate;
+            }
+
+            .loading-progress::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, #5B9BD5, transparent);
+                animation: loading-sweep 2s ease-in-out infinite;
+            }
+
+            @keyframes loading-sweep {
+                0% { left: -100%; }
+                100% { left: 100%; }
+            }
+
+            /* 반응형 디자인 */
+            @media (max-width: 768px) {
+                .panel-header {
+                    font-size: 16px;
+                    padding: 12px 15px;
+                }
+                
+                .company-logo {
+                    width: 80px;
+                    height: 80px;
+                }
+                
+                .company-tagline {
+                    font-size: 18px;
+                }
+                
+                .loading-progress {
+                    width: 250px;
+                }
+            }
+        </style>
+    </head>
+    <body tabindex="0">
+        <!-- 🏭 공장 테마 로딩 화면 -->
+        <div id="factory-loading" class="factory-loading">
+            <div class="company-logo"></div>
+            <div class="company-tagline">Digital Twin Solutions</div>
+            <div class="loading-progress"></div>
+        </div>
+        
+        <div class="main-container">
+            <!-- Agent View -->
+            <div class="left-panel">
+                <div class="viewer-container">
+                    <urdf-viewer up="+Z" display-shadow tabindex="0" urdf="urdf-loaders-master/urdf/INP3/INP3/INP3.urdf" autocenter></urdf-viewer>
+                </div>
+            </div>
+        </div>
+
+        <script type="module">
+            // URDF 뷰어 관련 스크립트
+            import * as THREE from 'three';
+            import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
+            import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+            import { ColladaLoader } from 'three/examples/jsm/loaders/ColladaLoader.js';
+            import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+            import URDFManipulator from './urdf-loaders-master/javascript/src/urdf-manipulator-element.js';
+            
+            // URDF 뷰어 컴포넌트 등록
+            customElements.define('urdf-viewer', URDFManipulator);
+            
+            // 로딩 화면 제어 함수들 (원본과 동일)
+            function showFactoryLoading() {
+                const loadingScreen = document.getElementById('factory-loading');
+                if (loadingScreen) {
+                    loadingScreen.classList.remove('hidden');
+                    console.log('🏭 Factory loading screen shown');
+                }
+            }
+
+            function hideFactoryLoading() {
+                const loadingScreen = document.getElementById('factory-loading');
+                if (loadingScreen) {
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        console.log('🏭 Factory loading screen hidden');
+                    }, 200); // 0.2초 후 빠르게 숨김
+                }
+            }
+
+
+            // 로딩 화면 표시 및 최소 시간 추적 (원본과 동일)
+            const loadingStartTime = Date.now();
+            showFactoryLoading();
+            
+            // URDF 뷰어 초기화 대기 (빠른 초기화) - 원본과 동일
+            setTimeout(() => {
+                const viewer = document.querySelector('urdf-viewer');
+                if (viewer) {
+                    console.log('URDF Viewer found and initialized');
+                    
+                    // 뷰어 이벤트 리스너 설정 - 실제 모델 로딩 완료 감지
+                    let urdfProcessed = false;
+                    let geometryLoaded = false;
+                    
+                    viewer.addEventListener('urdf-processed', () => {
+                        console.log('📋 URDF file processed');
+                        urdfProcessed = true;
+                        checkLoadingComplete();
+                    });
+                    
+                    viewer.addEventListener('geometry-loaded', () => {
+                        console.log('🎯 3D Geometry loaded successfully');
+                        geometryLoaded = true;
+                        checkLoadingComplete();
+                    });
+                    
+                    function checkLoadingComplete() {
+                        if (urdfProcessed && geometryLoaded) {
+                            console.log('✅ All systems ready - checking minimum loading time');
+                            
+                            // 최소 1.5초 로딩 시간 보장
+                            const elapsedTime = Date.now() - loadingStartTime;
+                            const remainingTime = Math.max(0, 1500 - elapsedTime);
+                            
+                            console.log(`⏱️ Elapsed: ${elapsedTime}ms, Remaining: ${remainingTime}ms`);
+                            
+                            setTimeout(() => {
+                                hideFactoryLoading();
+                            }, remainingTime);
+                        }
+                    }
+                } else {
+                    console.warn('URDF Viewer not found');
+                    // 에러 시에도 최소 1.5초 보장
+                    const elapsedTime = Date.now() - loadingStartTime;
+                    const remainingTime = Math.max(0, 1500 - elapsedTime);
+                    
+                    setTimeout(() => {
+                        hideFactoryLoading();
+                    }, remainingTime);
+                }
+            }, 100);
+            
+            // 타임아웃 보호 (원본과 동일)
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('factory-loading');
+                if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
+                    console.log('⚠️ Loading timeout - forcing hide');
+                    
+                    // 타임아웃 시에도 최소 1.5초 보장
+                    const elapsedTime = Date.now() - loadingStartTime;
+                    const remainingTime = Math.max(0, 1500 - elapsedTime);
+                    
+                    setTimeout(() => {
+                        hideFactoryLoading();
+                    }, remainingTime);
+                }
+            }, 5000);
+            
+            // 🏭 WADF Full Assembly Sequence 데이터 (websocket_server.py에서 추출)
+            const WADF_ASSEMBLY_SEQUENCE = {
+                1: [ // GRIPPER_TEST2_01: 픽업 포지션으로 이동
+                    {joint: 'Rotation_31', value: -0.389, delay: 500}, // -22.3도
+                    {joint: 'Rotation_36', value: 0.024, delay: 500},   // 1.4도
+                    {joint: 'Rotation_151', value: 1.209, delay: 500}, // 69.3도
+                    {joint: 'Slider_44', value: 0.0, delay: 500}
+                ],
+                2: [ // GRIPPER_TEST2_02: Z축 하강 (부품으로)
+                    {joint: 'Slider_44', value: -0.045, delay: 1000}
+                ],
+                3: [ // GRIPPER_TEST2_03: 그리퍼 닫기
+                    {joint: 'Slider_41', value: 0.0135, delay: 500},
+                    {joint: 'Slider_42', value: 0.0135, delay: 500}
+                ],
+                7: [ // GRIPPER_TEST2_07: Z축 상승 (부품 들어올리기)
+                    {joint: 'Slider_44', value: 0.0, delay: 1000}
+                ],
+                8: [ // GRIPPER_TEST2_08: 조립 포지션으로 이동
+                    {joint: 'Rotation_31', value: 1.484, delay: 1000}, // 85도
+                    {joint: 'Rotation_36', value: -1.134, delay: 1000},  // -65도
+                    {joint: 'Rotation_151', value: 3.491, delay: 1000}  // 200도
+                ],
+                9: [ // GRIPPER_TEST2_09: 조립을 위한 Z축 하강
+                    {joint: 'Slider_44', value: -0.02, delay: 800}
+                ],
+                10: [ // GRIPPER_TEST2_10: 정밀 포지셔닝 (더 하강)
+                    {joint: 'Slider_44', value: -0.04, delay: 1000}
+                ],
+                16: [ // GRIPPER_TEST2_16: 그리퍼 열기 (부품 해제)
+                    {joint: 'Slider_41', value: 0.0, delay: 500},
+                    {joint: 'Slider_42', value: 0.0, delay: 500}
+                ],
+                20: [ // GRIPPER_TEST2_20: Z축 상승 (철수)
+                    {joint: 'Slider_44', value: 0.0, delay: 1000}
+                ],
+                21: [ // GRIPPER_TEST2_21: 홈 포지션으로 복귀
+                    {joint: 'Rotation_31', value: 0.0, delay: 1000},
+                    {joint: 'Rotation_36', value: 0.0, delay: 1000},
+                    {joint: 'Rotation_151', value: 1.571, delay: 1000}, // 90도
+                    {joint: 'Slider_44', value: 0.0, delay: 1000}
+                ]
+            };
+
+            // 🏭 Full Assembly Sequence 실행 순서 (websocket_server.py에서 추출)
+            const FULL_ASSEMBLY_STEPS = [
+                {step: 1, description: 'Check pallet arrival', delay: 100},
+                {step: 2, gripper_test: 1, description: 'Move to pickup position', delay: 100},
+                {step: 3, gripper_test: 2, description: 'Lower to part', delay: 100},
+                {step: 4, gripper_test: 3, description: 'Close gripper', delay: 100},
+                {step: 5, description: 'Activate assembly block', delay: 100},
+                {step: 6, gripper_test: 7, description: 'Lift part', delay: 100},
+                {step: 7, gripper_test: 8, description: 'Move to assembly position', delay: 100},
+                {step: 8, gripper_test: 9, description: 'Lower to assembly', delay: 100},
+                {step: 9, gripper_test: 10, description: 'Precise positioning', delay: 100},
+                {step: 10, description: 'Activate engraving', delay: 100},
+                {step: 11, description: 'Engraving process', delay: 100},
+                {step: 12, gripper_test: 16, description: 'Open gripper', delay: 100},
+                {step: 13, gripper_test: 20, description: 'Retract Z-axis', delay: 100},
+                {step: 14, description: 'Push completed part', delay: 100},
+                {step: 15, gripper_test: 21, description: 'Return home', delay: 100},
+                {step: 16, description: 'Confirm part output', delay: 100},
+                {step: 17, description: 'Move conveyor for next cycle', delay: 100}
+            ];
+
+            // 🏭 부드러운 애니메이션을 위한 보간 함수들
+            function lerp(start, end, factor) {
+                return start + (end - start) * factor;
+            }
+
+            // 🏭 Easing 함수들 (부드러운 애니메이션을 위해)
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
+
+            function easeOutQuart(t) {
+                return 1 - Math.pow(1 - t, 4);
+            }
+
+            function easeInOutSine(t) {
+                return -(Math.cos(Math.PI * t) - 1) / 2;
+            }
+
+            // 🏭 부드러운 조인트 애니메이션 함수 (Easing 적용)
+            async function animateJointSmoothly(viewer, jointName, targetValue, duration = 1000, steps = 60) {
+                if (!viewer) return;
+                
+                try {
+                    // 현재 조인트 값 가져오기
+                    let currentValue = 0;
+                    if (viewer.robot && viewer.robot.joints[jointName]) {
+                        currentValue = viewer.robot.joints[jointName].angle || 0;
+                    }
+                    
+                    const startValue = currentValue;
+                    const stepDuration = duration / steps;
+                    
+                    // 부드러운 애니메이션 실행 (Easing 적용)
+                    for (let i = 0; i <= steps; i++) {
+                        if (!animationRunning) break;
+                        
+                        const linearFactor = i / steps;
+                        // 조인트 타입에 따라 다른 easing 적용
+                        let easedFactor;
+                        if (jointName.includes('Rotation')) {
+                            // 회전 조인트: 부드러운 시작과 끝
+                            easedFactor = easeInOutSine(linearFactor);
+                        } else if (jointName.includes('Slider')) {
+                            // 슬라이더 조인트: 자연스러운 감속
+                            easedFactor = easeOutQuart(linearFactor);
+                        } else {
+                            // 기본: 부드러운 시작과 끝
+                            easedFactor = easeInOutCubic(linearFactor);
+                        }
+                        
+                        const currentStepValue = lerp(startValue, targetValue, easedFactor);
+                        viewer.setJointValue(jointName, currentStepValue);
+                        
+                        // 부드러운 프레임 간격 (60fps)
+                        await new Promise(resolve => setTimeout(resolve, stepDuration));
+                    }
+                    
+                    console.log(`🤖 Joint ${jointName}: ${targetValue} (smooth animation completed)`);
+                } catch (error) {
+                    console.warn(`Smooth joint animation failed: ${error}`);
+                    // 실패 시 즉시 설정
+                    viewer.setJointValue(jointName, targetValue);
+                }
+            }
+
+            // 🏭 동시 조인트 애니메이션 함수 (더 부드러운 움직임)
+            async function animateMultipleJointsSmoothly(viewer, jointSteps, duration = 1000) {
+                if (!viewer || !jointSteps.length) return;
+                
+                const steps = 60; // 60fps
+                const stepDuration = duration / steps;
+                
+                // 모든 조인트의 시작 값 가져오기
+                const startValues = {};
+                for (let jointStep of jointSteps) {
+                    if (viewer.robot && viewer.robot.joints[jointStep.joint]) {
+                        startValues[jointStep.joint] = viewer.robot.joints[jointStep.joint].angle || 0;
+                    } else {
+                        startValues[jointStep.joint] = 0;
+                    }
+                }
+                
+                // 부드러운 애니메이션 실행
+                for (let i = 0; i <= steps; i++) {
+                    if (!animationRunning) break;
+                    
+                    const linearFactor = i / steps;
+                    
+                    // 각 조인트별로 애니메이션
+                    for (let jointStep of jointSteps) {
+                        const easedFactor = easeInOutSine(linearFactor);
+                        const currentValue = lerp(startValues[jointStep.joint], jointStep.value, easedFactor);
+                        viewer.setJointValue(jointStep.joint, currentValue);
+                    }
+                    
+                    await new Promise(resolve => setTimeout(resolve, stepDuration));
+                }
+                
+                console.log(`🤖 Multiple joints animated smoothly: ${jointSteps.map(j => j.joint).join(', ')}`);
+            }
+
+            // 🏭 자동 애니메이션 실행 함수 (부드러운 버전)
+            let animationRunning = false;
+            let currentStepIndex = 0;
+
+            async function executeFullAssemblySequence(viewer) {
+                if (animationRunning) {
+                    console.log('🏭 Animation already running, skipping...');
+                    return;
+                }
+                animationRunning = true;
+                
+                console.log('🏭 Starting WADF Full Assembly Sequence (Smooth Animation)');
+                
+                try {
+                    for (let stepInfo of FULL_ASSEMBLY_STEPS) {
+                        if (!animationRunning) {
+                            console.log('🏭 Animation stopped by user');
+                            break; // 중단 시 루프 종료
+                        }
+                        
+                        console.log(`🏭 Step ${stepInfo.step}: ${stepInfo.description}`);
+                        
+                        // GRIPPER_TEST2 실행 (부드러운 애니메이션)
+                        if (stepInfo.gripper_test && WADF_ASSEMBLY_SEQUENCE[stepInfo.gripper_test]) {
+                            const sequence = WADF_ASSEMBLY_SEQUENCE[stepInfo.gripper_test];
+                            
+                            // 동시에 여러 조인트를 부드럽게 애니메이션
+                            if (sequence.length > 1) {
+                                // 여러 조인트가 있는 경우 동시 애니메이션
+                                const maxDelay = Math.max(...sequence.map(s => s.delay));
+                                await animateMultipleJointsSmoothly(viewer, sequence, maxDelay);
+                            } else {
+                                // 단일 조인트인 경우 개별 애니메이션
+                                for (let jointStep of sequence) {
+                                    if (!animationRunning) break;
+                                    
+                                    await animateJointSmoothly(
+                                        viewer, 
+                                        jointStep.joint, 
+                                        jointStep.value, 
+                                        jointStep.delay,
+                                        60
+                                    );
+                                }
+                            }
+                        }
+                        
+                        // 단계 간 지연 (더 부드럽게)
+                        await new Promise(resolve => setTimeout(resolve, stepInfo.delay));
+                    }
+                    
+                    // 시퀀스 완료 후 자동으로 다시 시작 (무한 반복)
+                    console.log('🏭 Assembly sequence completed, preparing restart...');
+                    
+                } catch (error) {
+                    console.error('🏭 Animation error:', error);
+                } finally {
+                    // 애니메이션 플래그 리셋
+                    animationRunning = false;
+                    
+                    // 2초 후 자동 재시작
+                    setTimeout(() => {
+                        console.log('🏭 Restarting assembly sequence...');
+                        executeFullAssemblySequence(viewer);
+                    }, 2000);
+                }
+            }
+
+            // URDF 뷰어 초기화 확인
+            document.addEventListener('DOMContentLoaded', () => {
+                const viewer = document.querySelector('urdf-viewer');
+                if (viewer) {
+                    console.log('Agent View URDF Viewer initialized successfully');
+                    
+                    // 카메라 초기 설정 (4배 확대 + 90도 반시계방향 회전)
+                    viewer.noAutoRecenter = false; // autocenter 활성화
+                    
+                    // 카메라 확대 및 회전 설정
+                    viewer.addEventListener('urdf-processed', () => {
+                        if (viewer.scene && viewer.camera) {
+                            // 카메라 거리를 1/5.5로 줄여서 5.5배 확대
+                            const originalDistance = viewer.camera.position.length();
+                            viewer.camera.position.multiplyScalar(1/5.5);
+                            
+                            // 카메라를 반시계방향으로 150도 회전 (Y축 기준)
+                            const rotationY = 150 * Math.PI / 180; // 150도 (반시계방향)
+                            viewer.camera.position.applyAxisAngle(new THREE.Vector3(0, 1, 0), rotationY);
+                            
+                            // 카메라를 위쪽으로 올리기
+                            viewer.camera.position.y += 1.7; // 카메라 자체를 위로 올림
+                            
+                            // 카메라가 모델을 바라보도록 설정
+                            if (viewer.robot) {
+                                const robotCenter = new THREE.Vector3();
+                                viewer.robot.getWorldPosition(robotCenter);
+                                viewer.camera.lookAt(robotCenter);
+                            }
+                            
+                            viewer.camera.updateProjectionMatrix();
+                            console.log('📷 Camera zoomed 4x and rotated 90° counter-clockwise');
+                            
+                            // 🏭 URDF 로딩 완료 후 자동으로 애니메이션 시작
+                            setTimeout(() => {
+                                console.log('🏭 Starting automatic assembly animation');
+                                executeFullAssemblySequence(viewer);
+                            }, 2000); // 2초 후 자동 시작
+                        }
+                    });
+                    
+                    // 메시 로더 설정 (원본 예제와 동일)
+                    viewer.loadMeshFunc = (path, manager, done) => {
+                        const ext = path.split(/\./g).pop().toLowerCase();
+                        switch (ext) {
+                            case 'gltf':
+                            case 'glb':
+                                new GLTFLoader(manager).load(
+                                    path,
+                                    result => done(result.scene),
+                                    null,
+                                    err => done(null, err),
+                                );
+                                break;
+                            case 'obj':
+                                new OBJLoader(manager).load(
+                                    path,
+                                    result => done(result),
+                                    null,
+                                    err => done(null, err),
+                                );
+                                break;
+                            case 'dae':
+                                new ColladaLoader(manager).load(
+                                    path,
+                                    result => done(result.scene),
+                                    null,
+                                    err => done(null, err),
+                                );
+                                break;
+                            case 'stl':
+                                new STLLoader(manager).load(
+                                    path,
+                                    result => {
+                                        const material = new THREE.MeshPhongMaterial();
+                                        const mesh = new THREE.Mesh(result, material);
+                                        done(mesh);
+                                    },
+                                    null,
+                                    err => done(null, err),
+                                );
+                                break;
+                        }
+                    };
+                }
+            });
+        </script>
+    </body>
+</html>

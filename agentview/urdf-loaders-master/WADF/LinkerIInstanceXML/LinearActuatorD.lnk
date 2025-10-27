@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Linker LinkerName="LinearActuatorD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/FILAB/DeviceLinker/DeviceLinkerTemplate.xsd">
+	<Profile>
+		<LinkerType Value="LinearActuator" DataType="String"/>
+		<Manufacturer Value="Misumi" DataType="String"/>
+		<ActualDriver DriverName="" ConnectionParameter=""/>
+		<VirtualDriver DriverName=""/>
+	</Profile>
+	<Status>
+		<Method MethodName="get_status">
+			<OutputArgument DataType="Boolean"/>
+		</Method>
+		<Method MethodName="get_position">
+			<OutputArgument DataType="Float"/>
+		</Method>
+		<Method MethodName="get_velocity">
+			<OutputArgument DataType="Float"/>
+		</Method>
+		<Method MethodName="get_torque">
+			<OutputArgument DataType="Float"/>
+		</Method>
+	</Status>
+	<Action>
+		<Method MethodName="connect"/>
+		<Method MethodName="disconnect"/>
+		<Method MethodName="stop"/>
+		<Method MethodName="set_absPosition">
+			<InputArgument DataType="Float"/>
+		</Method>
+		<Method MethodName="set_relPosition">
+			<InputArgument DataType="Float"/>
+		</Method>
+		<Method MethodName="set_program">
+			<InputArgument DataType="Float"/>
+		</Method>
+	</Action>
+</Linker>

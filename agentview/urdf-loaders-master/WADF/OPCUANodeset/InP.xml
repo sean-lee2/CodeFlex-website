@@ -1,0 +1,1285 @@
+<?xml version='1.0' encoding='utf-8'?>
+<UANodeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd">
+  <NamespaceUris>
+    <Uri>InP</Uri>
+    <Uri>SCARA</Uri>
+    <Uri>Gripper</Uri>
+    <Uri>PalletInSensor</Uri>
+    <Uri>AssemblySensor</Uri>
+    <Uri>PalletOutSensor</Uri>
+    <Uri>AssemblyBlockActuator</Uri>
+    <Uri>EngravingActuator</Uri>
+    <Uri>PartPusher1</Uri>
+    <Uri>PartPusher2</Uri>
+  </NamespaceUris>
+  <Aliases>
+    <Alias Alias="Boolean">i=1</Alias>
+    <Alias Alias="UInt16">i=5</Alias>
+    <Alias Alias="Float">i=10</Alias>
+    <Alias Alias="String">i=12</Alias>
+    <Alias Alias="Organizes">i=35</Alias>
+    <Alias Alias="HasTypeDefinition">i=40</Alias>
+    <Alias Alias="HasComponent">i=47</Alias>
+  </Aliases>
+  <UAObject NodeId="ns=1;i=1" BrowseName="1:InP" ParentNodeId="i=85">
+    <DisplayName>InP</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">i=85</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=1</Reference>
+      <Reference ReferenceType="HasComponent">ns=4;i=1</Reference>
+      <Reference ReferenceType="HasComponent">ns=5;i=1</Reference>
+      <Reference ReferenceType="HasComponent">ns=6;i=1</Reference>
+      <Reference ReferenceType="HasComponent">ns=7;i=1</Reference>
+      <Reference ReferenceType="HasComponent">ns=8;i=1</Reference>
+      <Reference ReferenceType="HasComponent">ns=9;i=1</Reference>
+      <Reference ReferenceType="HasComponent">ns=10;i=1</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=2;i=1" BrowseName="2:SCARA" ParentNodeId="ns=1;i=1">
+    <DisplayName>SCARA</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=100</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasComponent">ns=3;i=1</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=2;i=100" BrowseName="2:Specification" ParentNodeId="ns=2;i=1">
+    <DisplayName>Specification</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=101</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=102</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;i=101" BrowseName="2:DeviceType" ParentNodeId="ns=2;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>DeviceType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>Robot</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=102" BrowseName="2:Manufacturer" ParentNodeId="ns=2;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>Fanuc</uax:String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=2;i=200" BrowseName="2:Monitoring" ParentNodeId="ns=2;i=1">
+    <DisplayName>Monitoring</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=201</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=202</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=203</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=204</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=205</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=206</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=207</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=208</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=209</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=210</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=211</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=212</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=213</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=214</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=215</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=216</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=217</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=218</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=219</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=220</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=221</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=222</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=223</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=224</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=225</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=226</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=227</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=228</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=229</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=230</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=231</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=232</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=233</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=234</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=235</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=236</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=237</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=238</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=239</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=240</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=241</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=242</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=243</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=244</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=245</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=246</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=247</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=248</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=249</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;i=201" BrowseName="2:SCARA_monitoring_status_arg" ParentNodeId="ns=2;i=200" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_status_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=202" BrowseName="2:SCARA_monitoring_joint_j1" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_joint_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=203" BrowseName="2:SCARA_monitoring_joint_j2" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_joint_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=204" BrowseName="2:SCARA_monitoring_joint_j3" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_joint_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=205" BrowseName="2:SCARA_monitoring_joint_j4" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_joint_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=206" BrowseName="2:SCARA_monitoring_joint_j5" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_joint_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=207" BrowseName="2:SCARA_monitoring_joint_j6" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_joint_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=208" BrowseName="2:SCARA_monitoring_position_x" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_position_x</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=209" BrowseName="2:SCARA_monitoring_position_y" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_position_y</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=210" BrowseName="2:SCARA_monitoring_position_z" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_position_z</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=211" BrowseName="2:SCARA_monitoring_position_rx" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_position_rx</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=212" BrowseName="2:SCARA_monitoring_position_ry" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_position_ry</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=213" BrowseName="2:SCARA_monitoring_position_rz" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_position_rz</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=214" BrowseName="2:SCARA_monitoring_velocity_j1" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_velocity_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=215" BrowseName="2:SCARA_monitoring_velocity_j2" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_velocity_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=216" BrowseName="2:SCARA_monitoring_velocity_j3" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_velocity_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=217" BrowseName="2:SCARA_monitoring_velocity_j4" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_velocity_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=218" BrowseName="2:SCARA_monitoring_velocity_j5" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_velocity_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=219" BrowseName="2:SCARA_monitoring_velocity_j6" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_velocity_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=220" BrowseName="2:SCARA_monitoring_acceleration_j1" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_acceleration_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=221" BrowseName="2:SCARA_monitoring_acceleration_j2" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_acceleration_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=222" BrowseName="2:SCARA_monitoring_acceleration_j3" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_acceleration_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=223" BrowseName="2:SCARA_monitoring_acceleration_j4" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_acceleration_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=224" BrowseName="2:SCARA_monitoring_acceleration_j5" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_acceleration_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=225" BrowseName="2:SCARA_monitoring_acceleration_j6" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_acceleration_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=226" BrowseName="2:SCARA_monitoring_current_j1" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_current_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=227" BrowseName="2:SCARA_monitoring_current_j2" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_current_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=228" BrowseName="2:SCARA_monitoring_current_j3" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_current_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=229" BrowseName="2:SCARA_monitoring_current_j4" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_current_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=230" BrowseName="2:SCARA_monitoring_current_j5" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_current_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=231" BrowseName="2:SCARA_monitoring_current_j6" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_current_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=232" BrowseName="2:SCARA_monitoring_temperature_j1" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_temperature_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=233" BrowseName="2:SCARA_monitoring_temperature_j2" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_temperature_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=234" BrowseName="2:SCARA_monitoring_temperature_j3" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_temperature_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=235" BrowseName="2:SCARA_monitoring_temperature_j4" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_temperature_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=236" BrowseName="2:SCARA_monitoring_temperature_j5" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_temperature_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=237" BrowseName="2:SCARA_monitoring_temperature_j6" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_temperature_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=238" BrowseName="2:SCARA_monitoring_voltage_j1" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_voltage_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=239" BrowseName="2:SCARA_monitoring_voltage_j2" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_voltage_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=240" BrowseName="2:SCARA_monitoring_voltage_j3" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_voltage_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=241" BrowseName="2:SCARA_monitoring_voltage_j4" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_voltage_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=242" BrowseName="2:SCARA_monitoring_voltage_j5" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_voltage_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=243" BrowseName="2:SCARA_monitoring_voltage_j6" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_voltage_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=244" BrowseName="2:SCARA_monitoring_torque_j1" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_torque_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=245" BrowseName="2:SCARA_monitoring_torque_j2" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_torque_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=246" BrowseName="2:SCARA_monitoring_torque_j3" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_torque_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=247" BrowseName="2:SCARA_monitoring_torque_j4" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_torque_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=248" BrowseName="2:SCARA_monitoring_torque_j5" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_torque_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=249" BrowseName="2:SCARA_monitoring_torque_j6" ParentNodeId="ns=2;i=200" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_monitoring_torque_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=2;i=300" BrowseName="2:Control" ParentNodeId="ns=2;i=1">
+    <DisplayName>Control</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=301</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=302</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=303</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=304</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=305</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=306</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=307</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=308</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=309</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=310</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=311</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=312</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=313</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=314</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=315</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=316</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=317</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=318</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=319</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=320</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=321</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=322</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=323</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=324</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=325</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=326</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=327</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=328</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=329</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=330</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=331</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=332</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=333</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=334</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=335</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=336</Reference>
+      <Reference ReferenceType="HasComponent">ns=2;i=337</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=2;i=301" BrowseName="2:SCARA_control_program_arg" ParentNodeId="ns=2;i=300" DataType="UInt16" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_program_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=302" BrowseName="2:SCARA_control_relJoint_j1" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relJoint_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=303" BrowseName="2:SCARA_control_relJoint_j2" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relJoint_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=304" BrowseName="2:SCARA_control_relJoint_j3" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relJoint_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=305" BrowseName="2:SCARA_control_relJoint_j4" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relJoint_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=306" BrowseName="2:SCARA_control_relJoint_j5" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relJoint_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=307" BrowseName="2:SCARA_control_relJoint_j6" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relJoint_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=308" BrowseName="2:SCARA_control_absJoint_j1" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absJoint_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=309" BrowseName="2:SCARA_control_absJoint_j2" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absJoint_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=310" BrowseName="2:SCARA_control_absJoint_j3" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absJoint_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=311" BrowseName="2:SCARA_control_absJoint_j4" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absJoint_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=312" BrowseName="2:SCARA_control_absJoint_j5" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absJoint_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=313" BrowseName="2:SCARA_control_absJoint_j6" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absJoint_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=314" BrowseName="2:SCARA_control_relPosition_x" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relPosition_x</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=315" BrowseName="2:SCARA_control_relPosition_y" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relPosition_y</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=316" BrowseName="2:SCARA_control_relPosition_z" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relPosition_z</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=317" BrowseName="2:SCARA_control_relPosition_rx" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relPosition_rx</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=318" BrowseName="2:SCARA_control_relPosition_ry" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relPosition_ry</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=319" BrowseName="2:SCARA_control_relPosition_rz" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_relPosition_rz</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=320" BrowseName="2:SCARA_control_absPosition_x" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absPosition_x</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=321" BrowseName="2:SCARA_control_absPosition_y" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absPosition_y</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=322" BrowseName="2:SCARA_control_absPosition_z" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absPosition_z</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=323" BrowseName="2:SCARA_control_absPosition_rx" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absPosition_rx</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=324" BrowseName="2:SCARA_control_absPosition_ry" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absPosition_ry</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=325" BrowseName="2:SCARA_control_absPosition_rz" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_absPosition_rz</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=326" BrowseName="2:SCARA_control_velocity_j1" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_velocity_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=327" BrowseName="2:SCARA_control_velocity_j2" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_velocity_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=328" BrowseName="2:SCARA_control_velocity_j3" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_velocity_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=329" BrowseName="2:SCARA_control_velocity_j4" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_velocity_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=330" BrowseName="2:SCARA_control_velocity_j5" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_velocity_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=331" BrowseName="2:SCARA_control_velocity_j6" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_velocity_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=332" BrowseName="2:SCARA_control_acceleration_j1" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_acceleration_j1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=333" BrowseName="2:SCARA_control_acceleration_j2" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_acceleration_j2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=334" BrowseName="2:SCARA_control_acceleration_j3" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_acceleration_j3</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=335" BrowseName="2:SCARA_control_acceleration_j4" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_acceleration_j4</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=336" BrowseName="2:SCARA_control_acceleration_j5" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_acceleration_j5</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=2;i=337" BrowseName="2:SCARA_control_acceleration_j6" ParentNodeId="ns=2;i=300" DataType="Float" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>SCARA_control_acceleration_j6</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=3;i=1" BrowseName="3:Gripper" ParentNodeId="ns=2;i=1">
+    <DisplayName>Gripper</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=3;i=100</Reference>
+      <Reference ReferenceType="HasComponent">ns=3;i=200</Reference>
+      <Reference ReferenceType="HasComponent">ns=3;i=300</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=3;i=100" BrowseName="3:Specification" ParentNodeId="ns=3;i=1">
+    <DisplayName>Specification</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=3;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=3;i=101</Reference>
+      <Reference ReferenceType="HasComponent">ns=3;i=102</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=3;i=101" BrowseName="3:DeviceType" ParentNodeId="ns=3;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>DeviceType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=3;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>PneumaticActuator</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=3;i=102" BrowseName="3:Manufacturer" ParentNodeId="ns=3;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=3;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>SMC</uax:String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=3;i=200" BrowseName="3:Monitoring" ParentNodeId="ns=3;i=1">
+    <DisplayName>Monitoring</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=3;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=3;i=201</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=3;i=201" BrowseName="3:Gripper_monitoring_state_arg" ParentNodeId="ns=3;i=200" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Gripper_monitoring_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=3;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=3;i=300" BrowseName="3:Control" ParentNodeId="ns=3;i=1">
+    <DisplayName>Control</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=3;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=3;i=301</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=3;i=301" BrowseName="3:Gripper_control_state_arg" ParentNodeId="ns=3;i=300" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Gripper_control_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=3;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=4;i=1" BrowseName="4:PalletInSensor" ParentNodeId="ns=1;i=1">
+    <DisplayName>PalletInSensor</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=4;i=100</Reference>
+      <Reference ReferenceType="HasComponent">ns=4;i=200</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=4;i=100" BrowseName="4:Specification" ParentNodeId="ns=4;i=1">
+    <DisplayName>Specification</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=4;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=4;i=101</Reference>
+      <Reference ReferenceType="HasComponent">ns=4;i=102</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=4;i=101" BrowseName="4:DeviceType" ParentNodeId="ns=4;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>DeviceType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=4;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>ProximitySensor</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=4;i=102" BrowseName="4:Manufacturer" ParentNodeId="ns=4;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=4;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>Autonics</uax:String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=4;i=200" BrowseName="4:Monitoring" ParentNodeId="ns=4;i=1">
+    <DisplayName>Monitoring</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=4;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=4;i=201</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=4;i=201" BrowseName="4:PalletInSensor_monitoring_state_arg" ParentNodeId="ns=4;i=200" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>PalletInSensor_monitoring_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=4;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=5;i=1" BrowseName="5:AssemblySensor" ParentNodeId="ns=1;i=1">
+    <DisplayName>AssemblySensor</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=5;i=100</Reference>
+      <Reference ReferenceType="HasComponent">ns=5;i=200</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=5;i=100" BrowseName="5:Specification" ParentNodeId="ns=5;i=1">
+    <DisplayName>Specification</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=5;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=5;i=101</Reference>
+      <Reference ReferenceType="HasComponent">ns=5;i=102</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=5;i=101" BrowseName="5:DeviceType" ParentNodeId="ns=5;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>DeviceType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=5;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>ProximitySensor</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=5;i=102" BrowseName="5:Manufacturer" ParentNodeId="ns=5;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=5;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>Autonics</uax:String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=5;i=200" BrowseName="5:Monitoring" ParentNodeId="ns=5;i=1">
+    <DisplayName>Monitoring</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=5;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=5;i=201</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=5;i=201" BrowseName="5:AssemblySensor_monitoring_state_arg" ParentNodeId="ns=5;i=200" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>AssemblySensor_monitoring_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=5;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=6;i=1" BrowseName="6:PalletOutSensor" ParentNodeId="ns=1;i=1">
+    <DisplayName>PalletOutSensor</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=6;i=100</Reference>
+      <Reference ReferenceType="HasComponent">ns=6;i=200</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=6;i=100" BrowseName="6:Specification" ParentNodeId="ns=6;i=1">
+    <DisplayName>Specification</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=6;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=6;i=101</Reference>
+      <Reference ReferenceType="HasComponent">ns=6;i=102</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=6;i=101" BrowseName="6:DeviceType" ParentNodeId="ns=6;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>DeviceType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=6;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>ProximitySensor</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=6;i=102" BrowseName="6:Manufacturer" ParentNodeId="ns=6;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=6;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>Autonics</uax:String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=6;i=200" BrowseName="6:Monitoring" ParentNodeId="ns=6;i=1">
+    <DisplayName>Monitoring</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=6;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=6;i=201</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=6;i=201" BrowseName="6:PalletOutSensor_monitoring_state_arg" ParentNodeId="ns=6;i=200" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>PalletOutSensor_monitoring_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=6;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=7;i=1" BrowseName="7:AssemblyBlockActuator" ParentNodeId="ns=1;i=1">
+    <DisplayName>AssemblyBlockActuator</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=7;i=100</Reference>
+      <Reference ReferenceType="HasComponent">ns=7;i=200</Reference>
+      <Reference ReferenceType="HasComponent">ns=7;i=300</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=7;i=100" BrowseName="7:Specification" ParentNodeId="ns=7;i=1">
+    <DisplayName>Specification</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=7;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=7;i=101</Reference>
+      <Reference ReferenceType="HasComponent">ns=7;i=102</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=7;i=101" BrowseName="7:DeviceType" ParentNodeId="ns=7;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>DeviceType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=7;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>PneumaticActuator</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=7;i=102" BrowseName="7:Manufacturer" ParentNodeId="ns=7;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=7;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>SMC</uax:String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=7;i=200" BrowseName="7:Monitoring" ParentNodeId="ns=7;i=1">
+    <DisplayName>Monitoring</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=7;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=7;i=201</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=7;i=201" BrowseName="7:AssemblyBlockActuator_monitoring_state_arg" ParentNodeId="ns=7;i=200" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>AssemblyBlockActuator_monitoring_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=7;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=7;i=300" BrowseName="7:Control" ParentNodeId="ns=7;i=1">
+    <DisplayName>Control</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=7;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=7;i=301</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=7;i=301" BrowseName="7:AssemblyBlockActuator_control_state_arg" ParentNodeId="ns=7;i=300" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>AssemblyBlockActuator_control_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=7;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=8;i=1" BrowseName="8:EngravingActuator" ParentNodeId="ns=1;i=1">
+    <DisplayName>EngravingActuator</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=8;i=100</Reference>
+      <Reference ReferenceType="HasComponent">ns=8;i=200</Reference>
+      <Reference ReferenceType="HasComponent">ns=8;i=300</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=8;i=100" BrowseName="8:Specification" ParentNodeId="ns=8;i=1">
+    <DisplayName>Specification</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=8;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=8;i=101</Reference>
+      <Reference ReferenceType="HasComponent">ns=8;i=102</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=8;i=101" BrowseName="8:DeviceType" ParentNodeId="ns=8;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>DeviceType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=8;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>PneumaticActuator</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=8;i=102" BrowseName="8:Manufacturer" ParentNodeId="ns=8;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=8;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>SMC</uax:String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=8;i=200" BrowseName="8:Monitoring" ParentNodeId="ns=8;i=1">
+    <DisplayName>Monitoring</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=8;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=8;i=201</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=8;i=201" BrowseName="8:EngravingActuator_monitoring_state_arg" ParentNodeId="ns=8;i=200" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>EngravingActuator_monitoring_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=8;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=8;i=300" BrowseName="8:Control" ParentNodeId="ns=8;i=1">
+    <DisplayName>Control</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=8;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=8;i=301</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=8;i=301" BrowseName="8:EngravingActuator_control_state_arg" ParentNodeId="ns=8;i=300" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>EngravingActuator_control_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=8;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=9;i=1" BrowseName="9:PartPusher1" ParentNodeId="ns=1;i=1">
+    <DisplayName>PartPusher1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=9;i=100</Reference>
+      <Reference ReferenceType="HasComponent">ns=9;i=200</Reference>
+      <Reference ReferenceType="HasComponent">ns=9;i=300</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=9;i=100" BrowseName="9:Specification" ParentNodeId="ns=9;i=1">
+    <DisplayName>Specification</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=9;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=9;i=101</Reference>
+      <Reference ReferenceType="HasComponent">ns=9;i=102</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=9;i=101" BrowseName="9:DeviceType" ParentNodeId="ns=9;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>DeviceType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=9;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>PneumaticActuator</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=9;i=102" BrowseName="9:Manufacturer" ParentNodeId="ns=9;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=9;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>SMC</uax:String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=9;i=200" BrowseName="9:Monitoring" ParentNodeId="ns=9;i=1">
+    <DisplayName>Monitoring</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=9;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=9;i=201</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=9;i=201" BrowseName="9:PartPusher1_monitoring_state_arg" ParentNodeId="ns=9;i=200" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>PartPusher1_monitoring_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=9;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=9;i=300" BrowseName="9:Control" ParentNodeId="ns=9;i=1">
+    <DisplayName>Control</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=9;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=9;i=301</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=9;i=301" BrowseName="9:PartPusher1_control_state_arg" ParentNodeId="ns=9;i=300" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>PartPusher1_control_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=9;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=10;i=1" BrowseName="10:PartPusher2" ParentNodeId="ns=1;i=1">
+    <DisplayName>PartPusher2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=10;i=100</Reference>
+      <Reference ReferenceType="HasComponent">ns=10;i=200</Reference>
+      <Reference ReferenceType="HasComponent">ns=10;i=300</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=10;i=100" BrowseName="10:Specification" ParentNodeId="ns=10;i=1">
+    <DisplayName>Specification</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=10;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=10;i=101</Reference>
+      <Reference ReferenceType="HasComponent">ns=10;i=102</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=10;i=101" BrowseName="10:DeviceType" ParentNodeId="ns=10;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>DeviceType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=10;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>PneumaticActuator</uax:String>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=10;i=102" BrowseName="10:Manufacturer" ParentNodeId="ns=10;i=100" DataType="String" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=10;i=100</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+    <Value>
+      <uax:String>SMC</uax:String>
+    </Value>
+  </UAVariable>
+  <UAObject NodeId="ns=10;i=200" BrowseName="10:Monitoring" ParentNodeId="ns=10;i=1">
+    <DisplayName>Monitoring</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=10;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=10;i=201</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=10;i=201" BrowseName="10:PartPusher2_monitoring_state_arg" ParentNodeId="ns=10;i=200" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>PartPusher2_monitoring_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=10;i=200</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=10;i=300" BrowseName="10:Control" ParentNodeId="ns=10;i=1">
+    <DisplayName>Control</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=10;i=1</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=10;i=301</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=10;i=301" BrowseName="10:PartPusher2_control_state_arg" ParentNodeId="ns=10;i=300" DataType="Boolean" AccessLevel="3" UserAccessLevel="3">
+    <DisplayName>PartPusher2_control_state_arg</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=10;i=300</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+    </References>
+  </UAVariable>
+</UANodeSet>

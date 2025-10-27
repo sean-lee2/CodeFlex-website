@@ -1,0 +1,926 @@
+<?xml version="1.0" ?>
+<robot name="lego_base">
+
+<material name="silver">
+  <color rgba="0.700 0.700 0.700 1.000"/>
+</material>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="2.1690975437124897e-17 3.615162572854149e-18 0.0047986253695740475" rpy="0 0 0"/>
+    <mass value="0.6171518279813544"/>
+    <inertia ixx="0.00021539626288828262" iyy="0.0008473597347411864" izz="0.0010532808462194727" ixy="4.839482618917555e-35" iyz="-4.492877817607798e-22" ixz="-4.731781049629897e-20"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole11">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 6.938893903907228e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214525e-08" iyy="1.1608725216319737e-08" izz="1.9688165713111268e-08" ixy="-2.117582368135751e-22" iyz="5.293955920339377e-23" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.056 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.056 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole11.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole21">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 6.938893903907228e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214499e-08" iyy="1.1608725216319737e-08" izz="1.968816571311254e-08" ixy="0.0" iyz="-1.3234889800848443e-23" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.056 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.056 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole21.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole31">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 8.673617379884035e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319737e-08" izz="1.9688165713112962e-08" ixy="0.0" iyz="1.3234889800848443e-23" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.056 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.056 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole31.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole41">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 6.938893903907228e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.160872639321442e-08" iyy="1.1608725216319737e-08" izz="1.9688165713112115e-08" ixy="2.117582368135751e-22" iyz="5.293955920339377e-23" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.056 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole41.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.056 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole41.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole51">
+  <inertial>
+    <origin xyz="-4.839947886914331e-13 6.938893903907228e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214525e-08" iyy="1.1608725216318679e-08" izz="1.9688165713112962e-08" ixy="-2.117582368135751e-22" iyz="5.293955920339377e-23" ixz="2.117582368135751e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.04 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole51.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.04 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole51.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole61">
+  <inertial>
+    <origin xyz="-4.839947886914331e-13 1.214306433183765e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216318679e-08" izz="1.968816571311254e-08" ixy="5.293955920339377e-23" iyz="0.0" ixz="2.117582368135751e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.04 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole61.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.04 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole61.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole71">
+  <inertial>
+    <origin xyz="-4.839947886914331e-13 8.673617379884035e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216318679e-08" izz="1.9688165713112327e-08" ixy="0.0" iyz="1.3234889800848443e-23" ixz="2.117582368135751e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.04 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole71.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.04 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole71.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole81">
+  <inertial>
+    <origin xyz="-4.839947886914331e-13 3.469446951953614e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.160872639321442e-08" iyy="1.1608725216318679e-08" izz="1.968816571311254e-08" ixy="0.0" iyz="0.0" ixz="2.117582368135751e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.04 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole81.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.04 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole81.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole91">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 1.3877787807814457e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214314e-08" iyy="1.1608725216319632e-08" izz="1.968816571311275e-08" ixy="0.0" iyz="-5.293955920339377e-23" ixz="5.293955920339377e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.024 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole91.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.024 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole91.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole101">
+  <inertial>
+    <origin xyz="-4.839913192444811e-13 1.214306433183765e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319526e-08" izz="1.9688165713112645e-08" ixy="5.293955920339377e-23" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0235 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole101.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.0235 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole101.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole111">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 8.673617379884035e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319632e-08" izz="1.968816571311275e-08" ixy="2.6469779601696886e-23" iyz="1.3234889800848443e-23" ixz="5.293955920339377e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.024 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole111.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.024 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole111.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole121">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 3.469446951953614e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.160872639321442e-08" iyy="1.1608725216319632e-08" izz="1.968816571311275e-08" ixy="0.0" iyz="0.0" ixz="5.293955920339377e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.024 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole121.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.024 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole121.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole131">
+  <inertial>
+    <origin xyz="-4.839895845210052e-13 1.3877787807814457e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214314e-08" iyy="1.1608725216319552e-08" izz="1.9688165713112645e-08" ixy="5.293955920339377e-23" iyz="-5.293955920339377e-23" ixz="-2.6469779601696886e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.008 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole131.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.008 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole131.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole141">
+  <inertial>
+    <origin xyz="-4.839895845210052e-13 1.214306433183765e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319552e-08" izz="1.968816571311267e-08" ixy="2.6469779601696886e-23" iyz="0.0" ixz="-2.6469779601696886e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.008 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole141.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.008 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole141.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole151">
+  <inertial>
+    <origin xyz="-4.839895845210052e-13 8.673617379884035e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319552e-08" izz="1.9688165713112618e-08" ixy="1.3234889800848443e-23" iyz="1.3234889800848443e-23" ixz="-2.6469779601696886e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.008 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole151.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.008 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole151.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole161">
+  <inertial>
+    <origin xyz="-4.839895845210052e-13 3.469446951953614e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.160872639321442e-08" iyy="1.1608725216319552e-08" izz="1.968816571311254e-08" ixy="5.293955920339377e-23" iyz="0.0" ixz="-2.6469779601696886e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.008 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole161.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="0.008 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole161.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole171">
+  <inertial>
+    <origin xyz="-4.839895845210052e-13 1.3877787807814457e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214314e-08" iyy="1.16087252163195e-08" izz="1.968816571311275e-08" ixy="5.293955920339377e-23" iyz="-5.293955920339377e-23" ixz="1.3234889800848443e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.008 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole171.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.008 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole171.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole181">
+  <inertial>
+    <origin xyz="-4.839895845210052e-13 1.214306433183765e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.16087252163195e-08" izz="1.968816571311267e-08" ixy="3.970466940254533e-23" iyz="0.0" ixz="1.3234889800848443e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.008 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole181.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.008 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole181.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole191">
+  <inertial>
+    <origin xyz="-4.839895845210052e-13 8.673617379884035e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.16087252163195e-08" izz="1.9688165713112645e-08" ixy="3.970466940254533e-23" iyz="1.3234889800848443e-23" ixz="1.3234889800848443e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.008 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole191.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.008 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole191.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole201">
+  <inertial>
+    <origin xyz="-4.839895845210052e-13 3.469446951953614e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.160872639321442e-08" iyy="1.16087252163195e-08" izz="1.9688165713112645e-08" ixy="5.293955920339377e-23" iyz="0.0" ixz="1.3234889800848443e-23"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.008 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole201.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.008 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole201.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole211">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 1.3877787807814457e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214314e-08" iyy="1.1608725216319526e-08" izz="1.968816571311275e-08" ixy="-1.0587911840678754e-22" iyz="-5.293955920339377e-23" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.024 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole211.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.024 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole211.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole221">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 1.214306433183765e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319526e-08" izz="1.968816571311275e-08" ixy="2.6469779601696886e-23" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.024 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole221.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.024 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole221.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole231">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 8.673617379884035e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319526e-08" izz="1.9688165713112645e-08" ixy="7.940933880509066e-23" iyz="1.3234889800848443e-23" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.024 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole231.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.024 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole231.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole241">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 3.469446951953614e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.160872639321442e-08" iyy="1.1608725216319526e-08" izz="1.968816571311275e-08" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.024 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole241.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.024 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole241.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole251">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 1.3877787807814457e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214314e-08" iyy="1.1608725216319526e-08" izz="1.9688165713112962e-08" ixy="2.117582368135751e-22" iyz="-5.293955920339377e-23" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.04 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole251.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.04 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole251.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole261">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 1.214306433183765e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319526e-08" izz="1.968816571311254e-08" ixy="5.293955920339377e-23" iyz="0.0" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.04 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole261.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.04 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole261.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole271">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 8.673617379884035e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319314e-08" izz="1.968816571311275e-08" ixy="1.5881867761018131e-22" iyz="1.3234889800848443e-23" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0405 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole271.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0405 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole271.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole281">
+  <inertial>
+    <origin xyz="-4.839878497975292e-13 3.469446951953614e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.160872639321442e-08" iyy="1.1608725216319314e-08" izz="1.9688165713112115e-08" ixy="2.117582368135751e-22" iyz="0.0" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0405 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole281.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0405 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole281.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole291">
+  <inertial>
+    <origin xyz="-4.839809109036253e-13 1.3877787807814457e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214314e-08" iyy="1.1608725216319737e-08" izz="1.9688165713112115e-08" ixy="-2.117582368135751e-22" iyz="-5.293955920339377e-23" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.056 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole291.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.056 0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole291.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole301">
+  <inertial>
+    <origin xyz="-4.839809109036253e-13 1.214306433183765e-17 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319737e-08" izz="1.9688165713112115e-08" ixy="0.0" iyz="0.0" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.056 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole301.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.056 0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole301.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole311">
+  <inertial>
+    <origin xyz="-4.839809109036253e-13 8.673617379884035e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.1608726393214472e-08" iyy="1.1608725216319737e-08" izz="1.968816571311254e-08" ixy="0.0" iyz="1.3234889800848443e-23" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.056 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole311.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.056 -0.008 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole311.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lego_hole321">
+  <inertial>
+    <origin xyz="-4.839809109036253e-13 3.469446951953614e-18 0.0022000000000000006" rpy="0 0 0"/>
+    <mass value="0.001093786951370252"/>
+    <inertia ixx="1.160872639321442e-08" iyy="1.1608725216319737e-08" izz="1.9688165713112962e-08" ixy="-2.117582368135751e-22" iyz="0.0" ixz="1.0587911840678754e-22"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.056 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole321.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <material/>
+  </visual>
+  <collision>
+    <origin xyz="-0.056 -0.024 -0.0096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="meshes/lego_hole321.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="강체_1" type="fixed">
+  <origin xyz="-0.056 -0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole11"/>
+</joint>
+
+<joint name="강체_2" type="fixed">
+  <origin xyz="-0.056 -0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole21"/>
+</joint>
+
+<joint name="강체_3" type="fixed">
+  <origin xyz="-0.056 0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole31"/>
+</joint>
+
+<joint name="강체_4" type="fixed">
+  <origin xyz="-0.056 0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole41"/>
+</joint>
+
+<joint name="강체_5" type="fixed">
+  <origin xyz="-0.04 -0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole51"/>
+</joint>
+
+<joint name="강체_6" type="fixed">
+  <origin xyz="-0.04 -0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole61"/>
+</joint>
+
+<joint name="강체_7" type="fixed">
+  <origin xyz="-0.04 0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole71"/>
+</joint>
+
+<joint name="강체_8" type="fixed">
+  <origin xyz="-0.04 0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole81"/>
+</joint>
+
+<joint name="강체_9" type="fixed">
+  <origin xyz="-0.024 -0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole91"/>
+</joint>
+
+<joint name="강체_10" type="fixed">
+  <origin xyz="-0.0235 -0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole101"/>
+</joint>
+
+<joint name="강체_11" type="fixed">
+  <origin xyz="-0.024 0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole111"/>
+</joint>
+
+<joint name="강체_12" type="fixed">
+  <origin xyz="-0.024 0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole121"/>
+</joint>
+
+<joint name="강체_13" type="fixed">
+  <origin xyz="-0.008 -0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole131"/>
+</joint>
+
+<joint name="강체_14" type="fixed">
+  <origin xyz="-0.008 -0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole141"/>
+</joint>
+
+<joint name="강체_15" type="fixed">
+  <origin xyz="-0.008 0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole151"/>
+</joint>
+
+<joint name="강체_16" type="fixed">
+  <origin xyz="-0.008 0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole161"/>
+</joint>
+
+<joint name="강체_17" type="fixed">
+  <origin xyz="0.008 -0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole171"/>
+</joint>
+
+<joint name="강체_18" type="fixed">
+  <origin xyz="0.008 -0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole181"/>
+</joint>
+
+<joint name="강체_19" type="fixed">
+  <origin xyz="0.008 0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole191"/>
+</joint>
+
+<joint name="강체_20" type="fixed">
+  <origin xyz="0.008 0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole201"/>
+</joint>
+
+<joint name="강체_21" type="fixed">
+  <origin xyz="0.024 -0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole211"/>
+</joint>
+
+<joint name="강체_22" type="fixed">
+  <origin xyz="0.024 -0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole221"/>
+</joint>
+
+<joint name="강체_23" type="fixed">
+  <origin xyz="0.024 0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole231"/>
+</joint>
+
+<joint name="강체_24" type="fixed">
+  <origin xyz="0.024 0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole241"/>
+</joint>
+
+<joint name="강체_25" type="fixed">
+  <origin xyz="0.04 -0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole251"/>
+</joint>
+
+<joint name="강체_26" type="fixed">
+  <origin xyz="0.04 -0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole261"/>
+</joint>
+
+<joint name="강체_27" type="fixed">
+  <origin xyz="0.0405 0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole271"/>
+</joint>
+
+<joint name="강체_28" type="fixed">
+  <origin xyz="0.0405 0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole281"/>
+</joint>
+
+<joint name="강체_29" type="fixed">
+  <origin xyz="0.056 -0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole291"/>
+</joint>
+
+<joint name="강체_30" type="fixed">
+  <origin xyz="0.056 -0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole301"/>
+</joint>
+
+<joint name="강체_31" type="fixed">
+  <origin xyz="0.056 0.008 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole311"/>
+</joint>
+
+<joint name="강체_32" type="fixed">
+  <origin xyz="0.056 0.024 0.0096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lego_hole321"/>
+</joint>
+
+</robot>

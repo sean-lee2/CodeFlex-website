@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtendedWDF>
+    <Workcell WorkcellName="PD">
+        <Description URL="opc.tcp://localhost:4840/" UpdateTimeMS="500" NodesetFilePath="WADF\OPCUANodeset\PD_copy.xml"/>
+        <Device DeviceName="Linker_ServoMotor">
+            <Monitoring>
+                <Variable VariableName="Linker_ServoMotor_monitoring_position_arg" DataType="Float" Data="" NodeId="ns=2;i=201"/>
+                <Variable VariableName="Linker_ServoMotor_monitoring_status_arg" DataType="String" Data="" NodeId="ns=2;i=202"/>
+                <Variable VariableName="Linker_ServoMotor_monitoring_home_arg" DataType="Boolean" Data="" NodeId="ns=2;i=203"/>
+            </Monitoring>
+            <Control>
+                <Variable VariableName="Linker_ServoMotor_control_power_arg" DataType="Boolean" Data="" NodeId="ns=2;i=301"/>
+                <Variable VariableName="Linker_ServoMotor_control_relposition_arg" DataType="Float" Data="" NodeId="ns=2;i=302"/>
+                <Variable VariableName="Linker_ServoMotor_control_absposition_arg" DataType="Float" Data="" NodeId="ns=2;i=303"/>
+            </Control>
+        </Device>
+        <Device DeviceName="Linker_PneumaticActuatorRFID">
+            <Control>
+                <Variable VariableName="Linker_PneumaticActuatorRFID_control_state_arg" DataType="Boolean" Data="" NodeId="ns=3;i=301"/>
+            </Control>
+        </Device>
+        <Device DeviceName="Linker_PneumaticActuatorUp">
+            <Control>
+                <Variable VariableName="Linker_PneumaticActuatorUp_control_state_arg" DataType="Boolean" Data="" NodeId="ns=3;i=301"/>
+            </Control>
+        </Device>
+        <Device DeviceName="Linker_PneumaticActuatorOut1">
+            <Control>
+                <Variable VariableName="Linker_PneumaticActuatorOut1_control_state_arg" DataType="Boolean" Data="" NodeId="ns=4;i=301"/>
+            </Control>
+            <Hierarchy>
+                <ChildDevice Value="Linker_PneumaticActuatorOut2" DataType="String"/>
+            </Hierarchy>
+        </Device>
+        <Device DeviceName="Linker_PneumaticActuatorOut2">
+            <Control>
+                <Variable VariableName="Linker_PneumaticActuatorOut2_control_state_arg" DataType="Boolean" Data="" NodeId="ns=5;i=301"/>
+            </Control>
+            <Hierarchy>
+                <ParentDevice Value="Linker_PneumaticActuatorOut1" DataType="String"/>
+            </Hierarchy>
+        </Device>
+        <Device DeviceName="Linker_ProximitySensorL">
+            <Monitoring>
+                <Variable VariableName="Linker_ProximitySensorL_monitoring_state_arg" DataType="Boolean" Data="" NodeId="ns=6;i=201"/>
+            </Monitoring>
+        </Device>
+        <Device DeviceName="Linker_ProximitySensorC">
+            <Monitoring>
+                <Variable VariableName="Linker_ProximitySensorC_monitoring_state_arg" DataType="Boolean" Data="" NodeId="ns=7;i=201"/>
+            </Monitoring>
+        </Device>
+        <Device DeviceName="Linker_ProximitySensorR">
+            <Monitoring>
+                <Variable VariableName="Linker_ProximitySensorR_monitoring_state_arg" DataType="Boolean" Data="" NodeId="ns=8;i=201"/>
+            </Monitoring>
+        </Device>
+        <Device DeviceName="Linker_LiDAR1DSensor">
+            <Monitoring>
+                <Variable VariableName="Linker_LiDAR1DSensor_monitoring_distance_arg" DataType="Float" Data="" NodeId="ns=9;i=201"/>
+            </Monitoring>
+        </Device>
+        <Device DeviceName="Linker_RFIDReader">
+            <Monitoring>
+                <Variable VariableName="Linker_RFIDReader_monitoring_serialnumber_arg" DataType="Float" Data="" NodeId="ns=9;i=201"/>
+            </Monitoring>
+        </Device>
+        <Device DeviceName="Linker_QRReader">
+            <Monitoring>
+                <Variable VariableName="Linker_Linker_QRReader_monitoring_qrcode_arg" DataType="Float" Data="" NodeId="ns=9;i=201"/>
+            </Monitoring>
+        </Device>
+    </Workcell>
+</ExtendedWDF>

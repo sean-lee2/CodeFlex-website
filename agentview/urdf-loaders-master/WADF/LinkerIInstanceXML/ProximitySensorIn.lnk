@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Linker LinkerName="ProximitySensorIn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/FILAB/DeviceLinker/DeviceLinkerTemplate.xsd">
+	<Profile>
+		<LinkerType Value="ProximitySensor" DataType="String"/>
+		<Manufacturer Value="Autonics" DataType="String"/>
+		<ActualDriver DriverName="" ConnectionParameter=""/>
+		<VirtualDriver DriverName=""/>
+	</Profile>
+	<Status>
+		<Method MethodName="get_state">
+			<OutputArgument DataType="Boolean"/>
+		</Method>
+	</Status>
+</Linker>

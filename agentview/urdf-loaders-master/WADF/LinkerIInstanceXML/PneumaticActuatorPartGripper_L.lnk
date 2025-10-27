@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Linker LinkerName="PneumaticActuatorPartGripper_L" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Users/FILAB/DeviceLinker/DeviceLinkerTemplate.xsd">
+	<Profile>
+		<LinkerType Value="PneumaticActuator" DataType="String"/>
+		<Manufacturer Value="SMC" DataType="String"/>
+		<ActualDriver DriverName="" ConnectionParameter=""/>
+		<VirtualDriver DriverName=""/>
+	</Profile>
+	<Status>
+		<Method MethodName="get_state">
+			<OutputArgument DataType="Boolean"/>
+		</Method>
+	</Status>
+	<Action>
+		<Method MethodName="set_state">
+			<InputArgument DataType="Boolean"/>
+		</Method>
+	</Action>
+</Linker>

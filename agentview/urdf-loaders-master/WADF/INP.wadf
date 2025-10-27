@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WADescription>
+    <WAConfig>
+        <WorkcellConfig>
+            <URDFPath datatype="string">3DModels\INP3\INP3.urdf</URDFPath>
+            <ViewParamDistance datatype="float">2.42</ViewParamDistance>
+            <ViewParamYaw datatype="float">90</ViewParamYaw>
+            <ViewParamPitch datatype="float">-39.0</ViewParamPitch>
+            <ViewParamPosition datatype="list">[0.023533795028924942, -0.7634802460670471, -0.08000000566244125]</ViewParamPosition>
+            <UpdateTimeMS datatype="float">20.0</UpdateTimeMS>
+        </WorkcellConfig>
+        <WorkpartConfig>
+            <UpdateTimeMS datatype="float">50.0</UpdateTimeMS>
+            <Workpart name="Pallet_INP">
+                <URDFPath datatype="string">3DModels\Pallet_INP\Pallet_INP.urdf</URDFPath>
+                <EmitPos datatype="list">[-0.65, 0.0, 0.815]</EmitPos>
+                <EmitOri datatype="list">[0.0, 0.0, 1.570796]</EmitOri>
+                <RemovePos datatype="list">[0.766, 0.0, 0.815]</RemovePos>
+                <RemoveMargin datatype="float">0.05</RemoveMargin>
+            </Workpart>
+            <Workpart name="lego_base">
+                <URDFPath datatype="string">3DModels\lego_base\lego_base.urdf</URDFPath>
+                <EmitPos datatype="list">[-0.019, -0.422, 0.828]</EmitPos>
+                <EmitOri datatype="list">[0.0, 0.0, 1.570796]</EmitOri>
+                <RemovePos datatype="list">[0.766, 0.0, 0.815]</RemovePos>
+                <RemoveMargin datatype="float">0.1</RemoveMargin>
+                <AssembleCondition>
+                    <Condition name="Picking_Condition">
+                        <Mode datatype="string">Single</Mode>
+                        <LinkIndex datatype="int">13</LinkIndex>
+                        <DistanceMargin datatype="float">0.05</DistanceMargin>
+                        <AssembleIndex datatype="int">13</AssembleIndex>
+                    </Condition>
+                </AssembleCondition>
+            </Workpart>
+        </WorkpartConfig>
+    </WAConfig>
+
+    <WALinker>
+        <DefinitionFilePath datatype="string">WADF\Linker\DeviceDriverDefinition.py</DefinitionFilePath>
+        <DefinitionFileName datatype="string">DeviceDriverDefinition</DefinitionFileName>
+        <Linker>
+            <LinkerComponent name="Conveyor">
+                <LinkerType datatype="string">Conveyor</LinkerType>
+                <FilePath datatype="string">WADF\Linker\Conveyor.py</FilePath>
+            </LinkerComponent>
+            <LinkerComponent name="PalletInSensor">
+                <LinkerType datatype="string">DigitalInputDevice</LinkerType>
+                <FilePath datatype="string">WADF\Linker\PalletInSensor.py</FilePath>
+            </LinkerComponent>
+            <LinkerComponent name="PalletOutSensor">
+                <LinkerType datatype="string">DigitalInputDevice</LinkerType>
+                <FilePath datatype="string">WADF\Linker\PalletOutSensor.py</FilePath>
+            </LinkerComponent>
+            <LinkerComponent name="AssemblySensor">
+                <LinkerType datatype="string">DigitalInputDevice</LinkerType>
+                <FilePath datatype="string">WADF\Linker\AssemblySensor.py</FilePath>
+            </LinkerComponent>
+            <LinkerComponent name="AssemblyBlockActuator">
+                <LinkerType datatype="string">DigitalOutputDevice</LinkerType>
+                <FilePath datatype="string">WADF\Linker\AssemblyBlockActuator.py</FilePath>
+            </LinkerComponent>
+            <LinkerComponent name="EngravingActuator">
+                <LinkerType datatype="string">DigitalOutputDevice</LinkerType>
+                <FilePath datatype="string">WADF\Linker\EngravingActuator.py</FilePath>
+            </LinkerComponent>
+            <LinkerComponent name="PartPusher1">
+                <LinkerType datatype="string">DigitalOutputDevice</LinkerType>
+                <FilePath datatype="string">WADF\Linker\PartPusher1.py</FilePath>
+            </LinkerComponent>
+            <LinkerComponent name="PartPusher2">
+                <LinkerType datatype="string">DigitalOutputDevice</LinkerType>
+                <FilePath datatype="string">WADF\Linker\PartPusher2.py</FilePath>
+            </LinkerComponent>
+            <LinkerComponent name="SCARARobot">
+                <LinkerType datatype="string">SCARARobot</LinkerType>
+                <FilePath datatype="string">WADF\Linker\SCARARobot.py</FilePath>
+            </LinkerComponent>
+        </Linker>
+    </WALinker>
+
+    <WAServer>
+        <ServerFilePath datatype="string">WADF\OPCUANodeset\INP.xml</ServerFilePath>
+        <ServerURL datatype="string">opc.tcp://localhost:4841/</ServerURL>
+        <ServerName datatype="string">INP</ServerName>
+        <UpdateTimeMS>500</UpdateTimeMS>
+        <Description datatype="string">This is the first example item.</Description>
+    </WAServer>
+
+    <WDF>
+        <FilePath datatype="string">WADF\WDF\InP.wdf</FilePath>
+    </WDF>  
+
+    <WPF>
+        <FilePath datatype="string">WADF\WPF\BML.wpf</FilePath>
+    </WPF>
+
+    <DSF>
+        <FilePath datatype="string">WADF\DSF\BML.dsf</FilePath>
+    </DSF>
+
+    <WACommu>
+        <WorkcellName datatype="string">InP</WorkcellName>
+        <Description>
+            <ServerIP datatype="string">141.223.65.211</ServerIP>
+            <ServerPort datatype="int">1883</ServerPort> 
+        </Description>
+    </WACommu>
+
+    <WorkcellUIF>
+        <MonitoringView name="JobProgress">
+            <FilePath datatype="string">WADF\WUIF\JobProgress.xml</FilePath>
+        </MonitoringView>
+
+        <MonitoringView name="CycleTime">
+            <FilePath datatype="string">WADF\WUIF\JobProgress2.xml</FilePath>
+        </MonitoringView>
+    </WorkcellUIF>
+
+</WADescription>

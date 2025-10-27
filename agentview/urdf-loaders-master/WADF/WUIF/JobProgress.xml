@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataModel name="JobProgress">
+    <Profile>
+        <View datatype="String">qtdesigner\sub_modules\JobProgress\JobProgress.ui</View>
+        <ViewModel datatype="String">qtdesigner\sub_modules\JobProgress\JobProgress.py</ViewModel>
+        <Widget datatype="String">frame_26</Widget>
+    </Profile>
+    <Data name="CycleTime" datatype="TimeDelta">
+        <SubData name="ProcessStartTime" datatype="Timestamp" value="None"/>
+        <SubData name="ProcessEndTime" datatype="Timestamp" value="None"/>
+    </Data>
+    <Data name="Productivity" datatype="Float">
+        <SubData name="TotalProductionQuantity" datatype="Int" value="None"/>
+        <SubData name="CurrentProductionQuantity" datatype="Int" value="None"/>
+    </Data>
+</DataModel>

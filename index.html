@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>TwinWorks - 디지털 트윈 기반의 워크셀 제어 및 가상 커미셔닝 플랫폼</title>
+    <meta name="description" content="TwinWorks는 디지털 트윈 기반의 워크셀 제어 코드 생성과 가상 커미셔닝을 지원하는 혁신적인 스마트 팩토리 노코드 플랫폼입니다.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    
+    <!-- AgentView를 위한 Import Map -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+            "three/examples/jsm/": "https://unpkg.com/three@0.164.1/examples/jsm/",
+            "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+        }
+    }
+    </script>
+    
+    <!-- WebComponents Polyfill -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.4.3/webcomponents-bundle.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- AgentView 스타일 -->
+    <style>
+        urdf-viewer {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a0a 100%);
+        }
+
+        /* 🏭 로딩 애니메이션 - 공장 테마 */
+        @keyframes logoGlow {
+            0% { 
+                filter: brightness(1);
+                transform: scale(1);
+            }
+            100% { 
+                filter: brightness(1.2);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes loading-sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+
+<body class="bg-base-100 pt-20"> 
+    
+    <!-- Header -->
+    <header class="navbar bg-base-100 shadow-lg fixed top-0 z-50" role="navigation" aria-label="메인 네비게이션">
+        <div class="navbar-start">
+                <button id="mobileMenuBtn" aria-label="메뉴 열기" class="btn btn-ghost lg:hidden">
+                    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+                </button>
+                <ul id="mobileMenu" class="menu menu-sm bg-base-100 shadow rounded-box w-52 mt-2 absolute left-4 top-12 hidden z-50">
+                    <li><a href="#overview">플랫폼 개요</a></li>
+                    <li><a href="#features">핵심 기능</a></li>
+                    <li><a href="#market">시장 트렌드</a></li>
+                    <li><a href="#demo">인터랙티브 데모</a></li>
+                    <li><a href="#contact">문의하기</a></li>
+                </ul>
+            <a href="#hero" class="btn btn-ghost text-xl font-bold text-primary flex items-center gap-2" aria-label="TwinWorks 홈">
+                <span class="inline-flex items-center">
+                    <img src="images/logo.png" alt="로고" class="w-24 h-8 mr-2" />
+                </span>
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="#overview" class="nav-link">플랫폼 개요</a></li>
+                <li><a href="#features" class="nav-link">핵심 기능</a></li>
+                <li><a href="#market" class="nav-link">시장 트렌드</a></li>
+                <li><a href="#demo" class="nav-link">인터랙티브 데모</a></li>
+                <li><a href="#contact" class="nav-link">문의하기</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <!-- 글로벌 아이콘 -->
+            <i class="fas fa-globe text-lg"></i>
+            &nbsp;
+            <!-- 언어 선택 -->
+            <select id="langSelect" class="select select-bordered select-sm">
+                <option value="ko" selected>한국어</option>
+                <option value="en">English</option>
+            </select>
+            &nbsp;&nbsp;
+            <button class="btn btn-primary" onclick="scrollToSection('contact')">
+                <i class="fas fa-play mr-2"></i>데모 요청
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero relative overflow-hidden pt-0 h-[600px]">
+        <!-- 배경 이미지 오버레이 -->
+        <div class="absolute inset-0 z-0">
+            <img src="images/background1.jpg" alt="background" class="w-full h-full object-cover opacity-10" />
+        </div>
+
+        <div class="hero-content text-center relative z-10">
+            <div class="max-w-6xl">
+                <h1 class="text-5xl lg:text-7xl font-bold mb-6">
+                    <span class="text-blue-950">Twin</span><span class="text-sky-500">Works</span>
+                </h1>
+                <h2 class="text-2xl lg:text-4xl font-semibold mb-6 text-base-content">
+                    디지털 트윈 기반의 노코드 플랫폼
+                </h2>
+                <p class="text-lg lg:text-xl mb-8 max-w-4xl mx-auto text-base-content/80 font-bold">
+                    3D 모델 기반 제어 코드 생성과 가상 커미셔닝을 통해 제조업의 디지털 전환 가속화를 지원합니다.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="btn btn-primary btn-lg" onclick="scrollToSection('overview')">
+                        <i class="fas fa-rocket mr-2"></i>자세히 알아보기
+                    </button>
+                    <button class="btn btn-outline btn-lg" onclick="scrollToSection('contact')">
+                        <i class="fas fa-info-circle mr-2"></i>자료 다운로드
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+            <i class="fas fa-chevron-down text-2xl text-primary"></i>
+        </div>
+    </section>
+    
+    <!-- Platform Overview Section -->
+    <section id="overview" class="py-20 bg-base-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">플랫폼 개요</h2>
+                <p class="text-xl max-w-3xl mx-auto text-base-content/80">
+                    트윈웍스는 전통적인 프로그래밍의 한계를 뛰어넘어 누구나 쉽게 스마트 팩토리를 구축할 수 있는 혁신적인 솔루션입니다.
+                </p>
+            </div>
+
+            <!-- Market Statistics -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="stat bg-primary/5 rounded-box p-6">
+                    <div class="stat-figure text-primary">
+                        <i class="fas fa-chart-line text-3xl"></i>
+                    </div>
+                    <div class="stat-title">산업 자동화 시장 성장률</div>
+                    <div class="stat-value text-primary counter" data-target="8.2">8.2%</div>
+                    <div class="stat-desc">연평균 성장률 (CAGR) 8.2%</div>
+                </div>
+                <div class="stat bg-secondary/5 rounded-box p-6">
+                    <div class="stat-figure text-secondary">
+                        <i class="fas fa-clock text-3xl"></i>
+                    </div>
+                    <div class="stat-title">개발 시간 단축</div>
+                    <div class="stat-value text-secondary counter" data-target="80">80%</div>
+                    <div class="stat-desc">기존 대비 80% 단축</div>
+                </div>
+                <div class="stat bg-accent/5 rounded-box p-6">
+                    <div class="stat-figure text-accent">
+                        <i class="fas fa-users text-3xl"></i>
+                    </div>
+                    <div class="stat-title">비전문가도 사용 가능</div>
+                    <div class="stat-value text-accent counter" data-target="95">95%</div>
+                    <div class="stat-desc">사용자 만족도 95%</div>
+                </div>
+            </div>
+
+            <!-- Key Features Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 feature-card">
+                    <div class="card-body text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title justify-center mb-2">사용자 친화적 코드 생성</h3>
+                        <p class="text-base-content/70">비전문가도 쉽게 사용할 수 있는 직관적인 인터페이스로 복잡한 제어 코드를 간단하게 생성</p>
+                    </div>
+                </div>
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 feature-card">
+                    <div class="card-body text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-warning/10 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title justify-center mb-2">3D 모델 기반 디지털 트윈</h3>
+                        <p class="text-base-content/70">실제 장비의 3D 모델을 활용한 물리적 시스템의 디지털화 및 가상 티칭을 통한 제어 코드 생성</p>
+                    </div>
+                </div>
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 feature-card">
+                    <div class="card-body text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-secondary/10 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title justify-center mb-2">가상 커미셔닝</h3>
+                        <p class="text-base-content/70">실제 구축 전 가상 환경에서 사전 테스트, 검증 및 시스템 최적화</p>
+                    </div>
+                </div>
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 feature-card">
+                    <div class="card-body text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-accent/10 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title justify-center mb-2">실시간 데이터 통합</h3>
+                        <p class="text-base-content/70">향상된 모니터링 및 의사결정을 위한 실시간 데이터 통합 및 분석</p>
+                    </div>
+                </div>
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 feature-card">
+                    <div class="card-body text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-info/10 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-info" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title justify-center mb-2">신속한 시스템 개발</h3>
+                        <p class="text-base-content/70">시장 변화에 빠른 적응과 구현 중 위험 최소화를 통한 효율적인 개발</p>
+                    </div>
+                </div>
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 feature-card">
+                    <div class="card-body text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-success/10 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title justify-center mb-2">기술 장벽 제거</h3>
+                        <p class="text-base-content/70">복잡한 프로그래밍 지식 없이도 누구나 쉽게 사용할 수 있는 노코드 솔루션</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section id="features" class="py-20 bg-base-200">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">핵심 기능</h2>
+                <p class="text-xl max-w-3xl mx-auto text-base-content/80">
+                    트윈웍스의 혁신적인 기술로 스마트 팩토리 구축의 새로운 패러다임을 경험하세요.
+                </p>
+            </div>
+
+            <!-- Feature Tabs -->
+            <div class="tabs tabs-boxed justify-center mb-12" data-group="features">
+                <a href="#" class="tab tab-active" data-tab="nocode">노코드 프로그래밍</a>
+                <a href="#" class="tab" data-tab="3d-model">3D 모델 기반</a>
+                <a href="#" class="tab" data-tab="virtual">가상 커미셔닝</a>
+                <a href="#" class="tab" data-tab="realtime">실시간 통합</a>
+            </div>
+
+            <!-- Feature Content -->
+            <div class="feature-content">
+                <!-- 3D Model Based -->
+                <div id="3d-model-content" class="feature-panel">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="bg-base-100 rounded-lg p-6 shadow-lg">
+                            <div class="mockup-browser border bg-base-300">
+                                <div class="mockup-browser-toolbar">
+                                    <div class="input">3D Model Digital Twin</div>
+                                </div>
+                                <div class="flex justify-center px-4 py-4 bg-base-200">
+                                    <div class="relative">
+                                        <img src="images/3dModel.png" alt="3D Model" class="w-full col-span-3 rounded-lg" />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-bold mb-6">3D 모델 기반 제어 코드 생성</h3>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-secondary text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">정확한 물리적 모델링</h4>
+                                        <p class="text-base-content/80">실제 장비의 3D CAD 모델을 기반으로 한 정밀한 시뮬레이션</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-secondary text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">자동 제어 로직 매핑</h4>
+                                        <p class="text-base-content/80">3D 모델의 구조와 동작을 분석하여 최적의 제어 로직 자동 생성</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-secondary text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">실시간 시각화</h4>
+                                        <p class="text-base-content/80">제어 상태와 데이터를 3D 모델 상에서 실시간으로 시각화</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary" onclick="showFeatureDemo('3d-model')">
+                                <i class="fas fa-cube mr-2"></i>3D 데모 체험 (추후 제공)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No-Code Programming -->
+                <div id="nocode-content" class="feature-panel active">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h3 class="text-3xl font-bold mb-6">노코드 기반 스마트 워크셀 제어 프로그래밍</h3>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-primary text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">직관적인 비주얼 프로그래밍</h4>
+                                        <p class="text-base-content/80">심플한 인터페이스로 복잡한 제어 로직을 시각적으로 구성</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-primary text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">사전 구축된 컴포넌트 라이브러리</h4>
+                                        <p class="text-base-content/80">산업 표준 제어 템플릿을 즉시 활용 가능</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-primary text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">가상 티칭을 통한 제어 코드 생성 </h4>
+                                        <p class="text-base-content/80">PLC 코드 자동 생성과 성능 최적화로 개발 시간 대폭 단축</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" onclick="showFeatureDemo('nocode')">
+                                <i class="fas fa-play mr-2"></i>데모 보기 (추후 제공)
+                            </button>
+                        </div>
+                        <div class="bg-base-100 rounded-lg p-6 shadow-lg">
+                            <div class="mockup-window border bg-base-300">
+                                <div class="flex justify-center px-4 py-4 bg-base-200">
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <img src="images/NoCode.png" alt="3D Model" class="w-full col-span-3 rounded-lg" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Virtual Commissioning -->
+                <div id="virtual-content" class="feature-panel">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h3 class="text-3xl font-bold mb-6">가상 커미셔닝 최적화 프로세스</h3>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-accent text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">사전 검증 및 최적화</h4>
+                                        <p class="text-base-content/80">실제 구축 전 가상 환경에서 시스템 성능 검증 및 최적화</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-accent text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">리스크 최소화</h4>
+                                        <p class="text-base-content/80">잠재적 문제점을 사전에 발견하고 해결하여 구축 리스크 대폭 감소</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-accent text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">비용 절감</h4>
+                                        <p class="text-base-content/80">물리적 프로토타입 제작 비용과 시행착오 비용을 획기적으로 절감</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-accent" onclick="showFeatureDemo('virtual')">
+                                <i class="fas fa-vr-cardboard mr-2"></i>가상 커미셔닝 체험 (추후 제공)
+                            </button>
+                        </div>
+                        <div class="bg-base-100 rounded-lg p-6 shadow-lg">
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-4 h-4 bg-success rounded-full"></div>
+                                    <div class="flex-1 h-2 bg-success/20 rounded-full">
+                                        <div class="h-full bg-success rounded-full w-4/5"></div>
+                                    </div>
+                                    <span class="text-sm font-semibold">설계 검증</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-4 h-4 bg-warning rounded-full"></div>
+                                    <div class="flex-1 h-2 bg-warning/20 rounded-full">
+                                        <div class="h-full bg-warning rounded-full w-3/5"></div>
+                                    </div>
+                                    <span class="text-sm font-semibold">성능 최적화</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-4 h-4 bg-info rounded-full"></div>
+                                    <div class="flex-1 h-2 bg-info/20 rounded-full">
+                                        <div class="h-full bg-info rounded-full w-2/5"></div>
+                                    </div>
+                                    <span class="text-sm font-semibold">시나리오 테스트</span>
+                                </div>
+                                <div class="mt-6 p-4 bg-success/10 rounded-lg">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        <span class="font-semibold">가상 커미셔닝 완료</span>
+                                    </div>
+                                    <p class="text-sm text-base-content/80 mt-2">시스템 준비 완료, 실제 구축 진행 가능</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Integration -->
+                <div id="realtime-content" class="feature-panel">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="bg-base-100 rounded-lg p-6 shadow-lg">
+                            <div class="mockup-browser border bg-base-300">
+                                <div class="mockup-browser-toolbar">
+                                    <div class="input">Real-time Dashboard</div>
+                                </div>
+                                <div class="flex justify-center px-4 py-4 bg-base-200">
+                                    <div class="relative">
+                                        <img src="images/Dashboard.png" alt="Dashboard" class="w-full col-span-3 rounded-lg" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-bold mb-6">실시간 데이터 통합 및 모니터링</h3>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-info text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">IoT 센서 통합</h4>
+                                        <p class="text-base-content/80">다양한 IoT 센서와 장비로부터 실시간 데이터 수집 및 처리</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-info text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">지능형 분석 활용</h4>
+                                        <p class="text-base-content/80">AI 기반 데이터 분석으로 예측 유지보수 및 최적화 제안</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-info text-xl mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold">실시간 대시보드</h4>
+                                        <p class="text-base-content/80">직관적인 대시보드를 통한 실시간 모니터링 및 제어</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-info" onclick="showFeatureDemo('realtime')">
+                                <i class="fas fa-chart-bar mr-2"></i>실시간 데이터 보기 (추후 제공)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Trends Section -->
+    <section id="market" class="py-20 bg-base-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">시장 트렌드 및 차별화</h2>
+                <p class="text-xl max-w-3xl mx-auto text-base-content/80">
+                    급변하는 산업 자동화 시장에서 트윈웍스가 제시하는 혁신적인 솔루션을 확인하세요.
+                </p>
+            </div>
+
+            <!-- Industry Trends -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-bold text-center mb-12">산업 자동화 시장 트렌드</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card bg-gradient-to-br from-primary/10 to-primary/5 shadow-xl">
+                        <div class="card-body">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-network-wired text-2xl text-primary mr-3"></i>
+                                <h4 class="card-title">IIoT 확산</h4>
+                            </div>
+                            <p class="text-base-content/80 mb-4">
+                                산업용 사물인터넷(IIoT) 기술의 급속한 확산으로 스마트 팩토리 구축 가속화
+                            </p>
+                            <div class="badge badge-primary">성장률 15.2%</div>
+                        </div>
+                    </div>
+                    <div class="card bg-gradient-to-br from-secondary/10 to-secondary/5 shadow-xl">
+                        <div class="card-body">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-robot text-2xl text-secondary mr-3"></i>
+                                <h4 class="card-title">디지털 트윈</h4>
+                            </div>
+                            <p class="text-base-content/80 mb-4">
+                                디지털 트윈 기술을 활용한 가상 시뮬레이션과 예측 분석의 중요성 증대
+                            </p>
+                            <div class="badge badge-secondary">시장 규모 $48B</div>
+                        </div>
+                    </div>
+                    <div class="card bg-gradient-to-br from-accent/10 to-accent/5 shadow-xl">
+                        <div class="card-body">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-brain text-2xl text-accent mr-3"></i>
+                                <h4 class="card-title">AI/ML 통합</h4>
+                            </div>
+                            <p class="text-base-content/80 mb-4">
+                                인공지능과 머신러닝을 활용한 지능형 제조 시스템 구축 트렌드
+                            </p>
+                            <div class="badge badge-accent">도입률 67%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Traditional Limitations vs Twin Works -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h3 class="text-3xl font-bold mb-8 text-error">전통적 프로그래밍의 한계</h3>
+                    <div class="space-y-4">
+                        <div class="alert alert-error" style="background-color: rgba(255, 0, 0, 0.1); color: #b91c1c;">
+                            <i class="fa-solid fa-exclamation-triangle" style="color: #b91c1c;"></i>
+                            <div>
+                                <h4 class="font-semibold">높은 기술적 진입장벽</h4>
+                                <p class="text-sm">전문적인 프로그래밍 지식과 경험이 필수적으로 요구됨</p>
+                            </div>
+                        </div>
+                        <div class="alert alert-error" style="background-color: rgba(255, 0, 0, 0.1); color: #b91c1c;">
+                            <i class="fa-solid fa-clock" style="color: #b91c1c;"></i>
+                            <div>
+                                <h4 class="font-semibold">긴 개발 기간</h4>
+                                <p class="text-sm">복잡한 제어 로직 구현에 수개월의 개발 시간 소요</p>
+                            </div>
+                        </div>
+                        <div class="alert alert-error" style="background-color: rgba(255, 0, 0, 0.1); color: #b91c1c;">
+                            <i class="fa-solid fa-bug" style="color: #b91c1c;"></i>
+                            <div>
+                                <h4 class="font-semibold">높은 오류 위험성</h4>
+                                <p class="text-sm">수동 코딩으로 인한 버그 발생과 디버깅의 어려움</p>
+                            </div>
+                        </div>
+                        <div class="alert alert-error" style="background-color: rgba(255, 0, 0, 0.1); color: #b91c1c;">
+                            <i class="fa-solid fa-dollar-sign" style="color: #b91c1c;"></i>
+                            <div>
+                                <h4 class="font-semibold">높은 유지보수 비용</h4>
+                                <p class="text-sm">시스템 변경 시 전문 인력의 지속적인 투입 필요</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-8 text-success">TwinWorks 혁신 솔루션</h3>
+                    <div class="space-y-4">
+                        <div class="alert alert-success" style="background-color: rgba(34, 197, 94, 0.1); color: #166534;">
+                            <i class="fa-solid fa-user-friends" style="color: #166534;"></i>
+                            <div>
+                                <h4 class="font-semibold">누구나 사용 가능</h4>
+                                <p class="text-sm">직관적인 노코드 인터페이스로 비전문가도 쉽게 활용</p>
+                            </div>
+                        </div>
+                        <div class="alert alert-success" style="background-color: rgba(34, 197, 94, 0.1); color: #166534;">
+                            <i class="fa-solid fa-rocket" style="color: #166534;"></i>
+                            <div>
+                                <h4 class="font-semibold">신속한 개발</h4>
+                                <p class="text-sm">디지털 트윈을 통한 몇 시간 내 제어 시스템 구축 완료</p>
+                            </div>
+                        </div>
+                        <div class="alert alert-success" style="background-color: rgba(34, 197, 94, 0.1); color: #166534;">
+                            <i class="fa-solid fa-shield-alt" style="color: #166534;"></i>
+                            <div>
+                                <h4 class="font-semibold">검증된 안정성</h4>
+                                <p class="text-sm">가상 커미셔닝을 통한 사전 검증으로 오류 최소화</p>
+                            </div>
+                        </div>
+                        <div class="alert alert-success" style="background-color: rgba(34, 197, 94, 0.1); color: #166534;">
+                            <i class="fa-solid fa-chart-line" style="color: #166534;"></i>
+                            <div>
+                                <h4 class="font-semibold">비용 효율성</h4>
+                                <p class="text-sm">개발 및 유지보수 비용을 기존 대비 80% 절감</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IIoT Integration -->
+            <div class="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8">
+                <h3 class="text-3xl font-bold text-center mb-8">IIoT와 디지털 트윈 기술 접목</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="mx-auto mb-4 p-4 bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center">
+                            <i class="fas fa-wifi text-3xl text-primary"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">센서 데이터 수집</h4>
+                        <p class="text-base-content/80">다양한 IoT 센서로부터 실시간 데이터를 수집하고 처리</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="mx-auto mb-4 p-4 bg-secondary/10 rounded-full w-20 h-20 flex items-center justify-center">
+                            <i class="fas fa-cube text-3xl text-secondary"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">디지털 트윈 생성</h4>
+                        <p class="text-base-content/80">물리적 시스템의 정확한 디지털 복제본을 생성하고 동기화</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="mx-auto mb-4 p-4 bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center">
+                            <i class="fas fa-brain text-3xl text-accent"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">지능형 분석</h4>
+                        <p class="text-base-content/80">AI 기반 분석으로 최적화 방안과 예측 인사이트 활용</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="py-20 bg-base-200">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">인터랙티브 데모</h2>
+                <p class="text-xl max-w-3xl mx-auto text-base-content/80">
+                    트윈웍스의 핵심 기능을 직접 체험해보세요. 실제 사용 환경과 동일한 데모를 통해 플랫폼의 강력함을 확인할 수 있습니다.
+                </p>
+            </div>
+
+            <!-- Demo Tabs -->
+            <div class="tabs tabs-boxed justify-center mb-12" data-group="demo">
+                <a href="#" class="tab tab-active" data-demo="3d-interaction">3D 모델 인터랙션</a>
+                <a href="#" class="tab" data-demo="data-viz">실시간 데이터 시각화</a>
+            </div>
+
+            <!-- Demo Content -->
+            <div class="demo-content">
+                <!-- 3D Interaction Demo -->
+                <div id="3d-interaction-demo" class="demo-panel active">
+                    <div class="card bg-base-100 shadow-2xl">
+                        <div class="card-body">
+                            <h3 class="card-title text-2xl mb-6">3D 모델 인터랙션 데모</h3>
+                            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                                <div class="lg:col-span-3">
+                                    <div class="bg-base-200 rounded-lg p-6 h-[600px] flex items-center justify-center">
+                                        <div id="3d-viewer" class="w-full h-full rounded-lg relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+                                            <!-- 🏭 공장 테마 로딩 화면 -->
+                                            <div id="demo-loading-overlay" class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center z-50 opacity-100 transition-opacity duration-500" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);">
+                                                <div class="company-logo" style="font-size: 48px; font-weight: 400; font-family: 'Times New Roman', serif; margin-bottom: 40px; text-align: center; letter-spacing: -2px; position: relative; animation: logoGlow 2s ease-in-out infinite alternate; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                                    <span style="color: #000000; font-weight: 400; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">Code</span>
+                                                    <span style="color: #5B9BD5; font-weight: 400; text-shadow: 0 2px 4px rgba(91, 155, 213, 0.2);">Flex</span>
+                                                </div>
+                                                <div class="company-tagline" style="font-size: 14px; font-weight: 300; font-family: 'Segoe UI', 'Arial', sans-serif; color: rgba(255, 255, 255, 0.9); text-align: center; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; opacity: 0.9; animation: logoGlow 2s ease-in-out infinite alternate;">Digital Twin Solutions</div>
+                                                <div class="loading-progress" style="width: 200px; height: 4px; background: rgba(255, 255, 255, 0.2); border-radius: 2px; overflow: hidden; position: relative; opacity: 0.9; animation: logoGlow 2s ease-in-out infinite alternate;">
+                                                    <div style="content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, #5B9BD5, transparent); animation: loading-sweep 2s ease-in-out infinite;"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- AgentView 컴포넌트 -->
+                                            <urdf-viewer
+                                                up="+Z"
+                                                display-shadow
+                                                tabindex="0"
+                                                urdf="agentview/urdf-loaders-master/urdf/INP3/INP3/INP3.urdf"
+                                                autocenter
+                                                class="w-full h-full">
+                                            </urdf-viewer>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-4">모델 제어</h4>
+                                    <div class="space-y-4">
+                                        <div class="form-control">
+                                            <label class="label">
+                                                <span class="label-text">뷰 모드</span>
+                                            </label>
+                                            <div class="join join-vertical w-full">
+                                                <input class="join-item btn" type="radio" name="view-mode" id="full-view" aria-label="전체 뷰" checked onclick="setViewMode('full')">
+                                                <input class="join-item btn" type="radio" name="view-mode" id="section-view" aria-label="단면 뷰" onclick="setViewMode('section')">
+                                                <input class="join-item btn" type="radio" name="view-mode" id="wireframe-view" aria-label="와이어프레임" onclick="setViewMode('wireframe')">
+                                            </div>
+                                        </div>
+                                        <div class="form-control" id="section-controls" style="display: none;">
+                                            <label class="label">
+                                                <span class="label-text">단면 방향</span>
+                                            </label>
+                                            <div class="join join-vertical w-full">
+                                                <input class="join-item btn btn-xs" type="radio" name="section-axis" aria-label="X축 단면" checked onclick="setSectionAxis('x')">
+                                                <input class="join-item btn btn-xs" type="radio" name="section-axis" aria-label="Y축 단면" onclick="setSectionAxis('y')">
+                                                <input class="join-item btn btn-xs" type="radio" name="section-axis" aria-label="Z축 단면" onclick="setSectionAxis('z')">
+                                            </div>
+                                            <div class="mt-2">
+                                                <label class="label">
+                                                    <span class="label-text text-xs">단면 위치</span>
+                                                </label>
+                                                <div class="flex items-center gap-2">
+                                                    <span class="text-xs opacity-60">-2</span>
+                                                    <input type="range" min="-2" max="2" value="0" step="0.1" class="range range-xs flex-1" id="section-position" oninput="setSectionPosition(this.value)">
+                                                    <span class="text-xs opacity-60">+2</span>
+                                                </div>
+                                                <div class="text-center mt-1">
+                                                    <span class="text-xs opacity-75" id="position-value">0.0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-control">
+                                            <label class="label">
+                                                <span class="label-text">애니메이션</span>
+                                            </label>
+                                            <div class="flex space-x-2">
+                                                <button class="btn btn-sm btn-primary flex-1" onclick="animate3D('rotate')">회전</button>
+                                                <button class="btn btn-sm btn-secondary flex-1" onclick="animate3D('scale')">확대/축소</button>
+                                            </div>
+                                        </div>
+                                        <div class="form-control">
+                                            <label class="label">
+                                                <span class="label-text">부품 선택</span>
+                                            </label>
+                                            <select class="select select-bordered select-sm">
+                                                <option>전체 모델</option>
+                                                <option>컨베이어 벨트</option>
+                                                <option>로봇 암</option>
+                                                <option>센서 모듈</option>
+                                                <option>제어 패널</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mt-6 p-4 bg-secondary/10 rounded-lg">
+                                        <h5 class="font-semibold mb-2">선택된 부품 정보</h5>
+                                        <div class="text-sm space-y-1">
+                                            <div>이름: <span class="font-semibold">메인 컨베이어</span></div>
+                                            <div>상태: <span class="font-semibold text-success">정상</span></div>
+                                            <div>온도: <span class="font-semibold">24.5°C</span></div>
+                                            <div>속도: <span class="font-semibold">1.2m/s</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Visualization Demo -->
+                <div id="data-viz-demo" class="demo-panel">
+                    <div class="card bg-base-100 shadow-2xl">
+                        <div class="card-body">
+                            <h3 class="card-title text-2xl mb-6">실시간 데이터 시각화</h3>
+                            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                                <div class="stat bg-primary/10 rounded-lg">
+                                    <div class="stat-figure text-primary">
+                                        <i class="fas fa-thermometer-half text-2xl"></i>
+                                    </div>
+                                    <div class="stat-title">온도</div>
+                                    <div class="stat-value text-primary" id="live-temp">24.5</div>
+                                    <div class="stat-desc">°C</div>
+                                </div>
+                                <div class="stat bg-secondary/10 rounded-lg">
+                                    <div class="stat-figure text-secondary">
+                                        <i class="fas fa-tachometer-alt text-2xl"></i>
+                                    </div>
+                                    <div class="stat-title">압력</div>
+                                    <div class="stat-value text-secondary" id="live-pressure">1.2</div>
+                                    <div class="stat-desc">bar</div>
+                                </div>
+                                <div class="stat bg-accent/10 rounded-lg">
+                                    <div class="stat-figure text-accent">
+                                        <i class="fas fa-bolt text-2xl"></i>
+                                    </div>
+                                    <div class="stat-title">전력</div>
+                                    <div class="stat-value text-accent" id="live-power">85.3</div>
+                                    <div class="stat-desc">kW</div>
+                                </div>
+                                <div class="stat bg-info/10 rounded-lg">
+                                    <div class="stat-figure text-info">
+                                        <i class="fas fa-chart-line text-2xl"></i>
+                                    </div>
+                                    <div class="stat-title">효율</div>
+                                    <div class="stat-value text-info" id="live-efficiency">94</div>
+                                    <div class="stat-desc">%</div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-4">실시간 차트</h4>
+                                    <div class="bg-base-200 rounded-lg p-4 h-64">
+                                        <div class="w-full h-full flex items-end justify-center space-x-2">
+                                            <div class="chart-bar bg-primary w-8 animate-pulse" style="height: 60%"></div>
+                                            <div class="chart-bar bg-secondary w-8 animate-pulse" style="height: 80%; animation-delay: 0.1s"></div>
+                                            <div class="chart-bar bg-accent w-8 animate-pulse" style="height: 45%; animation-delay: 0.2s"></div>
+                                            <div class="chart-bar bg-warning w-8 animate-pulse" style="height: 70%; animation-delay: 0.3s"></div>
+                                            <div class="chart-bar bg-info w-8 animate-pulse" style="height: 90%; animation-delay: 0.4s"></div>
+                                            <div class="chart-bar bg-success w-8 animate-pulse" style="height: 55%; animation-delay: 0.5s"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-4">알림 및 이벤트</h4>
+                                    <div class="space-y-3 h-64 overflow-y-auto">
+                                        <div class="alert alert-success">
+                                            <i class="fas fa-check-circle"></i>
+                                            <div>
+                                                <div class="font-semibold">시스템 정상 작동</div>
+                                                <div class="text-sm">모든 센서가 정상 범위 내에서 작동 중</div>
+                                            </div>
+                                            <div class="text-xs">14:25</div>
+                                        </div>
+                                        <div class="alert alert-info">
+                                            <i class="fas fa-info-circle"></i>
+                                            <div>
+                                                <div class="font-semibold">효율 최적화 완료</div>
+                                                <div class="text-sm">AI 분석을 통한 성능 개선 적용</div>
+                                            </div>
+                                            <div class="text-xs">14:20</div>
+                                        </div>
+                                        <div class="alert alert-warning">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            <div>
+                                                <div class="font-semibold">예방 정비 알림</div>
+                                                <div class="text-sm">컨베이어 벨트 점검 예정</div>
+                                            </div>
+                                            <div class="text-xs">14:15</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-base-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">문의 및 데모 요청</h2>
+                <p class="text-xl max-w-3xl mx-auto text-base-content/80">
+                    트윈웍스 플랫폼에 대해 더 자세히 알아보시거나 데모를 체험하고 싶으시다면 언제든 연락주세요.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="card bg-base-200 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title text-2xl mb-6">문의하기</h3>
+                        <form id="contact-form" class="space-y-4" onsubmit="sendQuestion(event)">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">이름 *</span>
+                                    </label>
+                                    <input type="text" name="user_name" placeholder="이름을 입력하세요" class="input input-bordered" required>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">회사명 *</span>
+                                    </label>
+                                    <input type="text" name="company_name" placeholder="회사명을 입력하세요" class="input input-bordered" required>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">이메일 *</span>
+                                    </label>
+                                    <input type="email" name="user_email" placeholder="이메일을 입력하세요" class="input input-bordered" required>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">전화번호</span>
+                                    </label>
+                                    <input type="tel" name="phone_number" placeholder="전화번호를 입력하세요" class="input input-bordered">
+                                </div>
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">관심 분야</span>
+                                </label>
+                                <select name="interest" class="select select-bordered">
+                                    <option disabled selected>관심 분야를 선택하세요</option>
+                                    <option>노코드 프로그래밍</option>
+                                    <option>3D 모델 기반 제어</option>
+                                    <option>가상 커미셔닝</option>
+                                    <option>실시간 데이터 통합</option>
+                                    <option>전체 플랫폼</option>
+                                </select>
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">문의 내용 *</span>
+                                </label>
+                                <textarea name="message" class="textarea textarea-bordered h-24" placeholder="문의 내용을 자세히 입력해주세요" required></textarea>
+                            </div>
+                            <div class="form-control">
+                                <label class="cursor-pointer label">
+                                    <input type="checkbox" class="checkbox checkbox-primary" required>
+                                    <span class="label-text">개인정보 처리방침에 동의합니다 *</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-full">
+                                <i class="fas fa-paper-plane mr-2"></i>문의 보내기
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Download & Demo Request -->
+                <div class="space-y-8">
+                    <!-- Download -->
+                    <div class="card bg-base-200 shadow-xl">
+                        <div class="card-body">
+                            <h3 class="card-title text-2xl mb-6">자료 다운로드</h3>
+                            <div class="space-y-8">
+                                <div class="flex flex-col items-start">
+                                    <div>
+                                        <div class="flex items-center mb-4">
+                                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                </path>
+                                            </svg>
+                                            &nbsp;&nbsp;
+                                            <span class="ml-3 font-semibold">제품 소개서 PDF - 트윈웍스의 상세한 기능과 특징을 담은 제품 소개서</span>
+                                        </div>
+                                        <button 
+                                            class="btn w-48 bg-purple-500 hover:bg-purple-900 text-white border-none" 
+                                            onclick="downloadPDF()">
+                                            PDF 다운로드
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-start">
+                                    <div>
+                                        <div class="flex items-center mb-4">
+                                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                            </svg>
+                                            &nbsp;&nbsp;
+                                            <span class="ml-3 font-semibold">데모 영상 - 워크셀 DT 시뮬레이션 (전체 데모는 아래 요청주세요)</span>
+                                        </div>
+                                        <button 
+                                            class="btn w-48 bg-pink-500 hover:bg-pink-800 text-white border-none" 
+                                            onclick="downloadDemo()">
+                                            영상 보기
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Demo Request -->
+                    <div class="card bg-gradient-to-br from-primary/10 to-secondary/10 shadow-xl w-full max-w-4xl mx-auto">
+                        <div class="card-body">
+                            <h3 class="card-title text-2xl mb-4">데모 요청</h3>
+                            <p class="text-base-content/80 mb-6">
+                                트윈웍스 플랫폼의 기능을 직접 체험해보세요. 전문가가 1:1로 맞춤형 데모를 제공합니다.
+                            </p>
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-sm">실제 사용 환경과 동일한 데모</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-sm">업계별 맞춤형 시나리오 제공</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-sm">전문가 1:1 상담 포함</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-4 max-w-full mx-auto w-full">
+                                <input type="email" id="emailInput" placeholder="이메일 주소" class="input input-bordered w-full sm:w-96">
+                                <button class="btn btn-primary" onclick="requestTrial()">데모 요청</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer p-10 bg-base-200 text-base-content">
+        <div class="w-full flex flex-col items-center gap-6">
+            <!-- 브랜드 & 정보 -->
+            <aside class="flex flex-col items-center text-center gap-3">
+                <a href="#hero" class="flex items-center space-x-2 mb-2 justify-center">
+                    <img src="images/logo.png" alt="로고" class="w-24 h-8" />
+                </a>
+                <p class="font-bold">
+                    스마트 팩토리의 미래를 만들어가는 디지털 트윈 노코드 플랫폼
+                </p>
+                <p class="text-xs sm:text-sm">Copyright © 2025 - CodeFlex. All rights reserved.</p>
+
+                <!-- 웹사이트 & 이메일 -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 mt-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-globe text-primary text-xl"></i>
+                    <!--span class="font-semibold">웹사이트</span-->
+                        <a href="https://www.codeflex.co.kr" target="_blank" class="text-base-content/80 hover:underline">www.codeflex.co.kr</a>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-envelope text-primary text-xl"></i>
+                        <!--span class="font-semibold">이메일</span-->
+                        <a href="mailto:contact@codeflex.co.kr" class="text-base-content/80 hover:underline">contact@codeflex.co.kr</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 내비게이션 -->
+            <nav class="flex justify-center mt-4 w-full">
+                <div class="grid grid-flow-col gap-4 text-xs sm:text-sm">
+                    <a href="#" class="link link-hover">개인정보처리방침</a>
+                    <a href="#" class="link link-hover">회사소개</a>
+                </div>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Demo Modal -->
+    <dialog id="demo-modal" class="modal">
+        <div class="modal-box w-11/12 max-w-2xl">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="font-bold text-lg mb-4">데모 일정 예약</h3>
+            <form id="demo-form" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">이름 *</span>
+                        </label>
+                        <input type="text" placeholder="이름" class="input input-bordered" required>
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">회사명 *</span>
+                        </label>
+                        <input type="text" placeholder="회사명" class="input input-bordered" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">이메일 *</span>
+                        </label>
+                        <input type="email" placeholder="이메일" class="input input-bordered" required>
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">전화번호 *</span>
+                        </label>
+                        <input type="tel" placeholder="전화번호" class="input input-bordered" required>
+                    </div>
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">희망 데모 유형</span>
+                    </label>
+                    <select class="select select-bordered">
+                        <option disabled selected>데모 유형을 선택하세요</option>
+                        <option>온라인 데모 (30분)</option>
+                        <option>방문 데모 (1시간)</option>
+                        <option>맞춤형 워크샵 (2시간)</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">희망 일정</span>
+                    </label>
+                    <input type="datetime-local" class="input input-bordered">
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">추가 요청사항</span>
+                    </label>
+                    <textarea class="textarea textarea-bordered" placeholder="특별한 요청사항이 있으시면 입력해주세요"></textarea>
+                </div>
+                <div class="modal-action">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-calendar-check mr-2"></i>예약 요청
+                    </button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- JavaScript -->
+    <script type="module" src="js/script.js"></script>
+    
+    <!-- AgentView 초기화 스크립트 -->
+    <script type="module">
+        // Three.js 및 로더들 임포트
+        import * as THREE from 'three';
+        import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
+        import URDFManipulator from './agentview/urdf-loaders-master/javascript/src/urdf-manipulator-element.js';
+
+        // 커스텀 엘리먼트 등록
+        customElements.define('urdf-viewer', URDFManipulator);
+
+        // 로딩 오버레이 제어
+        function showDemoLoading() {
+            const overlay = document.getElementById('demo-loading-overlay');
+            if (overlay) overlay.style.opacity = '1';
+        }
+
+        function hideDemoLoading() {
+            const overlay = document.getElementById('demo-loading-overlay');
+            if (overlay) {
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.style.display = 'none', 500);
+            }
+        }
+
+        // 🏭 WADF 조립 시퀀스 데이터 (실제 GRIPPER_TEST2 동작과 동일)
+        const ASSEMBLY_SEQUENCE = {
+            1: [ // GRIPPER_TEST2_01: 픽업 포지션으로 이동
+                {joint: 'Rotation_31', value: -0.389, delay: 500},
+                {joint: 'Rotation_36', value: 0.024, delay: 500},
+                {joint: 'Rotation_151', value: 1.209, delay: 500},
+                {joint: 'Slider_44', value: 0.0, delay: 500}
+            ],
+            2: [ // GRIPPER_TEST2_02: Z축 하강 (부품으로)
+                {joint: 'Slider_44', value: -0.045, delay: 1000}
+            ],
+            3: [ // GRIPPER_TEST2_03: 그리퍼 닫기
+                {joint: 'Slider_41', value: 0.0135, delay: 500},
+                {joint: 'Slider_42', value: 0.0135, delay: 500}
+            ],
+            4: [ // GRIPPER_TEST2_07: Z축 상승 (부품 들어올리기)
+                {joint: 'Slider_44', value: 0.0, delay: 1000}
+            ],
+            5: [ // GRIPPER_TEST2_08: 조립 포지션으로 이동
+                {joint: 'Rotation_31', value: 1.484, delay: 1000},
+                {joint: 'Rotation_36', value: -1.134, delay: 1000},
+                {joint: 'Rotation_151', value: 3.491, delay: 1000}
+            ],
+            6: [ // GRIPPER_TEST2_09: 조립을 위한 Z축 하강
+                {joint: 'Slider_44', value: -0.02, delay: 800}
+            ],
+            7: [ // GRIPPER_TEST2_10: 정밀 포지셔닝 (더 하강)
+                {joint: 'Slider_44', value: -0.04, delay: 1000}
+            ],
+            8: [ // GRIPPER_TEST2_16: 그리퍼 열기 (부품 해제)
+                {joint: 'Slider_41', value: 0.0, delay: 500},
+                {joint: 'Slider_42', value: 0.0, delay: 500}
+            ],
+            9: [ // GRIPPER_TEST2_20: Z축 상승 (철수)
+                {joint: 'Slider_44', value: 0.0, delay: 1000}
+            ],
+            10: [ // GRIPPER_TEST2_21: 홈 포지션으로 복귀
+                {joint: 'Rotation_31', value: 0.0, delay: 1000},
+                {joint: 'Rotation_36', value: 0.0, delay: 1000},
+                {joint: 'Rotation_151', value: 1.571, delay: 1000},
+                {joint: 'Slider_44', value: 0.0, delay: 1000}
+            ]
+        };
+
+        let animationRunning = false;
+
+        // Easing 함수들
+        function easeInOutSine(t) {
+            return -(Math.cos(Math.PI * t) - 1) / 2;
+        }
+
+        function easeOutQuart(t) {
+            return 1 - Math.pow(1 - t, 4);
+        }
+
+        // 부드러운 보간 함수
+        function lerp(start, end, factor) {
+            return start + (end - start) * factor;
+        }
+
+        // 부드러운 조인트 애니메이션
+        async function animateJointSmoothly(viewer, jointName, targetValue, duration = 1000) {
+            if (!viewer || !viewer.robot || !viewer.robot.joints[jointName]) return;
+
+            const joint = viewer.robot.joints[jointName];
+            const startValue = joint.angle || 0;
+            const steps = 60; // 60fps
+            const stepDuration = duration / steps;
+
+            for (let i = 0; i <= steps; i++) {
+                if (!animationRunning) break;
+
+                const linearFactor = i / steps;
+                const easedFactor = jointName.includes('Rotation') ? 
+                    easeInOutSine(linearFactor) : 
+                    easeOutQuart(linearFactor);
+                
+                const currentValue = lerp(startValue, targetValue, easedFactor);
+                viewer.setJointValue(jointName, currentValue);
+                
+                await new Promise(resolve => setTimeout(resolve, stepDuration));
+            }
+        }
+
+        // 부드러운 다중 조인트 애니메이션
+        async function animateMultipleJointsSmoothly(viewer, jointSteps, duration = 1000) {
+            if (!viewer || !jointSteps.length) return;
+
+            const startValues = {};
+            for (let jointStep of jointSteps) {
+                if (viewer.robot && viewer.robot.joints[jointStep.joint]) {
+                    startValues[jointStep.joint] = viewer.robot.joints[jointStep.joint].angle || 0;
+                } else {
+                    startValues[jointStep.joint] = 0;
+                }
+            }
+
+            const steps = 60;
+            const stepDuration = duration / steps;
+
+            for (let i = 0; i <= steps; i++) {
+                if (!animationRunning) break;
+
+                const linearFactor = i / steps;
+                const easedFactor = easeInOutSine(linearFactor);
+
+                for (let jointStep of jointSteps) {
+                    const currentValue = lerp(startValues[jointStep.joint], jointStep.value, easedFactor);
+                    viewer.setJointValue(jointStep.joint, currentValue);
+                }
+
+                await new Promise(resolve => setTimeout(resolve, stepDuration));
+            }
+        }
+
+        // 부드러운 자동 애니메이션
+        async function runSmoothAnimation(viewer) {
+            if (animationRunning) return;
+            animationRunning = true;
+
+            console.log('🏭 Starting smooth demo animation');
+
+            try {
+                for (let step = 1; step <= 10; step++) {
+                    if (!animationRunning) break;
+
+                    const sequence = ASSEMBLY_SEQUENCE[step];
+                    
+                    if (sequence && sequence.length > 0) {
+                        if (sequence.length > 1) {
+                            // 다중 조인트 동시 애니메이션
+                            const maxDelay = Math.max(...sequence.map(s => s.delay));
+                            await animateMultipleJointsSmoothly(viewer, sequence, maxDelay);
+                        } else {
+                            // 단일 조인트 애니메이션
+                            const jointStep = sequence[0];
+                            await animateJointSmoothly(viewer, jointStep.joint, jointStep.value, jointStep.delay);
+                        }
+                    }
+                    
+                    await new Promise(resolve => setTimeout(resolve, 400));
+                }
+
+                console.log('🏭 GRIPPER_TEST2 Full Assembly completed');
+            } catch (error) {
+                console.error('Animation error:', error);
+            } finally {
+                animationRunning = false;
+                // 3초 후 재시작
+                setTimeout(() => runSmoothAnimation(viewer), 3000);
+            }
+        }
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewer = document.querySelector('urdf-viewer');
+            if (viewer) {
+                console.log('🚀 AgentView 데모 초기화');
+
+                showDemoLoading();
+
+                // 메쉬 로더 설정
+                viewer.loadMeshFunc = (path, manager, done) => {
+                    const ext = path.split(/\./g).pop().toLowerCase();
+                    if (ext === 'stl') {
+                        new STLLoader(manager).load(path, result => {
+                            const material = new THREE.MeshPhongMaterial({ color: 0x888888 });
+                            const mesh = new THREE.Mesh(result, material);
+                            done(mesh);
+                        }, null, err => done(null, err));
+                    }
+                };
+
+                // URDF 처리 완료 시 카메라 설정
+                viewer.addEventListener('urdf-processed', () => {
+                    if (viewer.scene && viewer.camera) {
+                        viewer.camera.position.multiplyScalar(1/8);
+                        const rotationY = 150 * Math.PI / 180;
+                        viewer.camera.position.applyAxisAngle(new THREE.Vector3(0, 1, 0), rotationY);
+                        viewer.camera.position.y += 1.2;
+                        
+                        if (viewer.robot) {
+                            const robotCenter = new THREE.Vector3();
+                            viewer.robot.getWorldPosition(robotCenter);
+                            viewer.camera.lookAt(robotCenter);
+                        }
+                        
+                        viewer.camera.updateProjectionMatrix();
+                        console.log('📷 데모 카메라 설정 완료');
+                    }
+                });
+
+                // 로딩 완료 시 애니메이션 시작
+                viewer.addEventListener('geometry-loaded', () => {
+                    hideDemoLoading();
+                    setTimeout(() => {
+                        runSmoothAnimation(viewer);
+                    }, 2000);
+                });
+
+                // 에러 처리
+                viewer.addEventListener('error', () => {
+                    hideDemoLoading();
+                    console.error('AgentView 로딩 실패');
+                });
+            }
+        });
+
+        // 🎨 완전히 재작성된 View Mode 시스템
+        const ViewModeManager = {
+            currentMode: 'full',
+            sectionAxis: 'x',
+            sectionPosition: 0,
+            originalMaterials: new WeakMap(),
+            clippingPlane: null,
+            
+            init() {
+                this.clippingPlane = new THREE.Plane(new THREE.Vector3(1, 0, 0), 0);
+            },
+            
+            setMode(mode) {
+                const viewer = this.getViewer();
+                if (!viewer) return;
+                
+                this.currentMode = mode;
+                const controls = document.getElementById('section-controls');
+                
+                // 이전 모드 정리
+                this.cleanup(viewer);
+                
+                switch(mode) {
+                    case 'full':
+                        this.applyFullView(viewer);
+                        if (controls) controls.style.display = 'none';
+                        break;
+                    case 'section':
+                        this.applySectionView(viewer);
+                        if (controls) controls.style.display = 'block';
+                        break;
+                    case 'wireframe':
+                        this.applyWireframeView(viewer);
+                        if (controls) controls.style.display = 'none';
+                        break;
+                }
+            },
+            
+            setSectionAxis(axis) {
+                this.sectionAxis = axis;
+                this.sectionPosition = 0;
+                
+                const slider = document.getElementById('section-position');
+                const valueDisplay = document.getElementById('position-value');
+                if (slider) slider.value = '0';
+                if (valueDisplay) valueDisplay.textContent = '0.0';
+                
+                if (this.currentMode === 'section') {
+                    const viewer = this.getViewer();
+                    if (viewer) this.applySectionView(viewer);
+                }
+            },
+            
+            setSectionPosition(position) {
+                this.sectionPosition = parseFloat(position);
+                
+                // 실시간 값 표시 업데이트
+                const valueDisplay = document.getElementById('position-value');
+                if (valueDisplay) {
+                    valueDisplay.textContent = parseFloat(position).toFixed(1);
+                }
+                
+                if (this.currentMode === 'section') {
+                    const viewer = this.getViewer();
+                    if (viewer) {
+                        this.updateClippingPlane();
+                        this.updateMaterialClipping(viewer);
+                    }
+                }
+            },
+            
+            getViewer() {
+                const viewer = document.querySelector('urdf-viewer');
+                return (viewer && viewer.robot) ? viewer : null;
+            },
+            
+            cleanup(viewer) {
+                // 모든 메시를 원본 상태로 복원
+                viewer.robot.traverse((child) => {
+                    if (child.isMesh && this.originalMaterials.has(child)) {
+                        child.material = this.originalMaterials.get(child);
+                    }
+                });
+                
+                // 렌더러 설정 초기화
+                if (viewer.renderer) {
+                    viewer.renderer.localClippingEnabled = false;
+                }
+            },
+            
+            applyFullView(viewer) {
+                // 이미 cleanup에서 복원됨
+            },
+            
+            applySectionView(viewer) {
+                this.updateClippingPlane();
+                
+                viewer.robot.traverse((child) => {
+                    if (child.isMesh) {
+                        // 원본 재질 백업
+                        if (!this.originalMaterials.has(child)) {
+                            this.originalMaterials.set(child, child.material);
+                        }
+                        
+                        // Section 재질 적용
+                        const original = this.originalMaterials.get(child);
+                        const sectionMaterial = new THREE.MeshPhongMaterial({
+                            color: original.color ? original.color.getHex() : 0x999999,
+                            transparent: true,
+                            opacity: 0.8,
+                            side: THREE.DoubleSide,
+                            clippingPlanes: [this.clippingPlane]
+                        });
+                        
+                        child.material = sectionMaterial;
+                    }
+                });
+                
+                if (viewer.renderer) {
+                    viewer.renderer.localClippingEnabled = true;
+                }
+            },
+            
+            applyWireframeView(viewer) {
+                viewer.robot.traverse((child) => {
+                    if (child.isMesh) {
+                        // 원본 재질 백업
+                        if (!this.originalMaterials.has(child)) {
+                            this.originalMaterials.set(child, child.material);
+                        }
+                        
+                        // Wireframe 재질 적용
+                        const original = this.originalMaterials.get(child);
+                        const wireframeMaterial = new THREE.MeshBasicMaterial({
+                            color: original.color ? original.color.getHex() : 0x00ff00,
+                            wireframe: true,
+                            transparent: true,
+                            opacity: 0.9
+                        });
+                        
+                        child.material = wireframeMaterial;
+                    }
+                });
+            },
+            
+            updateClippingPlane() {
+                let normal, distance;
+                
+                switch(this.sectionAxis) {
+                    case 'x':
+                        normal = new THREE.Vector3(1, 0, 0);
+                        distance = -this.sectionPosition;
+                        break;
+                    case 'y':
+                        normal = new THREE.Vector3(0, -1, 0); // Y축 방향 반전 (위에서 아래로)
+                        distance = this.sectionPosition;
+                        break;
+                    case 'z':
+                        normal = new THREE.Vector3(0, 0, 1);
+                        distance = -this.sectionPosition;
+                        break;
+                    default:
+                        normal = new THREE.Vector3(1, 0, 0);
+                        distance = -this.sectionPosition;
+                }
+                
+                this.clippingPlane.set(normal, distance);
+            },
+            
+            updateMaterialClipping(viewer) {
+                viewer.robot.traverse((child) => {
+                    if (child.isMesh && child.material.clippingPlanes) {
+                        child.material.clippingPlanes = [this.clippingPlane];
+                        child.material.needsUpdate = true;
+                    }
+                });
+            }
+        };
+
+        // ViewModeManager 초기화
+        ViewModeManager.init();
+
+        // 전역 함수들
+        window.setViewMode = function(mode) {
+            ViewModeManager.setMode(mode);
+        };
+
+        window.setSectionAxis = function(axis) {
+            ViewModeManager.setSectionAxis(axis);
+        };
+
+        window.setSectionPosition = function(position) {
+            ViewModeManager.setSectionPosition(position);
+        };
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const langSelect = document.getElementById("langSelect");
+
+            // 현재 페이지에 맞춰 기본 선택값 설정
+            if (window.location.pathname.includes("index_en.html")) {
+                langSelect.value = "en";
+            } else {
+                langSelect.value = "ko";
+            }
+
+            langSelect.addEventListener("change", function () {
+                const lang = this.value;
+                if (lang === "ko") {
+                    window.location.href = "index.html"; // 한국어 페이지
+                } else if (lang === "en") {
+                    window.location.href = "index_en.html"; // 영어 페이지
+                }
+            });
+        });
+    </script>
+
+    <script>
+        const btn = document.getElementById('mobileMenuBtn');
+        const menu = document.getElementById('mobileMenu');
+
+        // 메뉴 버튼 클릭 시 토글
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 메뉴 항목 클릭 시 메뉴 닫기 (모바일)
+        const menuItems = menu.querySelectorAll('a');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menu.classList.add('hidden'); // 클릭 시 hidden 클래스 추가
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.tabs').forEach(tabGroup => {
+                const groupName = tabGroup.dataset.group;
+
+                tabGroup.querySelectorAll('.tab').forEach(tab => {
+                    tab.addEventListener('click', e => {
+                        e.preventDefault();
+
+                        // 탭 활성화 상태 토글 (해당 그룹 내)
+                        tabGroup.querySelectorAll('.tab').forEach(t => t.classList.remove('tab-active'));
+                        tab.classList.add('tab-active');
+
+                        // 콘텐츠 토글
+                        if (groupName === 'features') {
+                            document.querySelectorAll('.feature-panel').forEach(panel => panel.classList.remove('active'));
+                            const targetId = tab.dataset.tab + '-content';
+                            const targetPanel = document.getElementById(targetId);
+                            if (targetPanel) targetPanel.classList.add('active');
+                        } else if (groupName === 'demo') {
+                            document.querySelectorAll('.demo-panel').forEach(panel => panel.classList.remove('active'));
+                            const targetId = tab.dataset.demo + '-demo';
+                            const targetPanel = document.getElementById(targetId);
+                            if (targetPanel) targetPanel.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                console.warn(`ID '${sectionId}'를 가진 요소를 찾을 수 없습니다.`);
+            }
+        }
+    </script>
+    
+    <script>
+        emailjs.init('JHkD1JRzwr1NlgViQ');  // Integration 탭 User ID
+
+        function requestTrial() {
+            const email = document.getElementById("emailInput").value.trim();
+            if (!email) {
+                alert("이메일 주소를 입력해주세요.");
+                return;
+            }
+            if (!validateEmail(email)) {
+                alert("올바른 이메일 주소를 입력해주세요.");
+                return;
+            }
+
+            const templateParams = {
+                user_email: email,
+                to_email: "shlee@codeflex.co.kr"
+            };
+
+            emailjs.send('service_codeflex', 'template_1cfmdt4', templateParams)
+                .then(function(response) {
+                    alert("데모 요청이 성공적으로 접수되었습니다.");
+                    document.getElementById("emailInput").value = "";
+                }, function(error) {
+                    alert("데모 요청 중 오류가 발생했습니다.");
+                    console.error(error);
+                });
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email.toLowerCase());
+        }    
+
+        function sendQuestion(event) {
+            event.preventDefault(); // 폼 기본 제출 방지
+
+            const form = document.getElementById("contact-form");
+
+            emailjs.sendForm('service_codeflex', 'template_hno0q3k', form)
+                .then(function(response) {
+                    alert("문의가 성공적으로 전송되었습니다.");
+                    form.reset();
+                }, function(error) {
+                    alert("문의 전송 중 오류가 발생했습니다.");
+                    console.error(error);
+                });
+        }
+
+    </script>
+
+    <script>
+        function downloadPDF() {
+            const pdfUrl = 'upload/TwinWorks_CodeFlex.pdf';
+            window.open(pdfUrl, '_blank');
+        }
+
+        function downloadDemo() {
+            const videoUrl = 'upload/Simulation.mp4'; // 실제 영상 경로로 변경
+
+            // 새 탭으로 영상 페이지 열기 (간단 HTML 생성)
+            const videoHtml = `
+                <!DOCTYPE html>
+                <html lang="ko">
+                <head>
+                    <meta charset="UTF-8" />
+                    <title>워크셀 DT 시뮬레이션 데모 영상</title>
+                    <style>
+                        body, html {
+                            margin: 0; 
+                            height: 100%; 
+                            background: #000; 
+                            display: flex; 
+                            justify-content: center; 
+                            align-items: center;
+                        }
+                        video {
+                            max-width: 100%; 
+                            max-height: 100%;
+                            outline: none;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <video src="${videoUrl}" controls controlsList="nodownload" oncontextmenu="return false;"></video>
+                </body>
+                </html>
+            `;
+
+            // 새 창 열기
+            const newWindow = window.open('', '_blank', 'width=800,height=600');
+
+            // 새 창 문서에 영상 HTML 작성
+            newWindow.document.write(videoHtml);
+            newWindow.document.close();
+        }
+    </script>
+
+</body>
+</html>

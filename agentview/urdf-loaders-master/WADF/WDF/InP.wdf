@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='utf-8'?>
+<WorkcellDescription>
+  <Workcell WorkcellName="InP">
+    <Device DeviceName="SCARA">
+      <Specification>
+        <DeviceType Value="Robot" DataType="String"/>
+        <Manufacturer Value="Fanuc" DataType="String"/>
+      </Specification>
+      <Monitoring>
+        <Variable VariableName="SCARA_monitoring_status_arg" DataType="Boolean"/>
+        <Variable VariableName="SCARA_monitoring_joint_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_joint_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_joint_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_joint_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_joint_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_joint_j6" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_position_x" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_position_y" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_position_z" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_position_rx" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_position_ry" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_position_rz" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_velocity_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_velocity_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_velocity_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_velocity_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_velocity_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_velocity_j6" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_acceleration_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_acceleration_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_acceleration_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_acceleration_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_acceleration_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_acceleration_j6" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_current_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_current_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_current_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_current_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_current_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_current_j6" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_temperature_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_temperature_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_temperature_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_temperature_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_temperature_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_temperature_j6" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_voltage_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_voltage_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_voltage_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_voltage_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_voltage_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_voltage_j6" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_torque_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_torque_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_torque_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_torque_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_torque_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_monitoring_torque_j6" DataType="Float"/>
+      </Monitoring>
+      <Control>
+        <Variable VariableName="SCARA_control_program_arg" DataType="UInt16"/>
+        <Variable VariableName="SCARA_control_relJoint_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relJoint_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relJoint_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relJoint_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relJoint_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relJoint_j6" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absJoint_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absJoint_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absJoint_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absJoint_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absJoint_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absJoint_j6" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relPosition_x" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relPosition_y" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relPosition_z" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relPosition_rx" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relPosition_ry" DataType="Float"/>
+        <Variable VariableName="SCARA_control_relPosition_rz" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absPosition_x" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absPosition_y" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absPosition_z" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absPosition_rx" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absPosition_ry" DataType="Float"/>
+        <Variable VariableName="SCARA_control_absPosition_rz" DataType="Float"/>
+        <Variable VariableName="SCARA_control_velocity_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_control_velocity_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_control_velocity_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_control_velocity_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_control_velocity_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_control_velocity_j6" DataType="Float"/>
+        <Variable VariableName="SCARA_control_acceleration_j1" DataType="Float"/>
+        <Variable VariableName="SCARA_control_acceleration_j2" DataType="Float"/>
+        <Variable VariableName="SCARA_control_acceleration_j3" DataType="Float"/>
+        <Variable VariableName="SCARA_control_acceleration_j4" DataType="Float"/>
+        <Variable VariableName="SCARA_control_acceleration_j5" DataType="Float"/>
+        <Variable VariableName="SCARA_control_acceleration_j6" DataType="Float"/>
+      </Control>
+      <Hierarchy>
+        <ChildDevice ChildDeviceName="Gripper" DataType="String"/>
+      </Hierarchy>
+    </Device>
+    <Device DeviceName="Gripper">
+      <Specification>
+        <DeviceType Value="PneumaticActuator" DataType="String"/>
+        <Manufacturer Value="SMC" DataType="String"/>
+      </Specification>
+      <Monitoring>
+        <Variable VariableName="Gripper_monitoring_state_arg" DataType="Boolean"/>
+      </Monitoring>
+      <Control>
+        <Variable VariableName="Gripper_control_state_arg" DataType="Boolean"/>
+      </Control>
+      <Hierarchy>
+        <ParentDevice ParentDeviceName="SCARA" DataType="String"/>
+      </Hierarchy>
+    </Device>
+    <Device DeviceName="PalletInSensor">
+      <Specification>
+        <DeviceType Value="ProximitySensor" DataType="String"/>
+        <Manufacturer Value="Autonics" DataType="String"/>
+      </Specification>
+      <Monitoring>
+        <Variable VariableName="PalletInSensor_monitoring_state_arg" DataType="Boolean"/>
+      </Monitoring>
+    </Device>
+    <Device DeviceName="AssemblySensor">
+      <Specification>
+        <DeviceType Value="ProximitySensor" DataType="String"/>
+        <Manufacturer Value="Autonics" DataType="String"/>
+      </Specification>
+      <Monitoring>
+        <Variable VariableName="AssemblySensor_monitoring_state_arg" DataType="Boolean"/>
+      </Monitoring>
+    </Device>
+    <Device DeviceName="PalletOutSensor">
+      <Specification>
+        <DeviceType Value="ProximitySensor" DataType="String"/>
+        <Manufacturer Value="Autonics" DataType="String"/>
+      </Specification>
+      <Monitoring>
+        <Variable VariableName="PalletOutSensor_monitoring_state_arg" DataType="Boolean"/>
+      </Monitoring>
+    </Device>
+    <Device DeviceName="AssemblyBlockActuator">
+      <Specification>
+        <DeviceType Value="PneumaticActuator" DataType="String"/>
+        <Manufacturer Value="SMC" DataType="String"/>
+      </Specification>
+      <Monitoring>
+        <Variable VariableName="AssemblyBlockActuator_monitoring_state_arg" DataType="Boolean"/>
+      </Monitoring>
+      <Control>
+        <Variable VariableName="AssemblyBlockActuator_control_state_arg" DataType="Boolean"/>
+      </Control>
+    </Device>
+    <Device DeviceName="EngravingActuator">
+      <Specification>
+        <DeviceType Value="PneumaticActuator" DataType="String"/>
+        <Manufacturer Value="SMC" DataType="String"/>
+      </Specification>
+      <Monitoring>
+        <Variable VariableName="EngravingActuator_monitoring_state_arg" DataType="Boolean"/>
+      </Monitoring>
+      <Control>
+        <Variable VariableName="EngravingActuator_control_state_arg" DataType="Boolean"/>
+      </Control>
+    </Device>
+    <Device DeviceName="PartPusher1">
+      <Specification>
+        <DeviceType Value="PneumaticActuator" DataType="String"/>
+        <Manufacturer Value="SMC" DataType="String"/>
+      </Specification>
+      <Monitoring>
+        <Variable VariableName="PartPusher1_monitoring_state_arg" DataType="Boolean"/>
+      </Monitoring>
+      <Control>
+        <Variable VariableName="PartPusher1_control_state_arg" DataType="Boolean"/>
+      </Control>
+    </Device>
+    <Device DeviceName="PartPusher2">
+      <Specification>
+        <DeviceType Value="PneumaticActuator" DataType="String"/>
+        <Manufacturer Value="SMC" DataType="String"/>
+      </Specification>
+      <Monitoring>
+        <Variable VariableName="PartPusher2_monitoring_state_arg" DataType="Boolean"/>
+      </Monitoring>
+      <Control>
+        <Variable VariableName="PartPusher2_control_state_arg" DataType="Boolean"/>
+      </Control>
+    </Device>
+  </Workcell>
+</WorkcellDescription>
